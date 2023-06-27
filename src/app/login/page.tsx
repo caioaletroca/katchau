@@ -1,10 +1,14 @@
 "use client";
 
 import TextField from "@/components/TextField";
+import { auth, googleProvider } from "@/database/auth";
 import useTranslation from "@/hooks/useTranslation";
 import { user } from "@/validation/user";
 import { Button, Divider } from "@mui/material";
+import { signInWithPopup } from "firebase/auth";
 import { Formik } from "formik";
+import Image from "next/image";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
@@ -12,6 +16,8 @@ const LoginSchema = z.object({
 	username: user.username,
 	password: user.password
 })
+
+type LoginForm = z.infer<typeof LoginSchema>;
 
 const initialValues = {
 	username: "",
@@ -21,20 +27,31 @@ const initialValues = {
 export default function LoginPage() {
 	const { t } = useTranslation('login');
 
+	const handleSubmit = (values: LoginForm) => {
+		console.log(values);
+	}
+
+	const handleGoogleLogin = async () => {
+		await signInWithPopup(auth, googleProvider);
+
+		redirect('/');
+	}
+
 	return (
-		<div className="flex flex-col h-full">
-			<div className='flex flex-col h-full justify-center gap-2 m-8'>
+		<div className="flex flex-col h-full justify-center">
+			<div className='flex flex-col h-full items-center justify-center gap-2 m-8'>
+				<Image alt="" src='/full-logo-inverted.svg' height={256} width={256} />
 				<Formik
 					initialValues={initialValues}
 					validationSchema={toFormikValidationSchema(LoginSchema)}
-					onSubmit={(data) => { console.log(data) }}>
+					onSubmit={handleSubmit}>
 						{({
 							handleBlur,
 							handleChange,
 							handleSubmit
 						}) => (
 							<form
-								className="flex flex-col gap-2"
+								className="flex flex-col gap-2 w-full"
 								onSubmit={handleSubmit}>
 								<TextField
 									name='username'
@@ -60,7 +77,8 @@ export default function LoginPage() {
 						)}
 				</Formik>
 				<Divider>OR</Divider>
-				<Button>
+				<Button
+					onClick={handleGoogleLogin}>
 					{t("loginWithGoogle", "Log In With Google")}
 				</Button>
 			</div>

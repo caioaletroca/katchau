@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "analyze": "cross-env ANALYZE=true next build",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "extract-translations": "next-translate-scanner"
   },
   "dependencies": {
