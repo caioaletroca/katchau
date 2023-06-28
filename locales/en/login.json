@@ -1,6 +1,6 @@
 {
-  "test": "Casa",
   "username": "Username",
   "password": "Password",
-  "login": "Log In"
+  "login": "Log In",
+  "loginWithGoogle": ""
 }
