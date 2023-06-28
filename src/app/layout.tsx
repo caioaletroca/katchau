@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import ThemeRegistry from '@/components/Theme/ThemeRegistry/ThemeRegistry';
+import NextAuthProvider from '@/components/Auth/NextAuthProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeRegistry>
-          {children}
-        </ThemeRegistry>
+        <NextAuthProvider>
+          <ThemeRegistry>
+            {children}
+          </ThemeRegistry>
+        </NextAuthProvider>
       </body>
     </html>
   )
