@@ -6,16 +6,22 @@ type Query = Parameters<Translate>[1];
 type Options = Parameters<Translate>[2];
 
 export default function useTranslation(defaultNS?: string) {
-    const { t: nextT, ...others } = useNextTranslation(defaultNS);
+	const { t: nextT, ...others } = useNextTranslation(defaultNS);
 
-    const t = (keys: I18nKey, defaultValue?: string, query?: Query, options?: Options) => {
-        return nextT(keys, query, {
-            default: defaultValue,
-            ...options
-        }) as string;
-    };
+	const t = (
+		keys: I18nKey,
+		defaultValue?: string,
+		query?: Query,
+		options?: Options
+	) => {
+		return nextT(keys, query, {
+			default: defaultValue,
+			...options,
+		}) as string;
+	};
 
-    return {
-        t, ...others
-    }
+	return {
+		t,
+		...others,
+	};
 }
