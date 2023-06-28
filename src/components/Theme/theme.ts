@@ -9,6 +9,17 @@ const theme = createTheme({
 			main: '#B784FA',
 		},
 	},
+	components: {
+		MuiAppBar: {
+			styleOverrides: {
+				root: () => ({
+					userSelect: 'none',
+					backgroundImage: 'none',
+					boxShadow: 'none',
+				}),
+			},
+		},
+	},
 });
 
 export default theme;

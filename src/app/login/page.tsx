@@ -36,7 +36,7 @@ export default function LoginPage() {
 	return (
 		<div className="flex h-full flex-col justify-center">
 			<div className="m-8 flex h-full flex-col items-center justify-center gap-2">
-				<Image alt="" src="/full-logo-inverted.svg" height={256} width={256} />
+				<Image alt="" src="full-logo-inverted.svg" height={256} width={256} />
 				<Formik
 					initialValues={initialValues}
 					validationSchema={toFormikValidationSchema(LoginSchema)}
