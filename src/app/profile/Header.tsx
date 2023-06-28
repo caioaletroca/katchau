@@ -1,5 +1,5 @@
 import React from 'react';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import {
 	IconButton,
 	List,
@@ -10,6 +10,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import Icon from '@/components/Icon';
 
 const Puller = () => (
 	<div className="flex w-full flex-col items-center justify-center p-3">
@@ -28,7 +29,7 @@ export default function Header() {
 			<div className="flex w-full flex-row items-center justify-between p-2">
 				<Typography>{session?.user?.name}</Typography>
 				<IconButton onClick={() => setOpen(true)}>
-					<span className="material-symbols-outlined">menu</span>
+					<Icon name='menu' />
 				</IconButton>
 			</div>
 			<SwipeableDrawer

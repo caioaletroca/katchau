@@ -2,7 +2,7 @@
 
 import Icon from '@/components/Icon';
 import PageMobile from '@/components/Page/PageMobile';
-import useTranslation from '@/hooks/useTranslation';
+import useTranslation from 'next-translate/useTranslation';
 import {
 	AppBar,
 	IconButton,
@@ -27,7 +27,7 @@ export default function ConfigurationPage() {
 					<IconButton onClick={() => router.back()}>
 						<Icon name="arrow_back" />
 					</IconButton>
-					<Typography variant="h6">{t('title', 'Configurations')}</Typography>
+					<Typography variant="h6">{t('title', { default: 'Configurations' })}</Typography>
 				</Toolbar>
 			</AppBar>
 			<Paper

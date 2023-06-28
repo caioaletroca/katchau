@@ -1,7 +1,7 @@
 'use client';
 
 import TextField from '@/components/TextField';
-import useTranslation from '@/hooks/useTranslation';
+import useTranslation from 'next-translate/useTranslation';
 import { user } from '@/validation/user';
 import { Button, Divider } from '@mui/material';
 import { Formik } from 'formik';
@@ -47,7 +47,7 @@ export default function LoginPage() {
 							onSubmit={handleSubmit}>
 							<TextField
 								name="username"
-								placeholder={t('username', 'Username')}
+								placeholder={t('username', { default: 'Username' })}
 								onChange={handleChange}
 								onBlur={handleBlur}
 								variant="outlined"
@@ -55,20 +55,20 @@ export default function LoginPage() {
 							<TextField
 								type="password"
 								name="password"
-								placeholder={t('password', 'Password')}
+								placeholder={t('password', { default: 'Password' })}
 								onChange={handleChange}
 								onBlur={handleBlur}
 								variant="outlined"
 							/>
 							<Button type="submit" variant="outlined">
-								{t('login', 'Log In')}
+								{t('login', { default: 'Log In' })}
 							</Button>
 						</form>
 					)}
 				</Formik>
 				<Divider>OR</Divider>
 				<Button onClick={handleGoogleLogin}>
-					{t('loginWithGoogle', 'Log In With Google')}
+					{t('loginWithGoogle', { default: 'Log In With Google' })}
 				</Button>
 			</div>
 		</div>
