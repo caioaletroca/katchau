@@ -8,8 +8,9 @@
     "start": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix",
-		"prettier": "prettier --write ./src",
-    "extract-translations": "next-translate-scanner"
+    "prettier": "prettier --write ./src",
+    "extract-translations": "next-translate-scanner",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@auth/firebase-adapter": "^1.0.0",
@@ -41,6 +42,8 @@
     "@next/bundle-analyzer": "^13.4.7",
     "cross-env": "^7.0.3",
     "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.2",
     "next-compose-plugins": "^2.2.1",
     "next-translate-plugin": "^2.4.2",
     "next-translate-scanner": "^0.2.1",
