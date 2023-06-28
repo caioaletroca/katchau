@@ -1,14 +1,15 @@
 'use client';
 
-import BottomNavigation from '@/components/BottomNavigation';
 import Header from './Header';
+import PageMobile from '@/components/Page/PageMobile';
+import BottomNavigation from '@/components/BottomNavigation';
 
 export default function ProfilePage() {
 	return (
-		<div className="flex h-full flex-col">
+		<PageMobile>
 			<Header />
 			<div className="flex-1" />
 			<BottomNavigation />
-		</div>
+		</PageMobile>
 	);
 }
