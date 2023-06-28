@@ -20,11 +20,11 @@ const handler = NextAuth({
 		}),
 	}),
 	session: {
-		strategy: "jwt"
+		strategy: 'jwt',
 	},
 	pages: {
-		signIn: "/login"
-	}
+		signIn: '/login',
+	},
 });
 
 export { handler as GET, handler as POST };

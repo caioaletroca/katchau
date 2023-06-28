@@ -13,7 +13,7 @@ module.exports = {
   // Default namespace used if not passed to useTranslation or in the translation key.
   defaultNS: "common",
   // Create default value from element
-  defaultValue: (data) => data.options.default,
+  defaultValue: (data) => data?.options?.default,
   // Indention used in json files (default: 2 spaces)
   indentation: 2
 }

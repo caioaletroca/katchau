@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation';
 
 export default function ConfigurationPage() {
 	const router = useRouter();
-	const { t } = useTranslation('configurations');
+	const { t } = useTranslation('configuration');
 
 	return (
 		<PageMobile>
