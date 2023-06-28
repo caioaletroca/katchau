@@ -10,7 +10,7 @@ export default function BottomNavigation() {
 	const router = useRouter();
 	const pathname = usePathname();
 
-		const currentRouteIndex = options.indexOf(pathname);
+	const currentRouteIndex = options.indexOf(pathname);
 
 	return (
 		<MuiBottomNavigation value={currentRouteIndex}>

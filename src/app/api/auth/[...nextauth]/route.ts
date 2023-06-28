@@ -19,6 +19,12 @@ const handler = NextAuth({
 			privateKey: serviceAccount.private_key,
 		}),
 	}),
+	session: {
+		strategy: "jwt"
+	},
+	pages: {
+		signIn: "/login"
+	}
 });
 
 export { handler as GET, handler as POST };
