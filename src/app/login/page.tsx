@@ -40,13 +40,11 @@ export default function LoginPage() {
 				<Formik
 					initialValues={initialValues}
 					validationSchema={toFormikValidationSchema(LoginSchema)}
-					onSubmit={handleSubmit}
-				>
+					onSubmit={handleSubmit}>
 					{({ handleBlur, handleChange, handleSubmit }) => (
 						<form
 							className="flex w-full flex-col gap-2"
-							onSubmit={handleSubmit}
-						>
+							onSubmit={handleSubmit}>
 							<TextField
 								name="username"
 								placeholder={t('username', 'Username')}
