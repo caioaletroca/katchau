@@ -1,15 +1,12 @@
 "use client";
 
 import TextField from "@/components/TextField";
-import { auth, googleProvider } from "@/database/auth";
 import useTranslation from "@/hooks/useTranslation";
 import { user } from "@/validation/user";
 import { Button, Divider } from "@mui/material";
-import { signInWithPopup } from "firebase/auth";
 import { Formik } from "formik";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 

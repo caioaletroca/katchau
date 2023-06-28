@@ -1,13 +1,11 @@
 "use client";
 
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import Button from "@mui/material/Button";
+import BottomNavigation from "@/components/BottomNavigation";
 import IconButton from "@mui/material/IconButton";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col h-full">
       <div>
         <p>Logo</p>
         <IconButton>
@@ -16,19 +14,8 @@ export default function Home() {
           </span>
         </IconButton>
       </div>
-      <Button variant='contained'>Log in</Button>
-      <BottomNavigation>
-        <BottomNavigationAction icon={
-          <span className="material-symbols-outlined">
-            home
-          </span>
-        } />
-        <BottomNavigationAction icon={
-          <span className="material-symbols-outlined">
-            settings
-          </span>
-        } />
-      </BottomNavigation>
-    </>
+			<div className='flex flex-1' />
+			<BottomNavigation />
+    </div>
   )
 }
