@@ -1,5 +1,5 @@
-import { BottomNavigation as MuiBottomNavigation, BottomNavigationAction } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
+import { BottomNavigation as MuiBottomNavigation, BottomNavigationAction } from "@mui/material";
 
 const options = [
 	"/",
