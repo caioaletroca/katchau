@@ -8,6 +8,7 @@
     "start": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix",
+		"prettier": "prettier --write ./src",
     "extract-translations": "next-translate-scanner"
   },
   "dependencies": {
@@ -39,8 +40,11 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.7",
     "cross-env": "^7.0.3",
+    "eslint-config-prettier": "^8.8.0",
     "next-compose-plugins": "^2.2.1",
     "next-translate-plugin": "^2.4.2",
-    "next-translate-scanner": "^0.2.1"
+    "next-translate-scanner": "^0.2.1",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.3.0"
   }
 }
