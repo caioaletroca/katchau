@@ -11,6 +11,7 @@ datasource db {
 }
 
 model Account {
+	@@map("accounts")
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
   type               String
@@ -30,6 +31,7 @@ model Account {
 }
 
 model Session {
+	@@map("sessions")
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
@@ -38,19 +40,84 @@ model Session {
 }
 
 model User {
+	@@map("users")
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
+	created_at		DateTime   @default(now())
+	updated_at		DateTime?   @updatedAt
+	deleted_at		DateTime?
+
   accounts      Account[]
   sessions      Session[]
+	followers			Follows[]	@relation("Follower")
+	following			Follows[] @relation("Following")
+	posts					Post[]
+	comments			Comment[]
 }
 
 model VerificationToken {
+	@@map("verification_tokens")
   identifier String
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Follows {
+	@@map("follows")
+	follower_id	String
+	following_id	String
+	follower	User	@relation("Follower", fields: [follower_id], references: [id])
+	following	User	@relation("Following", fields: [following_id], references: [id])
+
+	@@id([follower_id, following_id])
+}
+
+model Post {
+	@@map("posts")
+	id	String	@id @default(cuid())
+	user_id	String
+	description	String?
+	image	String?
+	created_at	DateTime   @default(now())
+	updated_at	DateTime?   @updatedAt
+	deleted_at	DateTime?
+
+	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
+	comments	Comment[]
+	likes	Like[]	@relation("PostLike")
+}
+
+model Comment {
+	@@map("comments")
+	id	String @id @default(cuid())
+	user_id	String
+	post_id	String
+	content String
+	created_at	DateTime   @default(now())
+	updated_at	DateTime?   @updatedAt
+	deleted_at	DateTime?
+
+	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
+	post	Post	@relation(fields: [post_id], references: [id], onDelete: Cascade)
+	likes	Like[]	@relation("CommentLike")
+}
+
+enum LikeOwner {
+	Post
+	Comment
+}
+
+model Like {
+	@@map("likes")
+	id	String @id @default(cuid())
+	owner_id	String
+	owner_type	LikeOwner
+
+	post	Post?	@relation("PostLike", fields: [owner_id], references: [id], map: "like_post_fk")
+	comment	Comment?	@relation("CommentLike", fields: [owner_id], references: [id], map: "like_comment_fk")
 }

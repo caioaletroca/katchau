@@ -10,6 +10,7 @@
     "lint": "next lint --fix",
     "prettier": "prettier --write ./src",
     "extract-translations": "next-translate-scanner",
+		"migrate:dev": "prisma migrate dev",
     "prepare": "husky install"
   },
   "dependencies": {
