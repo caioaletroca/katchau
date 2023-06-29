@@ -7,18 +7,18 @@ export default function FileUpload() {
 
 	const handleDrop = (files: any) => {
 		console.log(files)
-	}
+	};
 	
 	const {getRootProps, getInputProps, isDragActive, open } = useDropzone({
 		onDrop: handleDrop,
 		noClick: true
-	})
-
+	});
 
 	return (
 		<div
 			className="flex flex-col justify-center items-center border-white p-2 py-6 h-60 border-dashed border rounded-lg gap-4"
-			{...getRootProps()}>
+			{...getRootProps()}
+		>
 			<input
 				type="file"
 				accept="image/*"
