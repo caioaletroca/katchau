@@ -3,6 +3,7 @@ import Puller from "./Puller";
 
 export default function SwipeableDrawer({
 	classes,
+	children,
 	...others
 }: SwipeableDrawerProps) {
 	return (
@@ -14,6 +15,7 @@ export default function SwipeableDrawer({
 			{...others}>
 			<div className="flex flex-col">
 				<Puller />
+				{children}
 			</div>
 		</MuiSwipeableDrawer>
 	);
