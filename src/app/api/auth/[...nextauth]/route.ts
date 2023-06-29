@@ -1,10 +1,6 @@
-import { FirestoreAdapter } from '@auth/firebase-adapter';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import { cert } from 'firebase-admin/app';
 import { PrismaAdapter } from "@auth/prisma-adapter";
-
-import serviceAccount from '@/../../firebase-service-account.json';
 import { prisma } from '@/database/db';
 
 const handler = NextAuth({
@@ -15,15 +11,9 @@ const handler = NextAuth({
 		}),
 	],
 	adapter: PrismaAdapter(prisma),
-	// adapter: FirestoreAdapter({
-	// 	credential: cert({
-	// 		projectId: serviceAccount.project_id,
-	// 		clientEmail: serviceAccount.client_email,
-	// 		privateKey: serviceAccount.private_key,
-	// 	}),
-	// }),
 	session: {
 		strategy: 'jwt',
+		maxAge: 30 * 24 * 60 * 60,
 	},
 	pages: {
 		signIn: '/login',
