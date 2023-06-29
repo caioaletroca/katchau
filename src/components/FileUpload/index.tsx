@@ -1,16 +1,25 @@
-import { Button, Typography } from "@mui/material";
+"use client";
+
 import React from "react";
-import { useDropzone } from 'react-dropzone'
+import { useDropzone, FileRejection, DropEvent } from 'react-dropzone'
+import { Button, Typography } from "@mui/material";
 
-export default function FileUpload() {
-	const [files, setFiles] = React.useState();
+type FileUploadProps = {
+	id?: string;
+	name?: string;
+	onChange?: (files: File[]) => void;
+}
 
-	const handleDrop = (files: any) => {
-		console.log(files)
+export default function FileUpload({ id, name, onChange }: FileUploadProps) {
+	const [files, setFiles] = React.useState<File[]>();
+
+	const handleDropAccepted = (acceptedFiles: File[], nativeEvent: DropEvent) => {
+		setFiles(acceptedFiles);
+		onChange?.(acceptedFiles);
 	};
 	
 	const {getRootProps, getInputProps, isDragActive, open } = useDropzone({
-		onDrop: handleDrop,
+		onDropAccepted: handleDropAccepted,
 		noClick: true
 	});
 
@@ -20,6 +29,8 @@ export default function FileUpload() {
 			{...getRootProps()}
 		>
 			<input
+				id={id}
+				name={name}
 				type="file"
 				accept="image/*"
 				{...getInputProps()}
