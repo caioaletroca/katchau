@@ -54,6 +54,7 @@ model User {
   sessions      Session[]
 	followers			Follows[]	@relation("Follower")
 	following			Follows[] @relation("Following")
+	profile_picture	ProfileImage[]
 	posts					Post[]
 	comments			Comment[]
 }
@@ -82,12 +83,12 @@ model Post {
 	id	String	@id @default(cuid())
 	user_id	String
 	description	String?
-	image	String?
 	created_at	DateTime   @default(now())
 	updated_at	DateTime?   @updatedAt
 	deleted_at	DateTime?
 
 	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
+	images	PostImage[]
 	comments	Comment[]
 	likes	Like[]	@relation("PostLike")
 }
@@ -107,6 +108,35 @@ model Comment {
 	likes	Like[]	@relation("CommentLike")
 }
 
+enum ImageOwner {
+	User
+	Post
+}
+
+model ProfileImage {
+	@@map("profile_images")
+	id	String @id @default(cuid())
+	user_id	String
+	url	String
+	created_at	DateTime   @default(now())
+	updated_at	DateTime?   @updatedAt
+	deleted_at	DateTime?
+
+	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model PostImage {
+	@@map("post_images")
+	id	String @id @default(cuid())
+	post_id	String
+	url	String
+	created_at	DateTime   @default(now())
+	updated_at	DateTime?   @updatedAt
+	deleted_at	DateTime?
+
+	post	Post	@relation(fields: [post_id], references: [id], onDelete: Cascade)
+}
+
 enum LikeOwner {
 	Post
 	Comment
@@ -118,6 +148,6 @@ model Like {
 	owner_id	String
 	owner_type	LikeOwner
 
-	post	Post?	@relation("PostLike", fields: [owner_id], references: [id], map: "like_post_fk")
-	comment	Comment?	@relation("CommentLike", fields: [owner_id], references: [id], map: "like_comment_fk")
+	post	Post?	@relation("PostLike", fields: [owner_id], references: [id], map: "like_post_fk", onDelete: Cascade)
+	comment	Comment?	@relation("CommentLike", fields: [owner_id], references: [id], map: "like_comment_fk", onDelete: Cascade)
 }

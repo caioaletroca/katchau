@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useDropzone, FileRejection, DropEvent } from 'react-dropzone'
+import { useDropzone, DropEvent } from 'react-dropzone'
 import { Button, Typography } from "@mui/material";
 
 type FileUploadProps = {

@@ -1,5 +1,7 @@
 "use client";
 
+import api from "@/api";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type FormData = {
@@ -24,6 +26,7 @@ export function useNewPost() {
 type NewPostProviderProps = React.PropsWithChildren;
 
 export function NewPostProvider({ children }: NewPostProviderProps) {
+	const router = useRouter();
 	const [formData, _setFormData] = React.useState<FormData>({});
 
 	const setFormData = (data: Partial<FormData>) => {
@@ -35,15 +38,15 @@ export function NewPostProvider({ children }: NewPostProviderProps) {
 		data.append('image', formData.file!);
 		data.append('description', formData.description!);
 
-		const response = await fetch('/api/posts', {
-			method: 'POST',
-			body: data
-		});
+		try {
+			await api.post('/posts', data);
 
-		console.log(response);
+			router.push('/');
+		}
+		catch (error) {
+			router.push('/new-post/description');
+		}
 	}
-
-	console.log(formData);
 
 	return (
 		<NewPostContext.Provider value={{
