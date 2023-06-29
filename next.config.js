@@ -8,10 +8,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withPlugins([
     {
         transpilePackages: ["@mui/system", "@mui/material"],
-        "@mui/material/?(((\\w*)?/?)*)": {
-            transform: "@mui/material/{{ matches.[1] }}/{{member}}",
-        },
+        modularizeImports: {
+					"@mui/material/?(((\\w*)?/?)*)": {
+						transform: "@mui/material/{{ matches.[1] }}/{{member}}",
+					}
+				}
     },
     withBundleAnalyzer(),
-    nextTranslate()
+    // nextTranslate()
 ]);

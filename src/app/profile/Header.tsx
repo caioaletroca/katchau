@@ -27,9 +27,6 @@ export default function Header() {
 				</IconButton>
 			</div>
 			<SwipeableDrawer
-				classes={{
-					paper: 'rounded-t-xl',
-				}}
 				open={open}
 				disableSwipeToOpen
 				anchor="bottom"

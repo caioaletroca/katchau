@@ -5,6 +5,7 @@ module.exports = {
 		"*": ["common"],
 		"/": ["home"],
 		"/login": ["login"],
-		"/configuration": ["configuration"]
+		"/configuration": ["configuration"],
+		"/configuration/language": ["language"]
 	}
 }
