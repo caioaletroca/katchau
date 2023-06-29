@@ -19,6 +19,7 @@ export default function BottomNavigation() {
 				icon={<span className="material-symbols-outlined">home</span>}
 			/>
 			<BottomNavigationAction
+				onClick={() => router.push('/new-post')}
 				icon={<span className="material-symbols-outlined">add_box</span>}
 			/>
 			<BottomNavigationAction
