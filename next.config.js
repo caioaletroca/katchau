@@ -5,14 +5,19 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE === 'true',
 });
 
+// TODO: Fix translations
+
 module.exports = withPlugins([
     {
-        transpilePackages: ["@mui/system", "@mui/material"],
-        modularizeImports: {
-					"@mui/material/?(((\\w*)?/?)*)": {
-						transform: "@mui/material/{{ matches.[1] }}/{{member}}",
-					}
+			images: {
+				domains: ['cwlieuwgmwcsbydffhja.supabase.co'],
+			},
+			transpilePackages: ["lodash", "@mui/system", "@mui/material"],
+			modularizeImports: {
+				"@mui/material/?(((\\w*)?/?)*)": {
+					transform: "@mui/material/{{ matches.[1] }}/{{member}}",
 				}
+			}
     },
     withBundleAnalyzer(),
     // nextTranslate()

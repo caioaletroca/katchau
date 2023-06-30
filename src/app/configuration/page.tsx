@@ -39,9 +39,11 @@ export default function ConfigurationPage() {
 	const { t } = useTranslation('configuration');
 	const router = useRouter();
 
+	const handleBack = () => router.back();
+
 	return (
 		<PageMobile>
-			<PageMobileHeader backButton title={t('title', { default: 'Configurations' })} />
+			<PageMobileHeader title={t('title', { default: 'Configurations' })} onBackClick={handleBack} />
 			<Section title={t('appsAndMediaSectionTitle', { default: "Apps and Medias" })}>
 				<List dense>
 					<ListItemButton onClick={() => router.push('/configuration/language')}>

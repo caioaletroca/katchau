@@ -9,7 +9,7 @@ import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 const LoginSchema = z.object({
 	username: user.username,
