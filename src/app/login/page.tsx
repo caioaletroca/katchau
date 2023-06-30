@@ -9,6 +9,7 @@ import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { useParams, useSearchParams } from 'next/navigation';
 
 const LoginSchema = z.object({
 	username: user.username,
@@ -23,6 +24,7 @@ const initialValues = {
 };
 
 export default function LoginPage() {
+	const search = useSearchParams();
 	const { t } = useTranslation('login');
 
 	const handleSubmit = (values: LoginForm) => {
@@ -30,13 +32,16 @@ export default function LoginPage() {
 	};
 
 	const handleGoogleLogin = () => {
-		signIn('google', { callbackUrl: '/' });
+		signIn('google', {
+			callbackUrl: search.get('callbackUrl') ?? '/'
+		});
 	};
 
 	return (
 		<div className="flex h-full flex-col justify-center">
 			<div className="m-8 flex h-full flex-col items-center justify-center gap-2">
-				<Image alt="" src="full-logo-inverted.svg" height={256} width={256} />
+				{/* TODO: Proper Logo rendering */}
+				<Image alt="Logo" src="/full-logo-inverted.svg" height={256} width={256} />
 				<Formik
 					initialValues={initialValues}
 					validationSchema={toFormikValidationSchema(LoginSchema)}
