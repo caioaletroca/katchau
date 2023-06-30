@@ -54,7 +54,7 @@ export default function ConfigurationPage() {
 			</Section>
 			<Section title={t('logInSectionTitle', { default: "Log In" })}>
 				<List dense>
-					<ListItemButton color="secondary" onClick={() => signOut()}>
+					<ListItemButton color="secondary" onClick={() => signOut({ callbackUrl: '/login' })}>
 						<ListItemText primary="Log off" />
 					</ListItemButton>
 				</List>
