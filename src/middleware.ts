@@ -9,7 +9,9 @@ export default async function middleware(req: NextRequestWithAuth, event: NextFe
 	}
 
 	if(req.nextUrl.pathname.startsWith('/api')) {
-		return await apiMiddleware(req);
+		if(!req.nextUrl.pathname.startsWith('/api/auth')) {
+			return await apiMiddleware(req);
+		}
 	}
 
 	if(req.nextUrl.pathname.match(/(.*).(svg|png|jpg|jpeg|ico)/g)) {
