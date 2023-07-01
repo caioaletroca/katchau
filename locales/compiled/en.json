@@ -22,5 +22,11 @@
       "type": 0,
       "value": "Log In"
     }
+  ],
+  "profile.configurationButton": [
+    {
+      "type": 0,
+      "value": "Configurations"
+    }
   ]
 }

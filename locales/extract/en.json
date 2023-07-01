@@ -2,5 +2,6 @@
   "configurations.appsAndMediaSectionTitle": "Apps and Medias",
   "configurations.title": "Configurations",
   "languageButtom": "Language",
-  "logInSectionTitle": "Log In"
+  "logInSectionTitle": "Log In",
+  "profile.configurationButton": "Configurations"
 }
