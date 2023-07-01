@@ -23,6 +23,12 @@
       "value": "Log In"
     }
   ],
+  "post.title": [
+    {
+      "type": 0,
+      "value": "Post"
+    }
+  ],
   "profile.configurationButton": [
     {
       "type": 0,

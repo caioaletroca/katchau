@@ -69,7 +69,7 @@ export default function ConfigurationPage() {
 			</Section>
 			<Section
 				title={intl.formatMessage({
-					id: 'logInSectionTitle', 
+					id: 'logInSectionTitle',
 					defaultMessage: "Log In"
 				})}>
 				<List dense>

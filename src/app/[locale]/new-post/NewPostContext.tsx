@@ -1,8 +1,8 @@
 "use client";
 
-import api from "@/api";
-import { useRouter } from "next/navigation";
 import React from "react";
+import api from "@/api";
+import useRouter from "@/hooks/useRouter";
 
 type FormData = {
 	originalFile?: File,
@@ -32,10 +32,11 @@ export function NewPostProvider({ children }: NewPostProviderProps) {
 	const setFormData = (data: Partial<FormData>) => {
 		_setFormData(prevData => ({ ...prevData, ...data }));
 	}
-
+	
 	const handleSubmit = async () => {
 		const data = new FormData();
 		data.append('image', formData.file!);
+		data.append('fileName', formData.originalFile?.name!);
 		data.append('description', formData.description!);
 
 		try {

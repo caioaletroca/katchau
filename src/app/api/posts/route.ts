@@ -1,22 +1,39 @@
 import { prisma } from "@/database/db";
 import supabase from "@/database/supabase";
-import { getToken } from "next-auth/jwt";
+import { getToken, JWT } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, res: NextResponse) {
-	const token = await getToken({ req });
+export async function GET(req: NextRequest) {
+	const token = await getToken({ req }) as JWT;
+
+	const posts = await prisma.post.findMany({
+		where: {
+			user_id: token.sub
+		},
+		include: {
+			images: true,
+		}
+	});
+
+	return NextResponse.json(posts);
+}
+
+export async function POST(req: NextRequest) {
+	const token = await getToken({ req }) as JWT;
 	const formData = await req.formData();
 
-	// TODO: Secure route, error handling
+	// TODO: error handling
 	
 	const post = await prisma.post.create({
 		data: {
-			user_id: token?.sub,
+			user_id: token.sub,
 			description: formData.get('description') && ""
 		}
 	});
 
-	const filePath = `/${token?.sub}/${post.id}.jpeg`;
+	const extension = formData.get('fileName')?.split('.').pop();
+	const filePath = `/${token?.sub}/${post.id}.${extension}`;
+	
 	const fileResponse = await supabase.storage.from('posts').upload(filePath, formData.get('image')!);
 
 	await prisma.postImage.create({

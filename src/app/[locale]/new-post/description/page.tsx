@@ -4,9 +4,9 @@ import Image from 'next/image';
 import PageMobile from "@/components/Page/PageMobile";
 import PageMobileHeader from "@/components/Page/PageMobileHeader";
 import { TextField } from "@mui/material";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { useNewPost } from "../NewPostContext";
+import useRouter from '@/hooks/useRouter';
 
 export default function NewPostDescription() {
 	const router = useRouter();
