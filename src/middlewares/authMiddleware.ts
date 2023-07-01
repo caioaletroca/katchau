@@ -1,5 +1,5 @@
 import withAuth, { NextRequestWithAuth } from "next-auth/middleware";
-import localizationMiddleware from "./localizationMiddleware";
+import localizationMiddleware from '@/lib/intl/middleware';
 
 const authMiddleware = withAuth(
 	function onSuccess(req: NextRequestWithAuth) {

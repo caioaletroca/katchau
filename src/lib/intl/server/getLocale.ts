@@ -1,12 +1,14 @@
 import { NextRequest } from "next/server";
 import Negotiator from 'negotiator'
 import { match } from '@formatjs/intl-localematcher'
+import { getIntlConfig } from "../utils/getIntlConfig";
 
-export default function getLocale(req: NextRequest, locales: string[], defaultLocale: string) {
+export function getLocale(req: NextRequest) {
+	const config = getIntlConfig();
 	const acceptLanguageHeader = req.headers.get("accept-language");
 	
 	if(!acceptLanguageHeader) {
-		return defaultLocale;
+		return config.defaultLocale;
 	}
 
 	const languages = new Negotiator({
@@ -15,5 +17,5 @@ export default function getLocale(req: NextRequest, locales: string[], defaultLo
 		}
 	}).languages();
 
-	return match(languages, locales, defaultLocale);
+	return match(languages, config.locales, config.defaultLocale);
 }

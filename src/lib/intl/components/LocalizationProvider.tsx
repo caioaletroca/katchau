@@ -2,16 +2,18 @@
 
 import { IntlProvider } from 'react-intl';
 import { notFound, useParams } from 'next/navigation';
-import toPseudoLocale from '@/utils/router/toPseudoLocale';
-import { defaultLocale } from '@/middlewares/localizationMiddleware';
+import { getIntlConfig } from '../utils/getIntlConfig';
+import { useLocale } from '../client';
+import toPseudoLocale from '../utils/toPseudoLocale';
 
 type LocalizationProviderProps = React.PropsWithChildren;
 
 export default async function LocalizationProvider({
 	children
 }: LocalizationProviderProps) {
-	const { locale } = useParams();
-	const pseudoLocale = toPseudoLocale(locale, defaultLocale);
+	const locale = useLocale();
+	const config = getIntlConfig();
+	const pseudoLocale = toPseudoLocale(locale, config.defaultLocale);
 	
 	let messages;
   try {

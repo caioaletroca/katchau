@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams, useRouter as useNextRouter } from "next/navigation";
+import { useRouter as useNextRouter } from "next/navigation";
+import { useLocale } from "./useLocale";
 
-export default function useRouter() {
+export function useRouter() {
   const router = useNextRouter();
-	const { locale } = useParams();
+	const locale = useLocale();
 
   return React.useMemo(() => {
     function localize(href: string) {
