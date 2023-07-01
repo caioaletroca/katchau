@@ -6,7 +6,7 @@ import PageMobileHeader from "@/components/Page/PageMobileHeader";
 import { TextField } from "@mui/material";
 import React from "react";
 import { useNewPost } from "../NewPostContext";
-import useRouter from '@/hooks/useRouter';
+import { useRouter } from '@/lib/intl/client';
 
 export default function NewPostDescription() {
 	const router = useRouter();

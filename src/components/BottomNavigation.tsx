@@ -4,8 +4,8 @@ import {
 	BottomNavigation as MuiBottomNavigation,
 	BottomNavigationAction,
 } from '@mui/material';
-import useRouter from '@/hooks/useRouter';
-import usePathname from '@/hooks/usePathname';
+import { useRouter } from '@/lib/intl/client';
+import { usePathname } from '@/lib/intl/client';
 
 const options = ['/', '/new-post', '/profile'];
 

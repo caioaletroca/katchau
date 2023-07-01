@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import Icon from '@/components/Icon';
 import SwipeableDrawer from '@/components/SwipeableDrawer';
-import useRouter from '@/hooks/useRouter';
+import { useRouter } from '@/lib/intl/client';
 import { useIntl } from 'react-intl';
 
 export default function Header() {

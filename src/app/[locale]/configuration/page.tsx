@@ -13,7 +13,7 @@ import {
 import { signOut } from 'next-auth/react';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import { useIntl } from "react-intl";
-import useRouter from '@/hooks/useRouter';
+import { useRouter } from '@/lib/intl/client';
 import { useParams } from 'next/navigation';
 
 type SectionProps = React.PropsWithChildren & {

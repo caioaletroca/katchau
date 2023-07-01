@@ -2,7 +2,7 @@
 
 import React from "react";
 import api from "@/api";
-import useRouter from "@/hooks/useRouter";
+import useRouter from "@/lib/intl/client'";
 
 type FormData = {
 	originalFile?: File,

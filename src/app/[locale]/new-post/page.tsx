@@ -3,7 +3,7 @@
 import FileUpload from "@/components/FileUpload";
 import PageMobile from "@/components/Page/PageMobile";
 import PageMobileHeader from "@/components/Page/PageMobileHeader";
-import useRouter from "@/hooks/useRouter";
+import useRouter from "@/lib/intl/client'";
 import React from "react";
 import { useNewPost } from "./NewPostContext";
 

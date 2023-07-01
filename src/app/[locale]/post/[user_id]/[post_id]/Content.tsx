@@ -2,7 +2,7 @@
 
 import api from "@/api";
 import Post from "@/components/Post";
-import useRouter from "@/hooks/useRouter";;
+import useRouter from "@/lib/intl/client'";;
 import { useParams } from "next/navigation";
 
 export default async function Content() {
