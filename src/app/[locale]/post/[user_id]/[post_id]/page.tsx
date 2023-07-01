@@ -4,7 +4,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 import PageMobile from "@/components/Page/PageMobile";
 import PageMobileHeader from "@/components/Page/PageMobileHeader";
-import useRouter from "@/lib/intl/client'";
+import { useRouter } from "@/lib/intl/client";
 import Content from "./Content";
 
 export default function PostPage() {
