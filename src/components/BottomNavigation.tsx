@@ -1,12 +1,13 @@
 "use client";
 
-import { usePathname, useRouter } from 'next/navigation';
 import {
 	BottomNavigation as MuiBottomNavigation,
 	BottomNavigationAction,
 } from '@mui/material';
+import useRouter from '@/hooks/useRouter';
+import usePathname from '@/hooks/usePathname';
 
-const options = ['/', '/test', '/profile'];
+const options = ['/', '/new-post', '/profile'];
 
 export default function BottomNavigation() {
 	const router = useRouter();
