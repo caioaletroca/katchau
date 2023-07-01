@@ -1,11 +1,16 @@
 import './globals.css';
 import React from 'react';
-import { Inter } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import ThemeRegistry from '@/components/Theme/ThemeRegistry/ThemeRegistry';
 import NextAuthProvider from '@/components/Auth/NextAuthProvider';
 import LocalizationProvider from '@/lib/intl/components/LocalizationProvider';
+import toPseudoLocale from '@/lib/intl/utils/toPseudoLocale';
 
-const inter = Inter({ subsets: ['latin'] });
+const roboto = Roboto({
+	weight: [ "300", "400", "500", "700" ],
+	display: "swap",
+	subsets: ['latin']
+});
 
 export const metadata = {
 	title: 'Katchau',
@@ -13,14 +18,17 @@ export const metadata = {
 };
 
 export default async function RootLayout({
+	params: { locale },
 	children,
 }: {
+	params: { locale: string };
 	children: React.ReactNode;
 }) {
+	const loc = toPseudoLocale(locale, 'en');
 
 	return (
-		<html lang='en'>
-			<body className={inter.className}>
+		<html lang={loc}>
+			<body className={roboto.className}>
 				<React.Suspense>
 					{/* @ts-expect-error Server Component */}
 					<LocalizationProvider>
