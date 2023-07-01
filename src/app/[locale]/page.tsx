@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import BottomNavigation from '@/components/BottomNavigation';
 import IconButton from '@mui/material/IconButton';
+import BottomNavigation from '@/components/BottomNavigation';
 
 export default function Home() {
 	return (

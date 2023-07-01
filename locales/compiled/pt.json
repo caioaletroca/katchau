@@ -1,0 +1,26 @@
+{
+  "configurations.appsAndMediaSectionTitle": [
+    {
+      "type": 0,
+      "value": "Apps and Medias"
+    }
+  ],
+  "configurations.title": [
+    {
+      "type": 0,
+      "value": "Configurations"
+    }
+  ],
+  "languageButtom": [
+    {
+      "type": 0,
+      "value": "Language"
+    }
+  ],
+  "logInSectionTitle": [
+    {
+      "type": 0,
+      "value": "Log In"
+    }
+  ]
+}

@@ -1,11 +1,13 @@
-import withAuth, { NextRequestWithAuth } from 'next-auth/middleware';
+import type { NextRequestWithAuth } from 'next-auth/middleware';
 import { NextFetchEvent, NextResponse } from 'next/server';
 
 import apiMiddleware from './middlewares/apiMiddleware';
+import authMiddleware from './middlewares/authMiddleware';
+import localizationMiddleware from './middlewares/localizationMiddleware';
 
 export default async function middleware(req: NextRequestWithAuth, event: NextFetchEvent) {
 	if(req.nextUrl.pathname.startsWith('/login')) {
-		return NextResponse.next();
+		return localizationMiddleware(req);
 	}
 
 	if(req.nextUrl.pathname.startsWith('/api')) {
@@ -18,7 +20,7 @@ export default async function middleware(req: NextRequestWithAuth, event: NextFe
 		return NextResponse.next();
 	}
 
-	return withAuth(req, event);
+	return (authMiddleware as any)(req, event);
 }
 
 export const config = {
