@@ -9,7 +9,7 @@ import { useNewPost } from "../NewPostContext";
 import cropImage from "@/utils/image/crop";
 import PageMobileHeader from "@/components/Page/PageMobileHeader";
 import PageMobile from "@/components/Page/PageMobile";
-import useRouter from "@/lib/intl/client'";
+import { useRouter } from "@/lib/intl/client";
 
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 5;
