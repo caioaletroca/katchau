@@ -1,7 +1,6 @@
 'use client';
 
 import TextField from '@/components/TextField';
-import useTranslation from 'next-translate/useTranslation';
 import { user } from '@/validation/user';
 import { Button, Divider } from '@mui/material';
 import { Formik } from 'formik';
@@ -9,7 +8,8 @@ import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { useSearchParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
+import { useIntl } from 'react-intl';
 
 const LoginSchema = z.object({
 	username: user.username,
@@ -25,7 +25,8 @@ const initialValues = {
 
 export default function LoginPage() {
 	const search = useSearchParams();
-	const { t } = useTranslation('login');
+	const intl = useIntl();
+	const { locale } = useParams();
 
 	const handleSubmit = (values: LoginForm) => {
 		console.log(values);
@@ -33,7 +34,7 @@ export default function LoginPage() {
 
 	const handleGoogleLogin = () => {
 		signIn('google', {
-			callbackUrl: search.get('callbackUrl') ?? '/'
+			callbackUrl: search.get('callbackUrl') ?? `/${locale}`
 		});
 	};
 
@@ -52,7 +53,10 @@ export default function LoginPage() {
 							onSubmit={handleSubmit}>
 							<TextField
 								name="username"
-								placeholder={t('username', { default: 'Username' })}
+								placeholder={intl.formatMessage({
+									id: 'username',
+									defaultMessage: 'Username'
+								})}
 								onChange={handleChange}
 								onBlur={handleBlur}
 								variant="outlined"
@@ -60,20 +64,29 @@ export default function LoginPage() {
 							<TextField
 								type="password"
 								name="password"
-								placeholder={t('password', { default: 'Password' })}
+								placeholder={intl.formatMessage({
+									id: 'password',
+									defaultMessage: 'Password'
+								})}
 								onChange={handleChange}
 								onBlur={handleBlur}
 								variant="outlined"
 							/>
 							<Button type="submit" variant="outlined">
-								{t('login', { default: 'Log In' })}
+								{intl.formatMessage({
+									id: 'login',
+									defaultMessage: 'Log In'
+								})}
 							</Button>
 						</form>
 					)}
 				</Formik>
 				<Divider>OR</Divider>
 				<Button onClick={handleGoogleLogin}>
-					{t('loginWithGoogle', { default: 'Log In With Google' })}
+					{intl.formatMessage({
+						id: 'loginWithGoogle',
+						defaultMessage: 'Log In With Google'
+					})}
 				</Button>
 			</div>
 		</div>

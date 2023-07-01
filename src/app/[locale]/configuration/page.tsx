@@ -14,6 +14,7 @@ import { signOut } from 'next-auth/react';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import { useIntl } from "react-intl";
 import useRouter from '@/hooks/useRouter';
+import { useParams } from 'next/navigation';
 
 type SectionProps = React.PropsWithChildren & {
 	title: string;
@@ -38,6 +39,7 @@ function Section({ title, children }: SectionProps) {
 export default function ConfigurationPage() {	
 	const intl = useIntl();
 	const router = useRouter();
+	const { locale } = useParams();
 
 	const handleBack = () => router.back();
 
@@ -73,7 +75,7 @@ export default function ConfigurationPage() {
 					defaultMessage: "Log In"
 				})}>
 				<List dense>
-					<ListItemButton color="secondary" onClick={() => signOut({ callbackUrl: '/login' })}>
+					<ListItemButton color="secondary" onClick={() => signOut({ callbackUrl: `/${locale}/login` })}>
 						<ListItemText primary="Log off" />
 					</ListItemButton>
 				</List>

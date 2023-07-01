@@ -2,16 +2,10 @@
 
 import api from "@/api";
 import { Grid } from "@mui/material";
-import { Post, Prisma } from "@prisma/client";
 import getStoragePath from "@/utils/storage/getStoragePath";
 import Image from "next/image";
 import useRouter from "@/hooks/useRouter";
-
-const postWithImage = Prisma.validator<Prisma.PostArgs>()({
-	include: { images: true }
-});
-
-type PostWithImage = Prisma.PostGetPayload<typeof postWithImage>;
+import { PostWithImage } from "@/types/posts";
 
 export default async function Content() {
 	const router = useRouter();

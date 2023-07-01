@@ -1,23 +1,25 @@
 "use client";
 
 import api from "@/api";
-import getStoragePath from "@/utils/storage/getStoragePath";
-import Image from "next/image";
+import Post from "@/components/Post";
+import useRouter from "@/hooks/useRouter";;
 import { useParams } from "next/navigation";
 
 export default async function Content() {
 	const { user_id, post_id } = useParams();
-	const { data: user } = await api.get(`/users/${user_id}/posts/${post_id}`);
+	const router = useRouter();
+	const { data: user } = await api.get(`/users/${user_id}`);
+	const { data: post } = await api.get(`/users/${user_id}/posts/${post_id}`);
 
-	console.log(user);
+	const handleDelete = () => router.push('/profile');
 
 	return (
 		<div className="flex w-full">
-			<Image
-				alt=""
-				width={window.innerWidth}
-				height={window.innerWidth}
-				src={getStoragePath('posts', user.posts[0].images[0].url)}
+			{/* @ts-expect-error Server Component */}
+			<Post
+				user={user}
+				post={post}
+				onDelete={handleDelete}
 			/>
 		</div>
 	);

@@ -23,6 +23,24 @@
       "value": "Log In"
     }
   ],
+  "login": [
+    {
+      "type": 0,
+      "value": "Log In"
+    }
+  ],
+  "loginWithGoogle": [
+    {
+      "type": 0,
+      "value": "Log In With Google"
+    }
+  ],
+  "password": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
   "post.title": [
     {
       "type": 0,
@@ -33,6 +51,12 @@
     {
       "type": 0,
       "value": "Configurations"
+    }
+  ],
+  "username": [
+    {
+      "type": 0,
+      "value": "Username"
     }
   ]
 }

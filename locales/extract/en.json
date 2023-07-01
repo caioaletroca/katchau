@@ -3,6 +3,10 @@
   "configurations.title": "Configurations",
   "languageButtom": "Language",
   "logInSectionTitle": "Log In",
+  "login": "Log In",
+  "loginWithGoogle": "Log In With Google",
+  "password": "Password",
   "post.title": "Post",
-  "profile.configurationButton": "Configurations"
+  "profile.configurationButton": "Configurations",
+  "username": "Username"
 }
