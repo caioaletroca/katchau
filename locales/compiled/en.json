@@ -23,22 +23,28 @@
       "value": "Log In"
     }
   ],
-  "login": [
+  "login.loginButton": [
     {
       "type": 0,
       "value": "Log In"
     }
   ],
-  "loginWithGoogle": [
+  "login.loginWithGoogleButton": [
     {
       "type": 0,
       "value": "Log In With Google"
     }
   ],
-  "password": [
+  "login.passwordPlaceholder": [
     {
       "type": 0,
       "value": "Password"
+    }
+  ],
+  "login.usernamePlaceholder": [
+    {
+      "type": 0,
+      "value": "Username"
     }
   ],
   "post.title": [
@@ -51,12 +57,6 @@
     {
       "type": 0,
       "value": "Configurations"
-    }
-  ],
-  "username": [
-    {
-      "type": 0,
-      "value": "Username"
     }
   ]
 }

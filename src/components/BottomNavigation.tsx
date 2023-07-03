@@ -4,14 +4,13 @@ import {
 	BottomNavigation as MuiBottomNavigation,
 	BottomNavigationAction,
 } from '@mui/material';
-import { useRouter } from '@/lib/intl/client';
-import { usePathname } from '@/lib/intl/client';
+import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
 
 const options = ['/', '/new-post', '/profile'];
 
 export default function BottomNavigation() {
 	const router = useRouter();
-	const pathname = usePathname();
+	const pathname = useUnlocalizedPathname();
 
 	const currentRouteIndex = options.indexOf(pathname);
 

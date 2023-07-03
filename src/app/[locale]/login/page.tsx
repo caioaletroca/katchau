@@ -8,8 +8,9 @@ import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { z } from 'zod';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useIntl } from 'react-intl';
+import { useLocale } from '@/lib/intl/client';
 
 const LoginSchema = z.object({
 	username: user.username,
@@ -26,7 +27,7 @@ const initialValues = {
 export default function LoginPage() {
 	const search = useSearchParams();
 	const intl = useIntl();
-	const { locale } = useParams();
+	const locale = useLocale();
 
 	const handleSubmit = (values: LoginForm) => {
 		console.log(values);
@@ -54,7 +55,7 @@ export default function LoginPage() {
 							<TextField
 								name="username"
 								placeholder={intl.formatMessage({
-									id: 'username',
+									id: 'login.usernamePlaceholder',
 									defaultMessage: 'Username'
 								})}
 								onChange={handleChange}
@@ -65,7 +66,7 @@ export default function LoginPage() {
 								type="password"
 								name="password"
 								placeholder={intl.formatMessage({
-									id: 'password',
+									id: 'login.passwordPlaceholder',
 									defaultMessage: 'Password'
 								})}
 								onChange={handleChange}
@@ -74,7 +75,7 @@ export default function LoginPage() {
 							/>
 							<Button type="submit" variant="outlined">
 								{intl.formatMessage({
-									id: 'login',
+									id: 'login.loginButton',
 									defaultMessage: 'Log In'
 								})}
 							</Button>
@@ -84,7 +85,7 @@ export default function LoginPage() {
 				<Divider>OR</Divider>
 				<Button onClick={handleGoogleLogin}>
 					{intl.formatMessage({
-						id: 'loginWithGoogle',
+						id: 'login.loginWithGoogleButton',
 						defaultMessage: 'Log In With Google'
 					})}
 				</Button>

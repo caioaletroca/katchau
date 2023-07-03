@@ -7,6 +7,8 @@ export function getUnlocalizedPath(req: NextRequest) {
 	const config = getIntlConfig();
 
 	let path = getPathname(req);
-	config.locales.every(locale => unlocalizePathname(locale, path));
+	config.locales.every(locale => {
+		path = unlocalizePathname(locale, path);
+	});
 	return path;
 }

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'material-symbols';
-@import '../../styles/extensions.css';
+@import '../../styles/index.css';
 
 body {
 	height: 100vh;

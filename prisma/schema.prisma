@@ -57,6 +57,8 @@ model User {
 	profile_picture	ProfileImage[]
 	posts					Post[]
 	comments			Comment[]
+	post_likes		PostLike[]
+	comment_likes	CommentLike[]
 }
 
 model VerificationToken {
@@ -90,7 +92,7 @@ model Post {
 	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
 	images	PostImage[]
 	comments	Comment[]
-	likes	Like[]	@relation("PostLike")
+	likes	PostLike[]
 }
 
 model Comment {
@@ -105,7 +107,7 @@ model Comment {
 
 	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
 	post	Post	@relation(fields: [post_id], references: [id], onDelete: Cascade)
-	likes	Like[]	@relation("CommentLike")
+	likes	CommentLike[]
 }
 
 enum ImageOwner {
@@ -137,17 +139,24 @@ model PostImage {
 	post	Post	@relation(fields: [post_id], references: [id], onDelete: Cascade)
 }
 
-enum LikeOwner {
-	Post
-	Comment
+model PostLike {
+	@@map("post_likes")
+	id	String @id @default(cuid())
+	user_id String
+	post_id	String
+	created_at	DateTime   @default(now())
+
+	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
+	post	Post	@relation(fields: [post_id], references: [id], onDelete: Cascade)
 }
 
-model Like {
-	@@map("likes")
+model CommentLike {
+	@@map("comment_likes")
 	id	String @id @default(cuid())
-	owner_id	String
-	owner_type	LikeOwner
+	user_id String
+	comment_id	String
+	created_at	DateTime   @default(now())
 
-	post	Post?	@relation("PostLike", fields: [owner_id], references: [id], map: "like_post_fk", onDelete: Cascade)
-	comment	Comment?	@relation("CommentLike", fields: [owner_id], references: [id], map: "like_comment_fk", onDelete: Cascade)
+	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
+	comment	Comment?	@relation(fields: [comment_id], references: [id], onDelete: Cascade)
 }

@@ -2,9 +2,11 @@
 
 import { PostWithImage } from "@/types/posts";
 import getStoragePath from "@/utils/storage/getStoragePath";
+import { Typography } from "@mui/material";
 import { User } from "@prisma/client";
 import Image from "next/image";
 import PostHeader from "./PostHeader";
+import PostInteraction from "./PostInteraction";
 
 type PostProps = {
 	user: User,
@@ -26,6 +28,12 @@ export default async function Post({ user, post, onDelete }: PostProps) {
 				height={window.innerWidth}
 				src={getStoragePath('posts', post.images[0].url)}
 			/>
+			<PostInteraction
+				post={post}
+			/>
+			<Typography>
+				{post.description}
+			</Typography>
 		</div>
 	);
 }
