@@ -5,8 +5,9 @@ import {
 	BottomNavigationAction,
 } from '@mui/material';
 import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
+import Icon from './Icon';
 
-const options = ['/', '/new-post', '/profile'];
+const options = ['/', '/search', '/new-post', '/profile'];
 
 export default function BottomNavigation() {
 	const router = useRouter();
@@ -18,15 +19,19 @@ export default function BottomNavigation() {
 		<MuiBottomNavigation value={currentRouteIndex}>
 			<BottomNavigationAction
 				onClick={() => router.push('/')}
-				icon={<span className="material-symbols-outlined">home</span>}
+				icon={<Icon name='home' />}
+			/>
+			<BottomNavigationAction
+				onClick={() => router.push('/search')}
+				icon={<Icon name='search' />}
 			/>
 			<BottomNavigationAction
 				onClick={() => router.push('/new-post')}
-				icon={<span className="material-symbols-outlined">add_box</span>}
+				icon={<Icon name='add_box' />}
 			/>
 			<BottomNavigationAction
 				onClick={() => router.push('/profile')}
-				icon={<span className="material-symbols-outlined">person</span>}
+				icon={<Icon name='person' />}
 			/>
 		</MuiBottomNavigation>
 	);

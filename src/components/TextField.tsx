@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	TextField as MuiTextField,
 	TextFieldProps as MuiTextFieldProps,
