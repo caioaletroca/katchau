@@ -58,5 +58,23 @@
       "type": 0,
       "value": "Configurations"
     }
+  ],
+  "search.noResultsFound": [
+    {
+      "type": 0,
+      "value": "No results found"
+    }
+  ],
+  "search.searchFieldPlaceholder": [
+    {
+      "type": 0,
+      "value": "Search for someone..."
+    }
+  ],
+  "search.title": [
+    {
+      "type": 0,
+      "value": "Search"
+    }
   ]
 }

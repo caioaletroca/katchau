@@ -8,5 +8,8 @@
   "login.passwordPlaceholder": "Password",
   "login.usernamePlaceholder": "Username",
   "post.title": "Post",
-  "profile.configurationButton": "Configurations"
+  "profile.configurationButton": "Configurations",
+  "search.noResultsFound": "No results found",
+  "search.searchFieldPlaceholder": "Search for someone...",
+  "search.title": "Search"
 }

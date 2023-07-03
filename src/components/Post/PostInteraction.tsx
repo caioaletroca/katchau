@@ -1,4 +1,4 @@
-import { useLike, useLikeUpdate } from "@/api/likes";
+import { usePostLike, usePostLikeUpdate } from "@/api/likes";
 import { IconButton } from "@mui/material";
 import { Post } from "@prisma/client";
 import isEmpty from "lodash/isEmpty";
@@ -9,8 +9,8 @@ type PostInteractionProps = {
 }
 
 export default function PostInteraction({ post }: PostInteractionProps) {
-	const { data: like } = useLike({ post_id: post.id });
-	const { trigger } = useLikeUpdate({ post_id: post.id });
+	const { data: like } = usePostLike({ post_id: post.id });
+	const { trigger } = usePostLikeUpdate({ post_id: post.id });
 
 	const handleLike = () => trigger();
 
