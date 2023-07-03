@@ -1,3 +1,5 @@
+import path from 'path';
+
 export default function localizePathname(locale: string, pathname: string) {
-	return `/${locale}/${pathname}`;
+	return path.join('/', locale, pathname);
 }

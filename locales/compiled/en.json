@@ -59,6 +59,24 @@
       "value": "Configurations"
     }
   ],
+  "profile.followersLabel": [
+    {
+      "type": 0,
+      "value": "Followers"
+    }
+  ],
+  "profile.followingLabel": [
+    {
+      "type": 0,
+      "value": "Following"
+    }
+  ],
+  "profile.postsLabel": [
+    {
+      "type": 0,
+      "value": "Posts"
+    }
+  ],
   "search.noResultsFound": [
     {
       "type": 0,

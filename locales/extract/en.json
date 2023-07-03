@@ -9,6 +9,9 @@
   "login.usernamePlaceholder": "Username",
   "post.title": "Post",
   "profile.configurationButton": "Configurations",
+  "profile.followersLabel": "Followers",
+  "profile.followingLabel": "Following",
+  "profile.postsLabel": "Posts",
   "search.noResultsFound": "No results found",
   "search.searchFieldPlaceholder": "Search for someone...",
   "search.title": "Search"
