@@ -33,6 +33,22 @@ const messages = defineMessages({
 		id: "errors.too_big.string.not_inclusive",
 		defaultMessage: "Field must contain under {maximum} characters",
 	},
+	"custom_special_characters": {
+		id: "errors.custom.special_characters",
+		defaultMessage: "Field must not contain special characters"
+	},
+	"custom_one_uppercase_letter": {
+		id: "errors.custom.one_uppercase_letter",
+		defaultMessage: "Field must contain at least 1 uppercase letter"
+	},
+	"custom_one_lowercase_letter": {
+		id: "errors.custom.one_lowercase_letter",
+		defaultMessage: "Field must contain at least 1 lowercase letter"
+	},
+	"custom_one_number": {
+		id: "errors.custom.one_number",
+		defaultMessage: "Field must contain at least 1 number"
+	}
 })
 
 export default messages;

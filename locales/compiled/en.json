@@ -35,6 +35,30 @@
       "value": "Configurations"
     }
   ],
+  "errors.custom.one_lowercase_letter": [
+    {
+      "type": 0,
+      "value": "Field must contain at least 1 lowercase letter"
+    }
+  ],
+  "errors.custom.one_number": [
+    {
+      "type": 0,
+      "value": "Field must contain at least 1 number"
+    }
+  ],
+  "errors.custom.one_uppercase_letter": [
+    {
+      "type": 0,
+      "value": "Field must contain at least 1 uppercase letter"
+    }
+  ],
+  "errors.custom.special_characters": [
+    {
+      "type": 0,
+      "value": "Field must not contain special characters"
+    }
+  ],
   "errors.invalid_type": [
   ],
   "errors.invalid_type_received_undefined": [
