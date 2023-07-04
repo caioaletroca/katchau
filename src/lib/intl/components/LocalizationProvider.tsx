@@ -23,7 +23,7 @@ export default async function LocalizationProvider({
   }
 
 	return (
-		<IntlProvider locale={locale} messages={messages}>
+		<IntlProvider locale={locale} messages={messages} onError={() => null}>
 			{children}
 		</IntlProvider>
 	);

@@ -1,4 +1,16 @@
 {
+  "common.email": [
+    {
+      "type": 0,
+      "value": "Email"
+    }
+  ],
+  "common.nextButton": [
+    {
+      "type": 0,
+      "value": "Next"
+    }
+  ],
   "configurations.appsAndMediaSectionTitle": [
     {
       "type": 0,
@@ -75,6 +87,18 @@
     {
       "type": 0,
       "value": "Posts"
+    }
+  ],
+  "register.emailSubtitle": [
+    {
+      "type": 0,
+      "value": "Enter the email address at which you can be contacted. No one will see this on your profile."
+    }
+  ],
+  "register.emailTitle": [
+    {
+      "type": 0,
+      "value": "What's your email address?"
     }
   ],
   "search.noResultsFound": [
