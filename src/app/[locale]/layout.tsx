@@ -1,3 +1,5 @@
+"use client";
+
 import './globals.css';
 import React from 'react';
 import { Roboto } from 'next/font/google';
@@ -5,6 +7,7 @@ import ThemeRegistry from '@/components/Theme/ThemeRegistry/ThemeRegistry';
 import NextAuthProvider from '@/components/Auth/NextAuthProvider';
 import LocalizationProvider from '@/lib/intl/components/LocalizationProvider';
 import toPseudoLocale from '@/lib/intl/utils/toPseudoLocale';
+import ZodSchemaProvider from '@/lib/zod/components/ZodSchemaProvider';
 
 const roboto = Roboto({
 	weight: [ "300", "400", "500", "700" ],
@@ -32,9 +35,11 @@ export default function RootLayout({
 				<React.Suspense>
 					{/* @ts-expect-error Server Component */}
 					<LocalizationProvider>
-						<NextAuthProvider>
-							<ThemeRegistry>{children}</ThemeRegistry>
-						</NextAuthProvider>
+						<ZodSchemaProvider>
+							<NextAuthProvider>
+								<ThemeRegistry>{children}</ThemeRegistry>
+							</NextAuthProvider>
+						</ZodSchemaProvider>
 					</LocalizationProvider>
 				</React.Suspense>
 			</body>

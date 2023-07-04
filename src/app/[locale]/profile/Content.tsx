@@ -1,15 +1,19 @@
 "use client";
 
-import api from "@/api";
 import { Grid } from "@mui/material";
 import getStoragePath from "@/utils/storage/getStoragePath";
 import Image from "next/image";
 import { useRouter } from "@/lib/intl/client";
 import { PostWithImage } from "@/types/posts";
+import { usePosts } from "@/api/posts";
 
-export default async function Content() {
+type ContentProps = {
+	user_id: string;
+}
+
+export default function Content({ user_id }: ContentProps) {
 	const router = useRouter();
-	const { data: posts } = await api.get<PostWithImage[]>('/posts');
+	const { data: posts } = usePosts({ user_id });
 
 	const handleClick = (post: PostWithImage) => {
 		router.push(`/post/${post.user_id}/${post.id}`);
@@ -18,7 +22,7 @@ export default async function Content() {
 	return (
 		<>
 			<Grid container spacing={0.5}>
-				{posts.map((post) => (
+				{posts?.map((post) => (
 					<Grid key={post.id} item xs={4}>
 						<Image
 							key={post.id}
