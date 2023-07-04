@@ -10,7 +10,7 @@
     "prettier": "prettier --write ./src",
     "test:watch": "jest --watch",
     "test": "jest",
-    "extract:i18n": "formatjs extract \"./src/app/**/*.{js,ts,tsx}\" --format simple --out-file \"./locales/extract/en.json\" --throws",
+    "extract:i18n": "formatjs extract \"./src/**/*.{js,ts,tsx}\" --format simple --out-file \"./locales/extract/en.json\" --throws",
     "compile:i18n": "formatjs compile-folder \"./locales/extract\" --ast --format simple \"./locales/compiled\"",
     "i18n": "npm run extract:i18n & npm run compile:i18n",
     "seed": "prisma db seed",

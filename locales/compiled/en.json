@@ -35,6 +35,98 @@
       "value": "Configurations"
     }
   ],
+  "errors.invalid_type": [
+  ],
+  "errors.invalid_type_received_undefined": [
+    {
+      "type": 0,
+      "value": "Required field"
+    }
+  ],
+  "errors.too_big.string.exact": [
+    {
+      "type": 0,
+      "value": "Field must contain exactly "
+    },
+    {
+      "type": 1,
+      "value": "maximum"
+    },
+    {
+      "type": 0,
+      "value": " characters"
+    }
+  ],
+  "errors.too_big.string.inclusive": [
+    {
+      "type": 0,
+      "value": "Field must contain at most "
+    },
+    {
+      "type": 1,
+      "value": "maximum"
+    },
+    {
+      "type": 0,
+      "value": " characters"
+    }
+  ],
+  "errors.too_big.string.not_inclusive": [
+    {
+      "type": 0,
+      "value": "Field must contain under "
+    },
+    {
+      "type": 1,
+      "value": "maximum"
+    },
+    {
+      "type": 0,
+      "value": " characters"
+    }
+  ],
+  "errors.too_small.string.exact": [
+    {
+      "type": 0,
+      "value": "Field must contain exactly "
+    },
+    {
+      "type": 1,
+      "value": "minimum"
+    },
+    {
+      "type": 0,
+      "value": " characters"
+    }
+  ],
+  "errors.too_small.string.inclusive": [
+    {
+      "type": 0,
+      "value": "Field must contain at least "
+    },
+    {
+      "type": 1,
+      "value": "minimum"
+    },
+    {
+      "type": 0,
+      "value": " characters"
+    }
+  ],
+  "errors.too_small.string.not_inclusive": [
+    {
+      "type": 0,
+      "value": "Field must contain over "
+    },
+    {
+      "type": 1,
+      "value": "minimum"
+    },
+    {
+      "type": 0,
+      "value": " characters"
+    }
+  ],
   "languageButtom": [
     {
       "type": 0,
@@ -69,6 +161,12 @@
     {
       "type": 0,
       "value": "Username"
+    }
+  ],
+  "post.header.deleteButton": [
+    {
+      "type": 0,
+      "value": "Delete"
     }
   ],
   "post.title": [
