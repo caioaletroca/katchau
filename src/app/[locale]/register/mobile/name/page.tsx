@@ -1,28 +1,27 @@
 "use client";
 
-import Icon from "@/components/Icon";
 import PageMobile from "@/components/Page/PageMobile";
 import PageMobileHeader from "@/components/Page/PageMobileHeader";
 import TextField from "@/components/TextField";
 import { useRouter } from "@/lib/intl/client";
 import { user } from "@/validation/user";
-import { Button, IconButton, InputAdornment, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Formik } from "formik";
 import React from "react";
 import { useIntl } from "react-intl";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
-import { useRegister } from "../RegisterProvider";
+import { useRegister } from "../../RegisterProvider";
 
 const initialValues = {
-	email: ''
+	name: ''
 }
 
-const RegisterEmailSchema = z.object({
-	email: user.email.min(1)
+const RegisterNameSchema = z.object({
+	name: user.name.min(1)
 });
 
-type RegisterEmailFormData = z.infer<typeof RegisterEmailSchema>;
+type RegisterNameFormData = z.infer<typeof RegisterNameSchema>;
 
 export default function RegisterMobilePage() {
 	const router = useRouter();
@@ -31,7 +30,7 @@ export default function RegisterMobilePage() {
 
 	const handleBack = () => router.back();
 
-	const handleSubmit = (values: RegisterEmailFormData) => {
+	const handleSubmit = (values: RegisterNameFormData) => {
 		setFormData(values);
 		handleNext();
 	}
@@ -44,47 +43,36 @@ export default function RegisterMobilePage() {
 			<div className='flex flex-col p-4 gap-2'>
 				<Formik
 					initialValues={initialValues}
-					validationSchema={toFormikValidationSchema(RegisterEmailSchema)}
+					validationSchema={toFormikValidationSchema(RegisterNameSchema)}
 					onSubmit={handleSubmit}>
 					{({
 						handleChange,
 						handleBlur,
-						handleSubmit,
-						setFieldValue
+						handleSubmit
 					}) => (
-						<form onSubmit={handleSubmit}>
+						<form onSubmit={handleSubmit} noValidate>
 							<div className='flex flex-col mb-4'>
 								<Typography variant='h5'>
 									{intl.formatMessage({
-										id: "register.emailTitle",
-										defaultMessage: "What's your email address?"
+										id: "register.nameTitle",
+										defaultMessage: "What's your name?"
 									})}
 								</Typography>
 								<Typography variant='caption'>
 									{intl.formatMessage({
-										id: "register.emailSubtitle",
-										defaultMessage: "Enter the email address at which you can be contacted. No one will see this on your profile."
+										id: "register.nameSubtitle",
+										defaultMessage: "Add your name so that friends can find you."
 									})}
 								</Typography>
 							</div>
 							<TextField
-								type='email'
-								name='email'
+								name='name'
 								label={intl.formatMessage({
-									id: 'common.email',
-									defaultMessage: "Email"
+									id: 'common.name',
+									defaultMessage: "Full name"
 								})}
 								onChange={handleChange}
 								onBlur={handleBlur}
-								InputProps={{
-									endAdornment: (
-										<InputAdornment position="end">
-											<IconButton onClick={() => setFieldValue("email", "")}>
-												<Icon name='close' />
-											</IconButton>
-										</InputAdornment>
-									)
-								}}
 								fullWidth
 							/>
 							<div className="flex flex-col mt-8 w-full">

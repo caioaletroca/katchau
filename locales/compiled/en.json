@@ -5,10 +5,22 @@
       "value": "Email"
     }
   ],
+  "common.name": [
+    {
+      "type": 0,
+      "value": "Full name"
+    }
+  ],
   "common.nextButton": [
     {
       "type": 0,
       "value": "Next"
+    }
+  ],
+  "common.password": [
+    {
+      "type": 0,
+      "value": "Password"
     }
   ],
   "configurations.appsAndMediaSectionTitle": [
@@ -99,6 +111,30 @@
     {
       "type": 0,
       "value": "What's your email address?"
+    }
+  ],
+  "register.nameSubtitle": [
+    {
+      "type": 0,
+      "value": "Add your name so that friends can find you."
+    }
+  ],
+  "register.nameTitle": [
+    {
+      "type": 0,
+      "value": "What's your name?"
+    }
+  ],
+  "register.passwordSubtitle": [
+    {
+      "type": 0,
+      "value": "Create a password with at least 8 letter and numbers. It should be something that others can't guess."
+    }
+  ],
+  "register.passwordTitle": [
+    {
+      "type": 0,
+      "value": "Create a password"
     }
   ],
   "search.noResultsFound": [
