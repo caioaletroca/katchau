@@ -12,13 +12,13 @@ import {
 } from '@mui/material';
 import { signOut } from 'next-auth/react';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
-import { useIntl } from "react-intl";
+import { useIntl } from 'react-intl';
 import { useRouter } from '@/lib/intl/client';
 import { useParams } from 'next/navigation';
 
 type SectionProps = React.PropsWithChildren & {
 	title: string;
-}
+};
 
 function Section({ title, children }: SectionProps) {
 	return (
@@ -36,7 +36,7 @@ function Section({ title, children }: SectionProps) {
 	);
 }
 
-export default function ConfigurationPage() {	
+export default function ConfigurationPage() {
 	const intl = useIntl();
 	const router = useRouter();
 	const { locale } = useParams();
@@ -48,34 +48,39 @@ export default function ConfigurationPage() {
 			<PageMobileHeader
 				title={intl.formatMessage({
 					id: 'configurations.title',
-					defaultMessage: 'Configurations'
+					defaultMessage: 'Configurations',
 				})}
-				onBackClick={handleBack} />
+				onBackClick={handleBack}
+			/>
 			<Section
 				title={intl.formatMessage({
-					id: 'configurations.appsAndMediaSectionTitle', 
-					defaultMessage: "Apps and Medias"
+					id: 'configurations.appsAndMediaSectionTitle',
+					defaultMessage: 'Apps and Medias',
 				})}>
 				<List dense>
-					<ListItemButton onClick={() => router.push('/configuration/language')}>
+					<ListItemButton
+						onClick={() => router.push('/configuration/language')}>
 						<ListItemIcon>
-							<Icon name='language' />
+							<Icon name="language" />
 						</ListItemIcon>
 						<ListItemText
 							primary={intl.formatMessage({
-								id: 'languageButtom', 
-								defaultMessage: "Language"
-							})} />
+								id: 'languageButtom',
+								defaultMessage: 'Language',
+							})}
+						/>
 					</ListItemButton>
 				</List>
 			</Section>
 			<Section
 				title={intl.formatMessage({
 					id: 'logInSectionTitle',
-					defaultMessage: "Log In"
+					defaultMessage: 'Log In',
 				})}>
 				<List dense>
-					<ListItemButton color="secondary" onClick={() => signOut({ callbackUrl: `/${locale}/login` })}>
+					<ListItemButton
+						color="secondary"
+						onClick={() => signOut({ callbackUrl: `/${locale}/login` })}>
 						<ListItemText primary="Log off" />
 					</ListItemButton>
 				</List>

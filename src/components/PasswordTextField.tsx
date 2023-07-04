@@ -1,7 +1,7 @@
-import { IconButton, InputAdornment, TextFieldProps } from "@mui/material";
-import React from "react";
-import Icon from "./Icon";
-import TextField from "./TextField";
+import { IconButton, InputAdornment, TextFieldProps } from '@mui/material';
+import React from 'react';
+import Icon from './Icon';
+import TextField from './TextField';
 
 export default function PasswordTextField({
 	InputProps,
@@ -11,16 +11,17 @@ export default function PasswordTextField({
 
 	return (
 		<TextField
-			type={visibility ? 'text': 'password'}
+			type={visibility ? 'text' : 'password'}
 			InputProps={{
 				endAdornment: (
-					<InputAdornment position='end'>
-						<IconButton onClick={() => setVisibility(visibility => !visibility)}>
-							<Icon name={visibility ? "visibility_off" : "visibility"} />
+					<InputAdornment position="end">
+						<IconButton
+							onClick={() => setVisibility((visibility) => !visibility)}>
+							<Icon name={visibility ? 'visibility_off' : 'visibility'} />
 						</IconButton>
 					</InputAdornment>
 				),
-				...InputProps
+				...InputProps,
 			}}
 			{...others}
 		/>

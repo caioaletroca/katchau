@@ -1,23 +1,24 @@
-"use client";
+'use client';
 
 import Image from 'next/image';
-import PageMobile from "@/components/Page/PageMobile";
-import PageMobileHeader from "@/components/Page/PageMobileHeader";
-import { TextField } from "@mui/material";
-import React from "react";
-import { useNewPost } from "../NewPostContext";
+import PageMobile from '@/components/Page/PageMobile';
+import PageMobileHeader from '@/components/Page/PageMobileHeader';
+import { TextField } from '@mui/material';
+import React from 'react';
+import { useNewPost } from '../NewPostContext';
 import { useRouter } from '@/lib/intl/client';
 
 export default function NewPostDescription() {
 	const router = useRouter();
 	const { formData, setFormData } = useNewPost();
-	const [description, setDescription] = React.useState("");
+	const [description, setDescription] = React.useState('');
 
 	const imageUrl = React.useMemo(() => {
 		return URL.createObjectURL(formData?.file!);
-	}, [formData?.file])
+	}, [formData?.file]);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value);
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+		setDescription(e.target.value);
 
 	const handleBack = () => router.back();
 
@@ -29,20 +30,16 @@ export default function NewPostDescription() {
 	return (
 		<PageMobile>
 			<PageMobileHeader
-				title='New Post'
+				title="New Post"
 				onBackClick={handleBack}
 				onForwardClick={handleForward}
 			/>
-			<div className='relative h-full-w'>
-				<Image
-					alt=""
-					src={imageUrl}
-					layout="fill"
-				/>
+			<div className="h-full-w relative">
+				<Image alt="" src={imageUrl} layout="fill" />
 			</div>
-			<div className='flex flex-col p-2'>
+			<div className="flex flex-col p-2">
 				<TextField
-					name='description'
+					name="description"
 					value={description}
 					onChange={handleChange}
 					placeholder="Write a caption..."
@@ -50,5 +47,5 @@ export default function NewPostDescription() {
 				/>
 			</div>
 		</PageMobile>
-	)
+	);
 }

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useIntl } from "react-intl";
-import PageMobile from "@/components/Page/PageMobile";
-import PageMobileHeader from "@/components/Page/PageMobileHeader";
-import { useRouter } from "@/lib/intl/client";
-import Content from "./Content";
+import React from 'react';
+import { useIntl } from 'react-intl';
+import PageMobile from '@/components/Page/PageMobile';
+import PageMobileHeader from '@/components/Page/PageMobileHeader';
+import { useRouter } from '@/lib/intl/client';
+import Content from './Content';
 
 export default function PostPage() {
 	const intl = useIntl();
@@ -18,8 +18,8 @@ export default function PostPage() {
 			<PageMobileHeader
 				onBackClick={handleBack}
 				title={intl.formatMessage({
-					id: "post.title",
-					defaultMessage: "Post"
+					id: 'post.title',
+					defaultMessage: 'Post',
 				})}
 			/>
 			<React.Suspense>

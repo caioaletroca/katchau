@@ -1,24 +1,20 @@
-"use client";
+'use client';
 
 import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
 import { isMobile } from 'react-device-detect';
 import { RegisterProvider } from './RegisterProvider';
 
 export default function RootLayout({
-	children
+	children,
 }: {
-	children: React.ReactNode
+	children: React.ReactNode;
 }) {
 	const router = useRouter();
 	const pathname = useUnlocalizedPathname();
 
-	if(isMobile && !pathname.startsWith('/register/mobile')) {
+	if (isMobile && !pathname.startsWith('/register/mobile')) {
 		router.push('/register/mobile');
 	}
 
-	return (
-		<RegisterProvider>
-			{children}
-		</RegisterProvider>
-	);
+	return <RegisterProvider>{children}</RegisterProvider>;
 }

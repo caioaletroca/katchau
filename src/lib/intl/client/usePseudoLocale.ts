@@ -1,6 +1,6 @@
-import { getIntlConfig } from "../utils/getIntlConfig";
-import toPseudoLocale from "../utils/toPseudoLocale";
-import { useLocale } from "./useLocale";
+import { getIntlConfig } from '../utils/getIntlConfig';
+import toPseudoLocale from '../utils/toPseudoLocale';
+import { useLocale } from './useLocale';
 
 export function usePseudoLocale() {
 	const config = getIntlConfig();

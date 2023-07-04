@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useIntl } from "react-intl";
-import { z } from "zod";
-import createZodMap from "./createZodMap";
+import React from 'react';
+import { useIntl } from 'react-intl';
+import { z } from 'zod';
+import createZodMap from './createZodMap';
 
 export default function ZodSchemaProvider({
-	children
+	children,
 }: React.PropsWithChildren) {
 	const intl = useIntl();
 
@@ -14,9 +14,5 @@ export default function ZodSchemaProvider({
 		z.setErrorMap(createZodMap(intl));
 	}, [intl]);
 
-	return (
-		<>
-			{children}
-		</>
-	);
+	return <>{children}</>;
 }

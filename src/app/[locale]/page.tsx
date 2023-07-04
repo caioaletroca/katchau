@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import IconButton from '@mui/material/IconButton';
 import BottomNavigation from '@/components/BottomNavigation';

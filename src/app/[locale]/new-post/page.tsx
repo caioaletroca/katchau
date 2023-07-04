@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import FileUpload from "@/components/FileUpload";
-import PageMobile from "@/components/Page/PageMobile";
-import PageMobileHeader from "@/components/Page/PageMobileHeader";
+import FileUpload from '@/components/FileUpload';
+import PageMobile from '@/components/Page/PageMobile';
+import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import useRouter from "@/lib/intl/client'";
-import React from "react";
-import { useNewPost } from "./NewPostContext";
+import React from 'react';
+import { useNewPost } from './NewPostContext';
 
 export default function NewPost() {
 	const router = useRouter();
@@ -16,20 +16,14 @@ export default function NewPost() {
 	const handleChange = (files: File[]) => {
 		setFormData({ originalFile: files[0] });
 		router.push('/new-post/crop');
-	}
+	};
 
 	return (
 		<PageMobile>
-			<PageMobileHeader
-				title='New Post'
-				onBackClick={handleBack}
-			/>
+			<PageMobileHeader title="New Post" onBackClick={handleBack} />
 			<div className="flex flex-col p-2">
-				<FileUpload
-					name='file'
-					onChange={handleChange}
-				/>
+				<FileUpload name="file" onChange={handleChange} />
 			</div>
 		</PageMobile>
-	)
+	);
 }

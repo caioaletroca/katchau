@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import PageMobile from "@/components/Page/PageMobile";
-import PageMobileHeader from "@/components/Page/PageMobileHeader";
-import { useRouter } from "@/lib/intl/client";
-import { useParams } from "next/navigation";
-import Content from "../../profile/Content";
+import PageMobile from '@/components/Page/PageMobile';
+import PageMobileHeader from '@/components/Page/PageMobileHeader';
+import { useRouter } from '@/lib/intl/client';
+import { useParams } from 'next/navigation';
+import Content from '../../profile/Content';
 
 export default function UserPage() {
 	const router = useRouter();
@@ -14,9 +14,7 @@ export default function UserPage() {
 
 	return (
 		<PageMobile>
-			<PageMobileHeader
-				onBackClick={handleBack}
-			/>
+			<PageMobileHeader onBackClick={handleBack} />
 			<Content user_id={user_id} />
 		</PageMobile>
 	);

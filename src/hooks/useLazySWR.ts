@@ -1,5 +1,5 @@
-import React from "react";
-import useSWR, { BareFetcher } from "swr";
+import React from 'react';
+import useSWR, { BareFetcher } from 'swr';
 
 export function useLazySWR<T>(fetcher: BareFetcher<T>) {
 	const [_key, _setKey] = React.useState<string>();
@@ -7,10 +7,10 @@ export function useLazySWR<T>(fetcher: BareFetcher<T>) {
 
 	const trigger = (key: string) => {
 		_setKey(key);
-	}
+	};
 
 	return {
 		...swr,
-		trigger
-	}
+		trigger,
+	};
 }

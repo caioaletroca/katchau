@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
 	BottomNavigation as MuiBottomNavigation,
@@ -19,19 +19,19 @@ export default function BottomNavigation() {
 		<MuiBottomNavigation value={currentRouteIndex}>
 			<BottomNavigationAction
 				onClick={() => router.push('/')}
-				icon={<Icon name='home' />}
+				icon={<Icon name="home" />}
 			/>
 			<BottomNavigationAction
 				onClick={() => router.push('/search')}
-				icon={<Icon name='search' />}
+				icon={<Icon name="search" />}
 			/>
 			<BottomNavigationAction
 				onClick={() => router.push('/new-post')}
-				icon={<Icon name='add_box' />}
+				icon={<Icon name="add_box" />}
 			/>
 			<BottomNavigationAction
 				onClick={() => router.push('/profile')}
-				icon={<Icon name='person' />}
+				icon={<Icon name="person" />}
 			/>
 		</MuiBottomNavigation>
 	);

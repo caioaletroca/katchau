@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import { useSession } from 'next-auth/react';
@@ -27,7 +27,7 @@ export default function Header() {
 			<div className="flex w-full flex-row items-center justify-between p-2">
 				<Typography>{session?.user?.name}</Typography>
 				<IconButton onClick={() => setOpen(true)}>
-					<Icon name='menu' />
+					<Icon name="menu" />
 				</IconButton>
 			</div>
 			<SwipeableDrawer
@@ -41,10 +41,12 @@ export default function Header() {
 						<ListItemIcon>
 							<span className="material-symbols-outlined">settings</span>
 						</ListItemIcon>
-						<ListItemText primary={intl.formatMessage({
-							id: 'profile.configurationButton',
-							defaultMessage: 'Configurations'
-						})} />
+						<ListItemText
+							primary={intl.formatMessage({
+								id: 'profile.configurationButton',
+								defaultMessage: 'Configurations',
+							})}
+						/>
 					</ListItemButton>
 				</List>
 			</SwipeableDrawer>

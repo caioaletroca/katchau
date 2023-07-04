@@ -1,28 +1,28 @@
-import { prisma } from "@/database/db";
-import supabase from "@/database/supabase";
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import { prisma } from '@/database/db';
+import supabase from '@/database/supabase';
+import { getToken } from 'next-auth/jwt';
+import { NextRequest, NextResponse } from 'next/server';
 
 type GetParams = {
 	user_id: string;
 	post_id: string;
-}
+};
 
 export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 	const user = await prisma.user.findFirst({
 		where: {
-			id: params.user_id
+			id: params.user_id,
 		},
 		include: {
 			posts: {
 				where: {
-					id: params.post_id
+					id: params.post_id,
 				},
 				include: {
-					images: true
-				}
-			}
-		}
+					images: true,
+				},
+			},
+		},
 	});
 
 	return NextResponse.json(user?.posts[0]);
@@ -30,33 +30,38 @@ export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 
 type DeleteParams = GetParams;
 
-export async function DELETE(req: NextRequest, { params }: { params: DeleteParams }) {
+export async function DELETE(
+	req: NextRequest,
+	{ params }: { params: DeleteParams }
+) {
 	const token = await getToken({ req });
 
-	if(token?.sub !== params.user_id) {
+	if (token?.sub !== params.user_id) {
 		return NextResponse.error();
 	}
 
 	const post = await prisma.post.findFirst({
 		where: {
 			id: params.post_id,
-			user_id: params.user_id
+			user_id: params.user_id,
 		},
 		include: {
-			images: true
-		}
+			images: true,
+		},
 	});
 
-	if(!post) {
+	if (!post) {
 		return NextResponse.error();
 	}
 
 	await prisma.post.delete({
 		where: {
-			id: params.post_id
-		}
+			id: params.post_id,
+		},
 	});
-	await supabase.storage.from('posts').remove(post.images.map(image => image.url));
+	await supabase.storage
+		.from('posts')
+		.remove(post.images.map((image) => image.url));
 
 	return NextResponse.json({});
 }

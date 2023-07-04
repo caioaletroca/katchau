@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { IntlProvider } from 'react-intl';
 import { notFound } from 'next/navigation';
@@ -9,18 +9,19 @@ import toPseudoLocale from '../utils/toPseudoLocale';
 type LocalizationProviderProps = React.PropsWithChildren;
 
 export default async function LocalizationProvider({
-	children
+	children,
 }: LocalizationProviderProps) {
 	const locale = useLocale();
 	const config = getIntlConfig();
 	const pseudoLocale = toPseudoLocale(locale, config.defaultLocale);
-	
+
 	let messages;
-  try {
-    messages = (await import(`@/../locales/compiled/${pseudoLocale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+	try {
+		messages = (await import(`@/../locales/compiled/${pseudoLocale}.json`))
+			.default;
+	} catch (error) {
+		notFound();
+	}
 
 	return (
 		<IntlProvider locale={locale} messages={messages} onError={() => null}>

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import PageMobile from "@/components/Page/PageMobile";
-import PageMobileHeader from "@/components/Page/PageMobileHeader";
+import PageMobile from '@/components/Page/PageMobile';
+import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import useTranslation from 'next-translate/useTranslation';
 
 export default function ConfigurationLanguagePage() {
@@ -9,7 +9,10 @@ export default function ConfigurationLanguagePage() {
 
 	return (
 		<PageMobile>
-			<PageMobileHeader backButton title={t('title', { default: 'App Language' })} />
+			<PageMobileHeader
+				backButton
+				title={t('title', { default: 'App Language' })}
+			/>
 		</PageMobile>
 	);
 }

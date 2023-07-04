@@ -6,20 +6,23 @@ import authMiddleware from './middlewares/authMiddleware';
 import localizationMiddleware from './lib/intl/middleware';
 import { getUnlocalizedPath } from './lib/intl/server';
 
-export default async function middleware(req: NextRequestWithAuth, event: NextFetchEvent) {
+export default async function middleware(
+	req: NextRequestWithAuth,
+	event: NextFetchEvent
+) {
 	const pathname = getUnlocalizedPath(req);
 
-	if(pathname.startsWith('/login')) {
+	if (pathname.startsWith('/login')) {
 		return localizationMiddleware(req);
 	}
 
-	if(pathname.startsWith('/api')) {
-		if(!pathname.startsWith('/api/auth')) {
+	if (pathname.startsWith('/api')) {
+		if (!pathname.startsWith('/api/auth')) {
 			return await apiMiddleware(req);
 		}
 	}
 
-	if(pathname.match(/(.*).(svg|png|jpg|jpeg|ico)/g)) {
+	if (pathname.match(/(.*).(svg|png|jpg|jpeg|ico)/g)) {
 		return NextResponse.next();
 	}
 

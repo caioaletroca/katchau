@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { Grid } from "@mui/material";
-import getStoragePath from "@/utils/storage/getStoragePath";
-import Image from "next/image";
-import { useRouter } from "@/lib/intl/client";
-import { PostWithImage } from "@/types/posts";
-import { usePosts } from "@/api/posts";
+import { Grid } from '@mui/material';
+import getStoragePath from '@/utils/storage/getStoragePath';
+import Image from 'next/image';
+import { useRouter } from '@/lib/intl/client';
+import { PostWithImage } from '@/types/posts';
+import { usePosts } from '@/api/posts';
 
 type ContentProps = {
 	user_id: string;
-}
+};
 
 export default function Content({ user_id }: ContentProps) {
 	const router = useRouter();
@@ -17,7 +17,7 @@ export default function Content({ user_id }: ContentProps) {
 
 	const handleClick = (post: PostWithImage) => {
 		router.push(`/post/${post.user_id}/${post.id}`);
-	}
+	};
 
 	return (
 		<>

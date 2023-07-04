@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React from "react";
-import api from "@/api";
+import React from 'react';
+import api from '@/api';
 import useRouter from "@/lib/intl/client'";
 
 type FormData = {
-	originalFile?: File,
-	file?: File
+	originalFile?: File;
+	file?: File;
 	description?: string;
-}
+};
 
 export const NewPostContext = React.createContext<{
 	formData?: FormData;
@@ -16,7 +16,7 @@ export const NewPostContext = React.createContext<{
 	handleSubmit: () => void;
 }>({
 	setFormData: () => {},
-	handleSubmit: () => {}
+	handleSubmit: () => {},
 });
 
 export function useNewPost() {
@@ -30,9 +30,9 @@ export function NewPostProvider({ children }: NewPostProviderProps) {
 	const [formData, _setFormData] = React.useState<FormData>({});
 
 	const setFormData = (data: Partial<FormData>) => {
-		_setFormData(prevData => ({ ...prevData, ...data }));
-	}
-	
+		_setFormData((prevData) => ({ ...prevData, ...data }));
+	};
+
 	const handleSubmit = async () => {
 		const data = new FormData();
 		data.append('image', formData.file!);
@@ -43,19 +43,19 @@ export function NewPostProvider({ children }: NewPostProviderProps) {
 			await api.post('/posts', data);
 
 			router.push('/');
-		}
-		catch (error) {
+		} catch (error) {
 			router.push('/new-post/description');
 		}
-	}
+	};
 
 	return (
-		<NewPostContext.Provider value={{
-			formData,
-			setFormData,
-			handleSubmit
-		}}>
+		<NewPostContext.Provider
+			value={{
+				formData,
+				setFormData,
+				handleSubmit,
+			}}>
 			{children}
 		</NewPostContext.Provider>
-	)
+	);
 }

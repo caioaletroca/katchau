@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import Header from './Header';
@@ -10,18 +10,17 @@ import Info from './Info';
 
 export default async function ProfilePage() {
 	const { data } = useSession();
-	
+
 	return (
 		<PageMobile>
 			<Header />
 			<div className="flex-1">
-				{
-					data?.user &&
+				{data?.user && (
 					<>
 						<Info user_id={data?.user.id} />
 						<Content user_id={data?.user.id} />
 					</>
-				}
+				)}
 			</div>
 			<BottomNavigation />
 		</PageMobile>

@@ -35,7 +35,7 @@ export default function LoginPage() {
 
 	const handleGoogleLogin = () => {
 		signIn('google', {
-			callbackUrl: search.get('callbackUrl') ?? `/${locale}`
+			callbackUrl: search.get('callbackUrl') ?? `/${locale}`,
 		});
 	};
 
@@ -43,7 +43,12 @@ export default function LoginPage() {
 		<div className="flex h-full flex-col justify-center">
 			<div className="m-8 flex h-full flex-col items-center justify-center gap-2">
 				{/* TODO: Proper Logo rendering */}
-				<Image alt="Logo" src="/full-logo-inverted.svg" height={256} width={256} />
+				<Image
+					alt="Logo"
+					src="/full-logo-inverted.svg"
+					height={256}
+					width={256}
+				/>
 				<Formik
 					initialValues={initialValues}
 					validationSchema={toFormikValidationSchema(LoginSchema)}
@@ -56,7 +61,7 @@ export default function LoginPage() {
 								name="username"
 								placeholder={intl.formatMessage({
 									id: 'login.usernamePlaceholder',
-									defaultMessage: 'Username'
+									defaultMessage: 'Username',
 								})}
 								onChange={handleChange}
 								onBlur={handleBlur}
@@ -67,7 +72,7 @@ export default function LoginPage() {
 								name="password"
 								placeholder={intl.formatMessage({
 									id: 'login.passwordPlaceholder',
-									defaultMessage: 'Password'
+									defaultMessage: 'Password',
 								})}
 								onChange={handleChange}
 								onBlur={handleBlur}
@@ -76,7 +81,7 @@ export default function LoginPage() {
 							<Button type="submit" variant="outlined">
 								{intl.formatMessage({
 									id: 'login.loginButton',
-									defaultMessage: 'Log In'
+									defaultMessage: 'Log In',
 								})}
 							</Button>
 						</form>
@@ -86,7 +91,7 @@ export default function LoginPage() {
 				<Button onClick={handleGoogleLogin}>
 					{intl.formatMessage({
 						id: 'login.loginWithGoogleButton',
-						defaultMessage: 'Log In With Google'
+						defaultMessage: 'Log In With Google',
 					})}
 				</Button>
 			</div>

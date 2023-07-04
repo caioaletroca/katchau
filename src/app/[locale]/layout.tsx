@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import './globals.css';
 import React from 'react';
@@ -10,9 +10,9 @@ import toPseudoLocale from '@/lib/intl/utils/toPseudoLocale';
 import ZodSchemaProvider from '@/lib/zod/components/ZodSchemaProvider';
 
 const roboto = Roboto({
-	weight: [ "300", "400", "500", "700" ],
-	display: "swap",
-	subsets: ['latin']
+	weight: ['300', '400', '500', '700'],
+	display: 'swap',
+	subsets: ['latin'],
 });
 
 export const metadata = {

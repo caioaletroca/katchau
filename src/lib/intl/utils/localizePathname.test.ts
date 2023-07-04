@@ -1,13 +1,11 @@
-import localizePathname from "./localizePathname";
+import localizePathname from './localizePathname';
 
-describe("localizePathname", () => {
+describe('localizePathname', () => {
 	const locale = 'en-US';
 	const path = '/test';
 	const result = '\\en-US\\test';
 
 	test('', () => {
-		expect(
-			localizePathname(locale, path)
-		).toEqual(result);
+		expect(localizePathname(locale, path)).toEqual(result);
 	});
 });

@@ -4,4 +4,4 @@ const Puller = () => (
 	</div>
 );
 
-export default Puller
+export default Puller;

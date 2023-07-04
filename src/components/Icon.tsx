@@ -13,6 +13,11 @@ export default function Icon({
 	variant = 'outlined',
 }: IconProps) {
 	return (
-		<span className={`material-symbols-${variant} ${fill ? "material-symbols-fill" : ''} ${className ?? ''}`}>{name}</span>
+		<span
+			className={`material-symbols-${variant} ${
+				fill ? 'material-symbols-fill' : ''
+			} ${className ?? ''}`}>
+			{name}
+		</span>
 	);
 }
