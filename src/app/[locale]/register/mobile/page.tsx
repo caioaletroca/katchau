@@ -2,17 +2,20 @@
 
 import Icon from "@/components/Icon";
 import PageMobile from "@/components/Page/PageMobile";
-import PageMobileHeader from "@/components/Page/PageMobileHeader";
 import TextField from "@/components/TextField";
-import { useRouter } from "@/lib/intl/client";
 import { user } from "@/validation/user";
-import { Button, IconButton, InputAdornment, Typography } from "@mui/material";
+import { IconButton, InputAdornment } from "@mui/material";
 import { Formik } from "formik";
 import React from "react";
 import { useIntl } from "react-intl";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { useRegister } from "../RegisterProvider";
+import { Content, ContentWrapper } from "./Content";
+import Header from "./Header";
+import LoginButton from "./LoginButton";
+import NextButton from "./NextButton";
+import Title from "./Title";
 
 const initialValues = {
 	email: ''
@@ -25,11 +28,8 @@ const RegisterEmailSchema = z.object({
 type RegisterEmailFormData = z.infer<typeof RegisterEmailSchema>;
 
 export default function RegisterMobilePage() {
-	const router = useRouter();
 	const intl = useIntl();
 	const { setFormData, handleNext } = useRegister();
-
-	const handleBack = () => router.back();
 
 	const handleSubmit = (values: RegisterEmailFormData) => {
 		setFormData(values);
@@ -38,69 +38,57 @@ export default function RegisterMobilePage() {
 
 	return (
 		<PageMobile>
-			<PageMobileHeader
-				onBackClick={handleBack}
-			/>
-			<div className='flex flex-col p-4 gap-2'>
-				<Formik
-					initialValues={initialValues}
-					validationSchema={toFormikValidationSchema(RegisterEmailSchema)}
-					onSubmit={handleSubmit}>
-					{({
-						handleChange,
-						handleBlur,
-						handleSubmit,
-						setFieldValue
-					}) => (
-						<form onSubmit={handleSubmit}>
-							<div className='flex flex-col mb-4'>
-								<Typography variant='h5'>
-									{intl.formatMessage({
+			<Header />
+			<ContentWrapper>
+				<Content>
+					<Formik
+						initialValues={initialValues}
+						validationSchema={toFormikValidationSchema(RegisterEmailSchema)}
+						onSubmit={handleSubmit}>
+						{({
+							handleChange,
+							handleBlur,
+							handleSubmit,
+							setFieldValue
+						}) => (
+							<form onSubmit={handleSubmit}>
+								<Title
+									title={intl.formatMessage({
 										id: "register.emailTitle",
 										defaultMessage: "What's your email address?"
 									})}
-								</Typography>
-								<Typography variant='caption'>
-									{intl.formatMessage({
+									subtitle={intl.formatMessage({
 										id: "register.emailSubtitle",
 										defaultMessage: "Enter the email address at which you can be contacted. No one will see this on your profile."
 									})}
-								</Typography>
-							</div>
-							<TextField
-								type='email'
-								name='email'
-								label={intl.formatMessage({
-									id: 'common.email',
-									defaultMessage: "Email"
-								})}
-								onChange={handleChange}
-								onBlur={handleBlur}
-								InputProps={{
-									endAdornment: (
-										<InputAdornment position="end">
-											<IconButton onClick={() => setFieldValue("email", "")}>
-												<Icon name='close' />
-											</IconButton>
-										</InputAdornment>
-									)
-								}}
-								fullWidth
-							/>
-							<div className="flex flex-col mt-8 w-full">
-								<Button
-									type="submit"
-									variant='contained'>
-									{intl.formatMessage({
-										id: "common.nextButton",
-										defaultMessage: "Next"
+								/>
+								<TextField
+									type='email'
+									name='email'
+									label={intl.formatMessage({
+										id: 'common.email',
+										defaultMessage: "Email"
 									})}
-								</Button>
-							</div>
-						</form>
-					)}
-				</Formik>
-			</div>
+									onChange={handleChange}
+									onBlur={handleBlur}
+									InputProps={{
+										endAdornment: (
+											<InputAdornment position="end">
+												<IconButton onClick={() => setFieldValue("email", "")}>
+													<Icon name='close' />
+												</IconButton>
+											</InputAdornment>
+										)
+									}}
+									fullWidth
+								/>
+								<NextButton />
+							</form>
+						)}
+					</Formik>
+				</Content>
+				<LoginButton />
+			</ContentWrapper>
 		</PageMobile>
 	);
 }

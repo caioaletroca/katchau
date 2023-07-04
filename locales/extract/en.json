@@ -31,6 +31,7 @@
   "profile.postsLabel": "Posts",
   "register.emailSubtitle": "Enter the email address at which you can be contacted. No one will see this on your profile.",
   "register.emailTitle": "What's your email address?",
+  "register.loginButton": "Already have an account?",
   "register.nameSubtitle": "Add your name so that friends can find you.",
   "register.nameTitle": "What's your name?",
   "register.passwordSubtitle": "Create a password with at least 8 letter and numbers. It should be something that others can't guess.",

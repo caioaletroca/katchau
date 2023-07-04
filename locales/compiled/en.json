@@ -235,6 +235,12 @@
       "value": "What's your email address?"
     }
   ],
+  "register.loginButton": [
+    {
+      "type": 0,
+      "value": "Already have an account?"
+    }
+  ],
   "register.nameSubtitle": [
     {
       "type": 0,
