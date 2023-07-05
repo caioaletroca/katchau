@@ -6,10 +6,9 @@ import TextField from '@/components/TextField';
 import { user } from '@/validation/user';
 import { IconButton, InputAdornment } from '@mui/material';
 import { Formik } from 'formik';
-import React from 'react';
+import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { useRegister } from '../RegisterProvider';
 import { Content, ContentWrapper } from './Content';
 import Header from './Header';
@@ -43,7 +42,7 @@ export default function RegisterMobilePage() {
 				<Content>
 					<Formik
 						initialValues={initialValues}
-						validationSchema={toFormikValidationSchema(RegisterEmailSchema)}
+						validate={withZodSchema(RegisterEmailSchema)}
 						onSubmit={handleSubmit}>
 						{({ handleChange, handleBlur, handleSubmit, setFieldValue }) => (
 							<form onSubmit={handleSubmit}>

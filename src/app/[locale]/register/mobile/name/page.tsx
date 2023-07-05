@@ -4,10 +4,9 @@ import PageMobile from '@/components/Page/PageMobile';
 import TextField from '@/components/TextField';
 import { user } from '@/validation/user';
 import { Formik } from 'formik';
-import React from 'react';
+import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { useRegister } from '../../RegisterProvider';
 import { Content, ContentWrapper } from '../Content';
 import Header from '../Header';
@@ -41,7 +40,7 @@ export default function RegisterMobilePage() {
 				<Content>
 					<Formik
 						initialValues={initialValues}
-						validationSchema={toFormikValidationSchema(RegisterNameSchema)}
+						validate={withZodSchema(RegisterNameSchema)}
 						onSubmit={handleSubmit}>
 						{({ handleChange, handleBlur, handleSubmit }) => (
 							<form onSubmit={handleSubmit} noValidate>
