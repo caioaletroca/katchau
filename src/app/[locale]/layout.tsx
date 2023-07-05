@@ -8,6 +8,8 @@ import NextAuthProvider from '@/components/Auth/NextAuthProvider';
 import LocalizationProvider from '@/lib/intl/components/LocalizationProvider';
 import toPseudoLocale from '@/lib/intl/utils/toPseudoLocale';
 import ZodSchemaProvider from '@/lib/zod/components/ZodSchemaProvider';
+import { LocalizationProvider as MuiLocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const roboto = Roboto({
 	weight: ['300', '400', '500', '700'],
@@ -35,11 +37,13 @@ export default function RootLayout({
 				<React.Suspense>
 					{/* @ts-expect-error Server Component */}
 					<LocalizationProvider>
-						<ZodSchemaProvider>
-							<NextAuthProvider>
-								<ThemeRegistry>{children}</ThemeRegistry>
-							</NextAuthProvider>
-						</ZodSchemaProvider>
+						<MuiLocalizationProvider dateAdapter={AdapterDayjs}>
+							<ZodSchemaProvider>
+								<NextAuthProvider>
+									<ThemeRegistry>{children}</ThemeRegistry>
+								</NextAuthProvider>
+							</ZodSchemaProvider>
+						</MuiLocalizationProvider>
 					</LocalizationProvider>
 				</React.Suspense>
 			</body>

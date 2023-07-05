@@ -1,4 +1,24 @@
 {
+  "common.birth": [
+    {
+      "type": 0,
+      "value": "Date of birth"
+    }
+  ],
+  "common.birthWithAge": [
+    {
+      "type": 0,
+      "value": "Date of birth ("
+    },
+    {
+      "type": 1,
+      "value": "year"
+    },
+    {
+      "type": 0,
+      "value": " old)"
+    }
+  ],
   "common.email": [
     {
       "type": 0,
@@ -35,6 +55,12 @@
       "value": "Configurations"
     }
   ],
+  "errors.custom.date.invalid": [
+    {
+      "type": 0,
+      "value": "Invalid date"
+    }
+  ],
   "errors.custom.one_lowercase_letter": [
     {
       "type": 0,
@@ -65,6 +91,36 @@
     {
       "type": 0,
       "value": "Required field"
+    }
+  ],
+  "errors.too_big.date.exact": [
+    {
+      "type": 0,
+      "value": "Date must be exactly "
+    },
+    {
+      "type": 1,
+      "value": "maximum"
+    }
+  ],
+  "errors.too_big.date.inclusive": [
+    {
+      "type": 0,
+      "value": "Date must be before or equal to "
+    },
+    {
+      "type": 1,
+      "value": "maximum"
+    }
+  ],
+  "errors.too_big.date.not_inclusive": [
+    {
+      "type": 0,
+      "value": "Date must be before "
+    },
+    {
+      "type": 1,
+      "value": "maximum"
     }
   ],
   "errors.too_big.string.exact": [
@@ -107,6 +163,36 @@
     {
       "type": 0,
       "value": " characters"
+    }
+  ],
+  "errors.too_small.date.exact": [
+    {
+      "type": 0,
+      "value": "Date must be exactly "
+    },
+    {
+      "type": 1,
+      "value": "minimum"
+    }
+  ],
+  "errors.too_small.date.inclusive": [
+    {
+      "type": 0,
+      "value": "Date must be after or equal to "
+    },
+    {
+      "type": 1,
+      "value": "minimum"
+    }
+  ],
+  "errors.too_small.date.not_inclusive": [
+    {
+      "type": 0,
+      "value": "Date must be after "
+    },
+    {
+      "type": 1,
+      "value": "minimum"
     }
   ],
   "errors.too_small.string.exact": [
@@ -221,6 +307,18 @@
     {
       "type": 0,
       "value": "Posts"
+    }
+  ],
+  "register.birthSubtitle": [
+    {
+      "type": 0,
+      "value": "Use your own date of birth, even if this account is for a business, a pet or something else. No one will see this on your profile."
+    }
+  ],
+  "register.birthTitle": [
+    {
+      "type": 0,
+      "value": "What's your date of birth?"
     }
   ],
   "register.emailSubtitle": [

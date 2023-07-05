@@ -3,11 +3,13 @@
 import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
 import React from 'react';
 import { isMobile } from 'react-device-detect';
+import dayjs from 'dayjs';
 
 enum MobileViews {
 	'/register/mobile',
 	'/register/mobile/name',
 	'/register/mobile/password',
+	'/register/mobile/birth',
 }
 
 type FormData = {
@@ -15,7 +17,7 @@ type FormData = {
 	email: string;
 	name: string;
 	password: string;
-	birth: Date;
+	birth: dayjs.Dayjs;
 };
 
 const RegisterContext = React.createContext<{

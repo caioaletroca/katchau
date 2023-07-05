@@ -7,6 +7,7 @@ import {
 	ZodIssueOptionalMessage,
 	ZodParsedType,
 } from 'zod';
+import dayjs from 'dayjs';
 import messages from '../messages';
 
 export default function createZodMap(intl: IntlShape) {
@@ -24,7 +25,7 @@ export default function createZodMap(intl: IntlShape) {
 			case ZodIssueCode.too_small:
 				const minimum =
 					issue.type === 'date'
-						? new Date(issue.minimum as number)
+						? dayjs.unix(issue.minimum as number).format('LL')
 						: issue.minimum;
 				const precisionMinimum = issue.exact
 					? 'exact'
@@ -44,14 +45,14 @@ export default function createZodMap(intl: IntlShape) {
 			case ZodIssueCode.too_big:
 				const maximum =
 					issue.type === 'date'
-						? new Date(issue.maximum as number)
+						? dayjs.unix(issue.maximum as number).format('LL')
 						: issue.maximum;
 				const precisionMaximum = issue.exact
 					? 'exact'
 					: issue.inclusive
 					? 'inclusive'
 					: 'not_inclusive';
-				const keyMaximum = `too_small_${issue.type}_${precisionMaximum}`;
+				const keyMaximum = `too_big_${issue.type}_${precisionMaximum}`;
 
 				if (!(keyMaximum in messages)) {
 					throw new Error(
@@ -74,10 +75,12 @@ export default function createZodMap(intl: IntlShape) {
 					);
 				}
 
-				message = intl.formatMessage(get(messages, issue.params.id));
+				message = intl.formatMessage(
+					get(messages, issue.params.id),
+					issue.params
+				);
 				break;
 		}
-
 		return { message };
 	};
 }

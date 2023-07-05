@@ -6,6 +6,8 @@ import {
 	regex,
 	specialCharacters,
 } from './regex';
+import date from './datetime';
+import dayjs from 'dayjs';
 
 const username = z.string().refine(regex(specialCharacters), {
 	params: { id: 'custom_special_characters' },
@@ -33,9 +35,14 @@ const password = z
 	})
 	.refine(regex(oneNumber), { params: { id: 'custom_one_number' } });
 
+const birth = date.type
+	.superRefine(date.min('1900-01-01'))
+	.superRefine(date.max(dayjs()));
+
 export const user = {
 	username,
 	name,
 	email,
 	password,
+	birth,
 };

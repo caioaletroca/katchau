@@ -5,6 +5,10 @@ import { notFound } from 'next/navigation';
 import { getIntlConfig } from '../utils/getIntlConfig';
 import { useLocale } from '../client';
 import toPseudoLocale from '../utils/toPseudoLocale';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+
+dayjs.extend(localizedFormat);
 
 type LocalizationProviderProps = React.PropsWithChildren;
 
