@@ -53,7 +53,7 @@ export default function RegisterMobilePage() {
 						initialValues={initialValues}
 						validate={withZodSchema(RegisterPasswordSchema)}
 						onSubmit={handleSubmit}>
-						{({ handleChange, handleBlur, handleSubmit }) => (
+						{({ handleSubmit }) => (
 							<form onSubmit={handleSubmit} noValidate>
 								<PasswordTextField
 									name="password"
@@ -61,8 +61,6 @@ export default function RegisterMobilePage() {
 										id: 'common.password',
 										defaultMessage: 'Password',
 									})}
-									onChange={handleChange}
-									onBlur={handleBlur}
 									fullWidth
 								/>
 								<NextButton />

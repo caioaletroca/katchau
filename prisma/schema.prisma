@@ -43,10 +43,12 @@ model Session {
 model User {
 	@@map("users")
   id            String    @id @default(cuid())
+	username			String?		@unique
   name          String?
-  email         String?   @unique
+  email         String?   
   emailVerified DateTime? @map("email_verified")
   image         String?
+	birth					DateTime?
 	created_at		DateTime   @default(now())
 	updated_at		DateTime?   @updatedAt
 	deleted_at		DateTime?

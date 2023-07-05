@@ -1,15 +1,16 @@
 'use client';
 
 import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
+import dayjs from 'dayjs';
 import React from 'react';
 import { isMobile } from 'react-device-detect';
-import dayjs from 'dayjs';
 
 enum MobileViews {
 	'/register/mobile',
 	'/register/mobile/name',
 	'/register/mobile/password',
 	'/register/mobile/birth',
+	'/register/mobile/username',
 }
 
 type FormData = {

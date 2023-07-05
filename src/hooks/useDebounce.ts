@@ -14,5 +14,5 @@ export const useDebounce = (
 			clearTimeout(handler);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [callback, milliSeconds, ...dependencyArray]);
+	}, [milliSeconds, ...dependencyArray]);
 };

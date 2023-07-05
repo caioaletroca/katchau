@@ -42,7 +42,7 @@ export default function RegisterMobilePage() {
 						initialValues={initialValues}
 						validate={withZodSchema(RegisterNameSchema)}
 						onSubmit={handleSubmit}>
-						{({ handleChange, handleBlur, handleSubmit }) => (
+						{({ handleSubmit }) => (
 							<form onSubmit={handleSubmit} noValidate>
 								<Title
 									title={intl.formatMessage({
@@ -61,8 +61,6 @@ export default function RegisterMobilePage() {
 										id: 'common.name',
 										defaultMessage: 'Full name',
 									})}
-									onChange={handleChange}
-									onBlur={handleBlur}
 									fullWidth
 								/>
 								<NextButton />

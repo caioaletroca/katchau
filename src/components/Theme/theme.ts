@@ -1,13 +1,15 @@
 'use client';
 
+import tailwindConfigModule from '@/../tailwind.config.js';
 import createTheme from '@mui/material/styles/createTheme';
+import resolveConfig from 'tailwindcss/resolveConfig';
+
+const tailwindConfig = resolveConfig(tailwindConfigModule);
 
 const theme = createTheme({
 	palette: {
 		mode: 'dark',
-		primary: {
-			main: '#B784FA',
-		},
+		...tailwindConfig?.theme?.colors,
 	},
 	components: {
 		MuiAppBar: {

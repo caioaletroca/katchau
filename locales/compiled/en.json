@@ -43,6 +43,12 @@
       "value": "Password"
     }
   ],
+  "common.username": [
+    {
+      "type": 0,
+      "value": "Username"
+    }
+  ],
   "configurations.appsAndMediaSectionTitle": [
     {
       "type": 0,
@@ -361,6 +367,24 @@
     {
       "type": 0,
       "value": "Create a password"
+    }
+  ],
+  "register.usernameSubtitle": [
+    {
+      "type": 0,
+      "value": "Add a username or use our sugestion. You can change this at any time."
+    }
+  ],
+  "register.usernameTitle": [
+    {
+      "type": 0,
+      "value": "Create a username"
+    }
+  ],
+  "register.usernameUniqueWarning": [
+    {
+      "type": 0,
+      "value": "Your username needs to be unique."
     }
   ],
   "search.noResultsFound": [

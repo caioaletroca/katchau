@@ -44,7 +44,7 @@ export default function RegisterMobilePage() {
 						initialValues={initialValues}
 						validate={withZodSchema(RegisterEmailSchema)}
 						onSubmit={handleSubmit}>
-						{({ handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+						{({ handleSubmit, setFieldValue }) => (
 							<form onSubmit={handleSubmit}>
 								<Title
 									title={intl.formatMessage({
@@ -64,8 +64,6 @@ export default function RegisterMobilePage() {
 										id: 'common.email',
 										defaultMessage: 'Email',
 									})}
-									onChange={handleChange}
-									onBlur={handleBlur}
 									InputProps={{
 										endAdornment: (
 											<InputAdornment position="end">
