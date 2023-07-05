@@ -11,6 +11,7 @@ enum MobileViews {
 	'/register/mobile/password',
 	'/register/mobile/birth',
 	'/register/mobile/username',
+	'/register/mobile/terms',
 }
 
 type FormData = {

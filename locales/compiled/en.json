@@ -1,4 +1,10 @@
 {
+  "common.agree": [
+    {
+      "type": 0,
+      "value": "I agree"
+    }
+  ],
   "common.birth": [
     {
       "type": 0,
@@ -367,6 +373,32 @@
     {
       "type": 0,
       "value": "Create a password"
+    }
+  ],
+  "register.termsText1": [
+    {
+      "type": 0,
+      "value": "People who use our service may have uploaded your contact information to Katchau"
+    }
+  ],
+  "register.termsText2": [
+    {
+      "type": 0,
+      "value": "By tapping "
+    },
+    {
+      "type": 1,
+      "value": "buttonLabel"
+    },
+    {
+      "type": 0,
+      "value": ", you agree to create an account and to Katchau's Terms, Privacy Policy and Cookie Policy."
+    }
+  ],
+  "register.termsTitle": [
+    {
+      "type": 0,
+      "value": "Agree to Katchau's terms and policies"
     }
   ],
   "register.usernameSubtitle": [

@@ -28,7 +28,7 @@ const RegisterUsernameSchema = z.object({
 
 type RegisterUsernameFormData = z.infer<typeof RegisterUsernameSchema>;
 
-export default function RegisterMobilePage() {
+export default function RegisterUsernameMobilePage() {
 	const intl = useIntl();
 	const { setFormData, handleNext } = useRegister();
 	const { data, isMutating, trigger } = useCheckUsername();

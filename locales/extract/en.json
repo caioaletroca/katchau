@@ -1,4 +1,5 @@
 {
+  "common.agree": "I agree",
   "common.birth": "Date of birth",
   "common.birthWithAge": "Date of birth ({year} old)",
   "common.email": "Email",
@@ -48,6 +49,9 @@
   "register.nameTitle": "What's your name?",
   "register.passwordSubtitle": "Create a password with at least 8 letter and numbers. It should be something that others can't guess.",
   "register.passwordTitle": "Create a password",
+  "register.termsText1": "People who use our service may have uploaded your contact information to Katchau",
+  "register.termsText2": "By tapping {buttonLabel}, you agree to create an account and to Katchau's Terms, Privacy Policy and Cookie Policy.",
+  "register.termsTitle": "Agree to Katchau's terms and policies",
   "register.usernameSubtitle": "Add a username or use our sugestion. You can change this at any time.",
   "register.usernameTitle": "Create a username",
   "register.usernameUniqueWarning": "Your username needs to be unique.",
