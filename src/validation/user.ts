@@ -1,4 +1,6 @@
+import dayjs from 'dayjs';
 import { z } from 'zod';
+import date from './datetime';
 import {
 	oneLowerCaseLetter,
 	oneNumber,
@@ -6,16 +8,18 @@ import {
 	regex,
 	specialCharacters,
 } from './regex';
-import date from './datetime';
-import dayjs from 'dayjs';
 
-const username = z.string().refine(regex(specialCharacters), {
-	params: { id: 'custom_special_characters' },
-});
+const username = z
+	.string()
+	.min(1)
+	.refine(regex(specialCharacters), {
+		params: { id: 'custom_special_characters' },
+	});
 
 const name = z
 	.string()
 	.trim()
+	.min(1)
 	.max(255)
 	.refine(regex(specialCharacters), {
 		params: { id: 'custom_special_characters' },
