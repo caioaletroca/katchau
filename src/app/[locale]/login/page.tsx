@@ -1,16 +1,16 @@
 'use client';
 
 import TextField from '@/components/TextField';
+import { useLocale } from '@/lib/intl/client';
 import { user } from '@/validation/user';
 import { Button, Divider } from '@mui/material';
 import { Formik } from 'formik';
+import { withZodSchema } from 'formik-validator-zod';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
-import { z } from 'zod';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { useSearchParams } from 'next/navigation';
 import { useIntl } from 'react-intl';
-import { useLocale } from '@/lib/intl/client';
+import { z } from 'zod';
 
 const LoginSchema = z.object({
 	username: user.username,
@@ -51,7 +51,7 @@ export default function LoginPage() {
 				/>
 				<Formik
 					initialValues={initialValues}
-					validationSchema={toFormikValidationSchema(LoginSchema)}
+					validate={withZodSchema(LoginSchema)}
 					onSubmit={handleSubmit}>
 					{({ handleBlur, handleChange, handleSubmit }) => (
 						<form

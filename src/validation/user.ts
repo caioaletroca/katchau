@@ -12,7 +12,7 @@ import {
 const username = z
 	.string()
 	.min(1)
-	.refine(regex(specialCharacters), {
+	.refine(regex(/^[a-zA-Z0-9.]*$/), {
 		params: { id: 'custom_special_characters' },
 	});
 

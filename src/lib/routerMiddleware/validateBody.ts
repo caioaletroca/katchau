@@ -10,15 +10,12 @@ export function validateBody(schema: z.ZodObject<any>) {
 		if (!response.success) {
 			const { errors } = response.error;
 
-			return new NextResponse(
-				JSON.stringify({
+			return NextResponse.json(
+				{
 					message: 'Invalid request',
 					errors,
-				}),
-				{
-					status: 400,
-					headers: { 'content-type': 'application/json' },
-				}
+				},
+				{ status: 400 }
 			);
 		}
 

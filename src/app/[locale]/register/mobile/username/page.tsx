@@ -23,7 +23,7 @@ const initialValues = {
 };
 
 const RegisterUsernameSchema = z.object({
-	username: z.string(user.username).min(1),
+	username: user.username,
 });
 
 type RegisterUsernameFormData = z.infer<typeof RegisterUsernameSchema>;
