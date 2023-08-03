@@ -1,5 +1,6 @@
-import React from 'react';
 import { useRouter as useNextRouter } from 'next/navigation';
+import React from 'react';
+import localizePathname from '../utils/localizePathname';
 import { useLocale } from './useLocale';
 
 export function useRouter() {
@@ -7,20 +8,16 @@ export function useRouter() {
 	const locale = useLocale();
 
 	return React.useMemo(() => {
-		function localize(href: string) {
-			return `/${locale}${href}`;
-		}
-
 		return {
 			...router,
 			push(href: string) {
-				return router.push(localize(href));
+				return router.push(localizePathname(locale, href));
 			},
 			replace(href: string) {
-				return router.replace(localize(href));
+				return router.replace(localizePathname(locale, href));
 			},
 			prefetch(href: string) {
-				return router.prefetch(localize(href));
+				return router.prefetch(localizePathname(locale, href));
 			},
 		};
 	}, [locale, router]);

@@ -1,32 +1,40 @@
-import type { NextRequestWithAuth } from 'next-auth/middleware';
-import { NextFetchEvent, NextResponse } from 'next/server';
-
-import localizationMiddleware from './lib/intl/middleware';
-import { getUnlocalizedPath } from './lib/intl/server';
+import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
+import { applyMiddleware } from './lib/masterMiddleware';
 import apiMiddleware from './middlewares/apiMiddleware';
 import authMiddleware from './middlewares/authMiddleware';
+import localizationMiddleware from './middlewares/localizationMiddleware';
+import resourceMiddleware from './middlewares/resourceMiddleware';
 
 export default async function middleware(
-	req: NextRequestWithAuth,
+	req: NextRequest,
 	event: NextFetchEvent
 ) {
-	const pathname = getUnlocalizedPath(req);
+	return applyMiddleware(
+		[
+			resourceMiddleware,
+			localizationMiddleware({
+				whitelist: ['/login', '/register', '/register/(.*)'],
+			}),
+			apiMiddleware({
+				basePath: '/api',
+				blacklist: ['/api/auth/(.*)', '/api/users/username', '/api/register'],
+			}),
+			authMiddleware({
+				blacklist: [
+					// Front End
+					'/login',
+					'/register/(.*)',
 
-	if (pathname.includes('/login')) {
-		return localizationMiddleware(req);
-	}
-
-	if (pathname.startsWith('/api')) {
-		if (!pathname.startsWith('/api/auth')) {
-			return await apiMiddleware(req);
+					// Back End
+					'/api/users/username',
+					'/api/register',
+				],
+			}),
+		],
+		(req: NextRequest, event: NextFetchEvent) => {
+			return NextResponse.next();
 		}
-	}
-
-	if (pathname.match(/(.*).(svg|png|jpg|jpeg|ico)/g)) {
-		return NextResponse.next();
-	}
-
-	return (authMiddleware as any)(req, event);
+	)(req, event);
 }
 
 export const config = {

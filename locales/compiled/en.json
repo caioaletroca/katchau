@@ -279,6 +279,12 @@
       "value": "Password"
     }
   ],
+  "login.registerButton": [
+    {
+      "type": 0,
+      "value": "Don't have an account? Sign up."
+    }
+  ],
   "login.usernamePlaceholder": [
     {
       "type": 0,

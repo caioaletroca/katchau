@@ -6,7 +6,7 @@ export function useUnlocalizedPathname() {
 	const config = getIntlConfig();
 
 	let path = usePathname();
-	config.locales.every((locale) => {
+	config.locales.forEach((locale) => {
 		path = unlocalizePathname(locale, path);
 	});
 	return path;

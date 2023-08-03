@@ -1,22 +1,44 @@
+import { getUnlocalizedPath } from '@/lib/intl/server';
+import {
+	checkBasePath,
+	checkWhitelist,
+	NextHandler,
+} from '@/lib/masterMiddleware';
 import { getToken } from 'next-auth/jwt';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 
-// TODO: Better error response
+export type ApiMiddlewareConfig = {
+	basePath: string;
+	blacklist: string[];
+};
 
-export default async function apiMiddleware(req: NextRequest) {
-	const token = await getToken({ req });
+export default function apiMiddleware({
+	basePath,
+	blacklist,
+}: ApiMiddlewareConfig) {
+	return async (req: NextRequest, event: NextFetchEvent, next: NextHandler) => {
+		const pathname = getUnlocalizedPath(req);
 
-	if (!token) {
-		return new NextResponse(
-			JSON.stringify({
-				message: 'Unauthorized',
-			}),
-			{
-				status: 401,
-				headers: { 'content-type': 'application/json' },
+		if (checkBasePath(pathname, basePath)) {
+			if (!checkWhitelist(pathname, blacklist)) {
+				const token = await getToken({ req });
+
+				if (!token) {
+					return new NextResponse(
+						JSON.stringify({
+							message: 'Unauthorized',
+						}),
+						{
+							status: 401,
+							headers: { 'content-type': 'application/json' },
+						}
+					);
+				}
+
+				return NextResponse.next();
 			}
-		);
-	}
+		}
 
-	return NextResponse.next();
+		return next();
+	};
 }

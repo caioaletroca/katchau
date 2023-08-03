@@ -33,6 +33,7 @@
   "login.loginButton": "Log In",
   "login.loginWithGoogleButton": "Log In With Google",
   "login.passwordPlaceholder": "Password",
+  "login.registerButton": "Don't have an account? Sign up.",
   "login.usernamePlaceholder": "Username",
   "post.header.deleteButton": "Delete",
   "post.title": "Post",
