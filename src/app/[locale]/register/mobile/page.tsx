@@ -5,7 +5,7 @@ import PageMobile from '@/components/Page/PageMobile';
 import TextField from '@/components/TextField';
 import { user } from '@/validation/user';
 import { IconButton, InputAdornment } from '@mui/material';
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
@@ -45,7 +45,7 @@ export default function RegisterMobilePage() {
 						validate={withZodSchema(RegisterEmailSchema)}
 						onSubmit={handleSubmit}>
 						{({ handleSubmit, setFieldValue }) => (
-							<form onSubmit={handleSubmit}>
+							<Form onSubmit={handleSubmit}>
 								<Title
 									title={intl.formatMessage({
 										id: 'register.emailTitle',
@@ -76,7 +76,7 @@ export default function RegisterMobilePage() {
 									fullWidth
 								/>
 								<NextButton />
-							</form>
+							</Form>
 						)}
 					</Formik>
 				</Content>
