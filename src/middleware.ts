@@ -1,10 +1,10 @@
 import type { NextRequestWithAuth } from 'next-auth/middleware';
 import { NextFetchEvent, NextResponse } from 'next/server';
 
-import apiMiddleware from './middlewares/apiMiddleware';
-import authMiddleware from './middlewares/authMiddleware';
 import localizationMiddleware from './lib/intl/middleware';
 import { getUnlocalizedPath } from './lib/intl/server';
+import apiMiddleware from './middlewares/apiMiddleware';
+import authMiddleware from './middlewares/authMiddleware';
 
 export default async function middleware(
 	req: NextRequestWithAuth,
@@ -12,7 +12,7 @@ export default async function middleware(
 ) {
 	const pathname = getUnlocalizedPath(req);
 
-	if (pathname.startsWith('/login')) {
+	if (pathname.includes('/login')) {
 		return localizationMiddleware(req);
 	}
 
