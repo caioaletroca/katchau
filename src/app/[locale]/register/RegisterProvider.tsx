@@ -1,5 +1,6 @@
 'use client';
 
+import { useRegister as useRegisterRequest } from '@/api/register';
 import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
 import dayjs from 'dayjs';
 import React from 'react';
@@ -26,10 +27,12 @@ const RegisterContext = React.createContext<{
 	formData: Partial<FormData>;
 	setFormData: (data: Partial<FormData>) => void;
 	handleNext: () => void;
+	handleRegister: () => void;
 }>({
 	formData: {},
 	setFormData: () => {},
 	handleNext: () => {},
+	handleRegister: () => {},
 });
 
 export function useRegister() {
@@ -42,6 +45,7 @@ export function RegisterProvider({ children }: RegisterProviderProps) {
 	const router = useRouter();
 	const pathname = useUnlocalizedPathname();
 	const [formData, _setFormData] = React.useState({});
+	const { trigger } = useRegisterRequest();
 
 	const setFormData = (data: Partial<FormData>) => {
 		_setFormData((prev) => ({ ...prev, ...data }));
@@ -61,12 +65,17 @@ export function RegisterProvider({ children }: RegisterProviderProps) {
 		}
 	};
 
+	const handleRegister = () => {
+		trigger(formData);
+	};
+
 	return (
 		<RegisterContext.Provider
 			value={{
 				formData,
 				setFormData,
 				handleNext,
+				handleRegister,
 			}}>
 			{children}
 		</RegisterContext.Provider>
