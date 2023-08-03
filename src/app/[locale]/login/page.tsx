@@ -31,7 +31,8 @@ export default function LoginPage() {
 	const router = useRouter();
 
 	const handleSubmit = (values: LoginForm) => {
-		signIn('credentials', values, {
+		signIn('credentials', {
+			...values,
 			callbackUrl: search.get('callbackUrl') ?? `/${locale}`,
 		});
 	};
@@ -95,7 +96,7 @@ export default function LoginPage() {
 				</Button>
 			</div>
 			<div
-				className="border-neutral-800 bg-neutral-900 flex justify-center border-t-2 p-4"
+				className="flex justify-center border-t-2 border-neutral-800 bg-neutral-900 p-4"
 				onClick={() => router.push('/register')}>
 				<Typography color="gray">
 					{intl.formatMessage({
