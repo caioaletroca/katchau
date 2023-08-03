@@ -1,10 +1,10 @@
 'use client';
 
 import TextField from '@/components/TextField';
-import { useLocale } from '@/lib/intl/client';
+import { useLocale, useRouter } from '@/lib/intl/client';
 import { user } from '@/validation/user';
-import { Button, Divider } from '@mui/material';
-import { Formik } from 'formik';
+import { Button, Divider, Typography } from '@mui/material';
+import { Form, Formik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
@@ -28,9 +28,12 @@ export default function LoginPage() {
 	const search = useSearchParams();
 	const intl = useIntl();
 	const locale = useLocale();
+	const router = useRouter();
 
 	const handleSubmit = (values: LoginForm) => {
-		console.log(values);
+		signIn('credentials', values, {
+			callbackUrl: search.get('callbackUrl') ?? `/${locale}`,
+		});
 	};
 
 	const handleGoogleLogin = () => {
@@ -54,7 +57,7 @@ export default function LoginPage() {
 					validate={withZodSchema(LoginSchema)}
 					onSubmit={handleSubmit}>
 					{({ handleBlur, handleChange, handleSubmit }) => (
-						<form
+						<Form
 							className="flex w-full flex-col gap-2"
 							onSubmit={handleSubmit}>
 							<TextField
@@ -63,8 +66,6 @@ export default function LoginPage() {
 									id: 'login.usernamePlaceholder',
 									defaultMessage: 'Username',
 								})}
-								onChange={handleChange}
-								onBlur={handleBlur}
 								variant="outlined"
 							/>
 							<TextField
@@ -74,8 +75,6 @@ export default function LoginPage() {
 									id: 'login.passwordPlaceholder',
 									defaultMessage: 'Password',
 								})}
-								onChange={handleChange}
-								onBlur={handleBlur}
 								variant="outlined"
 							/>
 							<Button type="submit" variant="outlined">
@@ -84,7 +83,7 @@ export default function LoginPage() {
 									defaultMessage: 'Log In',
 								})}
 							</Button>
-						</form>
+						</Form>
 					)}
 				</Formik>
 				<Divider>OR</Divider>
@@ -94,6 +93,16 @@ export default function LoginPage() {
 						defaultMessage: 'Log In With Google',
 					})}
 				</Button>
+			</div>
+			<div
+				className="border-neutral-800 bg-neutral-900 flex justify-center border-t-2 p-4"
+				onClick={() => router.push('/register')}>
+				<Typography color="gray">
+					{intl.formatMessage({
+						id: 'login.registerButton',
+						defaultMessage: "Don't have an account? Sign up.",
+					})}
+				</Typography>
 			</div>
 		</div>
 	);

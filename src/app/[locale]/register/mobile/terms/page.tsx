@@ -11,7 +11,7 @@ import Title from '../Title';
 
 export default function RegisterTermsMobilePage() {
 	const intl = useIntl();
-	const { handleNext } = useRegister();
+	const { handleRegister } = useRegister();
 
 	return (
 		<PageMobile>
@@ -52,7 +52,7 @@ export default function RegisterTermsMobilePage() {
 						)}
 					</Typography>
 					<div className="mt-8 flex w-full flex-col">
-						<Button type="submit" variant="contained" onClick={handleNext}>
+						<Button type="submit" variant="contained" onClick={handleRegister}>
 							{intl.formatMessage({
 								id: 'common.agree',
 								defaultMessage: 'I agree',

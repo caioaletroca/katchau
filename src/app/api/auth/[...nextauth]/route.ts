@@ -1,10 +1,12 @@
+import { prisma } from '@/database/db';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import { PrismaAdapter } from '@auth/prisma-adapter';
-import { prisma } from '@/database/db';
+import credentialProvider from './CredentialsProvider';
 
 const handler = NextAuth({
 	providers: [
+		credentialProvider,
 		GoogleProvider({
 			clientId: process.env.NEXT_PUBLIC_GOOGLE_PROVIDER_CLIENT_ID!,
 			clientSecret: process.env.NEXT_PUBLIC_GOOGLE_PROVIDER_SECRET_ID!,

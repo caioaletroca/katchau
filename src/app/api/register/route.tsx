@@ -32,15 +32,24 @@ export const POST = applyMiddleware(
 
 		const hashPassword = await hasher.hash(body.password);
 
-		// const user = await prisma.user.create({
-		// 	data: {
-		// 		username: body.username,
-		// 		name: body.name,
-		// 		email: body.email,
-		// 		birth: body.birth,
-		// 	}
-		// });
+		const user = await prisma.user.create({
+			data: {
+				username: body.username,
+				name: body.name,
+				email: body.email,
+				birth: body.birth,
+			},
+		});
 
-		return NextResponse.json({});
+		await prisma.account.create({
+			data: {
+				userId: user.id,
+				type: 'credential',
+				provider: 'credential',
+				password: hashPassword,
+			},
+		});
+
+		return NextResponse.json(user);
 	}
 );
