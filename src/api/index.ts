@@ -14,4 +14,18 @@ export const postFetcher = async (url: string, { arg }: { arg: any }) => {
 	return data;
 };
 
+export const postFormDataFetcher = async (
+	url: string,
+	{ arg }: { arg: object }
+) => {
+	const body = new FormData();
+
+	for (let [key, entry] of Object.entries(arg)) {
+		body.append(key, entry);
+	}
+
+	const { data } = await api.post(url, body);
+	return data;
+};
+
 export default api;

@@ -123,7 +123,7 @@ model ProfileImage {
 	@@map("profile_images")
 	id	String @id @default(cuid())
 	user_id	String
-	url	String
+	url	String?
 	created_at	DateTime   @default(now())
 	updated_at	DateTime?   @updatedAt
 	deleted_at	DateTime?

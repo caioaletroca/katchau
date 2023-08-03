@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import api from '@/api';
 import useRouter from "@/lib/intl/client'";
+import React from 'react';
 
 type FormData = {
 	originalFile?: File;
@@ -35,6 +35,7 @@ export function NewPostProvider({ children }: NewPostProviderProps) {
 
 	const handleSubmit = async () => {
 		const data = new FormData();
+		// TODO: Update here
 		data.append('image', formData.file!);
 		data.append('fileName', formData.originalFile?.name!);
 		data.append('description', formData.description!);

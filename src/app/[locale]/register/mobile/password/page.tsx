@@ -24,7 +24,7 @@ const RegisterPasswordSchema = z.object({
 
 type RegisterPasswordFormData = z.infer<typeof RegisterPasswordSchema>;
 
-export default function RegisterMobilePage() {
+export default function RegisterPasswordMobilePage() {
 	const intl = useIntl();
 	const { setFormData, handleNext } = useRegister();
 

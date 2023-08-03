@@ -55,6 +55,24 @@
       "value": "Username"
     }
   ],
+  "commons.edit": [
+    {
+      "type": 0,
+      "value": "Edit"
+    }
+  ],
+  "commons.save": [
+    {
+      "type": 0,
+      "value": "Save"
+    }
+  ],
+  "commons.skip": [
+    {
+      "type": 0,
+      "value": "Skip"
+    }
+  ],
   "configurations.appsAndMediaSectionTitle": [
     {
       "type": 0,
@@ -333,6 +351,18 @@
       "value": "Posts"
     }
   ],
+  "profilePicture.alt": [
+    {
+      "type": 0,
+      "value": "Current selected profile picture"
+    }
+  ],
+  "profilePicture.drawerTitle": [
+    {
+      "type": 0,
+      "value": "Edit profile picture"
+    }
+  ],
   "register.birthSubtitle": [
     {
       "type": 0,
@@ -385,6 +415,18 @@
     {
       "type": 0,
       "value": "Create a password"
+    }
+  ],
+  "register.profilePictureSubtitle": [
+    {
+      "type": 0,
+      "value": "Add a profile picture so that your friends know it's you. Everyone will be able to see your picture."
+    }
+  ],
+  "register.profilePictureTitle": [
+    {
+      "type": 0,
+      "value": "Add a profile picture"
     }
   ],
   "register.termsText1": [
