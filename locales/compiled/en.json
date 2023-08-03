@@ -249,6 +249,12 @@
       "value": " characters"
     }
   ],
+  "language.title": [
+    {
+      "type": 0,
+      "value": "App Language"
+    }
+  ],
   "languageButtom": [
     {
       "type": 0,

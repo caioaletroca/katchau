@@ -28,6 +28,7 @@
   "errors.too_small.string.exact": "Field must contain exactly {minimum} characters",
   "errors.too_small.string.inclusive": "Field must contain at least {minimum} characters",
   "errors.too_small.string.not_inclusive": "Field must contain over {minimum} characters",
+  "language.title": "App Language",
   "languageButtom": "Language",
   "logInSectionTitle": "Log In",
   "login.loginButton": "Log In",

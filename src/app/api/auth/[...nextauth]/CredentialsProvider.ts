@@ -8,7 +8,6 @@ const credentialProvider = CredentialsProvider({
 		password: { label: 'Password', type: 'password' },
 	},
 	async authorize(credentials) {
-		console.log(credentials);
 		if (!credentials) return null;
 
 		// Check if user exists
@@ -26,14 +25,11 @@ const credentialProvider = CredentialsProvider({
 				provider: 'credential',
 			},
 		});
-		console.log(account);
 		if (!account) return null;
 
 		// Check password
 		const match = await hasher.compare(credentials.password, account.password!);
 		if (!match) return null;
-
-		console.log('logged');
 
 		return user;
 	},
