@@ -1,22 +1,31 @@
 'use client';
 
-import api from '@/api';
+import { usePost } from '@/api/posts';
+import { useUserProfileImage } from '@/api/profileImage';
+import { useUser } from '@/api/users';
 import Post from '@/components/Post';
 import { useRouter } from '@/lib/intl/client';
 import { useParams } from 'next/navigation';
 
-export default async function Content() {
+export default function Content() {
 	const { user_id, post_id } = useParams();
 	const router = useRouter();
-	const { data: user } = await api.get(`/users/${user_id}`);
-	const { data: post } = await api.get(`/users/${user_id}/posts/${post_id}`);
+	const { data: user } = useUser({ user_id });
+	const { data: post } = usePost({ user_id, post_id });
+	const { data: profileImage, isLoading } = useUserProfileImage({ user_id });
 
 	const handleDelete = () => router.push('/profile');
 
+	if (!user || !post || isLoading) return null;
+
 	return (
 		<div className="flex w-full">
-			{/* @ts-expect-error Server Component */}
-			<Post user={user} post={post} onDelete={handleDelete} />
+			<Post
+				user={user}
+				post={post}
+				profileImage={profileImage}
+				onDelete={handleDelete}
+			/>
 		</div>
 	);
 }

@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
-import { useIntl } from 'react-intl';
 import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import { useRouter } from '@/lib/intl/client';
+import { useIntl } from 'react-intl';
 import Content from './Content';
 
 export default function PostPage() {
@@ -22,10 +21,7 @@ export default function PostPage() {
 					defaultMessage: 'Post',
 				})}
 			/>
-			<React.Suspense>
-				{/* @ts-expect-error Server Component */}
-				<Content />
-			</React.Suspense>
+			<Content />
 		</PageMobile>
 	);
 }
