@@ -327,6 +327,12 @@
       "value": "Post"
     }
   ],
+  "post.userProfilePicture.alt": [
+    {
+      "type": 0,
+      "value": "Post profile picture"
+    }
+  ],
   "profile.configurationButton": [
     {
       "type": 0,
@@ -349,6 +355,12 @@
     {
       "type": 0,
       "value": "Posts"
+    }
+  ],
+  "profile.profileImage.alt": [
+    {
+      "type": 0,
+      "value": "Your profile picture"
     }
   ],
   "profilePicture.alt": [
