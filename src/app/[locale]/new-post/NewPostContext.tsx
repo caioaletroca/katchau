@@ -1,7 +1,7 @@
 'use client';
 
 import api from '@/api';
-import useRouter from "@/lib/intl/client'";
+import { useRouter } from '@/lib/intl/client';
 import React from 'react';
 
 type FormData = {
