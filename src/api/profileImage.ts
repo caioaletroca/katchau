@@ -11,7 +11,6 @@ export function useProfileImage() {
 	return useSWR<ProfileImage>('/auth/profile/image', getFetcher);
 }
 
-// TODO: revisit this any
 export function useUploadProfileImage(options: RequestSWROptions) {
 	return useSWRMutation('/auth/profile/image', postFormDataFetcher, options);
 }

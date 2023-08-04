@@ -8,6 +8,9 @@ export async function GET(req: NextRequest) {
 				search: req.nextUrl.searchParams.get('name') ?? '',
 			},
 		},
+		include: {
+			profile_picture: true,
+		},
 	});
 
 	return NextResponse.json(users);

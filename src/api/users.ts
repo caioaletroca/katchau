@@ -1,4 +1,5 @@
 import { useLazySWR } from '@/hooks/useLazySWR';
+import { UserWithProfilePicture } from '@/types/users';
 import { User } from '@prisma/client';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
@@ -9,7 +10,7 @@ export function useUser({ user_id }: RequestSWRParams) {
 }
 
 export function useUserSearch() {
-	return useLazySWR<User[]>(getFetcher);
+	return useLazySWR<UserWithProfilePicture[]>(getFetcher);
 }
 
 export function useCheckUsername() {

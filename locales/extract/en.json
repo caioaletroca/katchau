@@ -67,6 +67,7 @@
   "register.usernameTitle": "Create a username",
   "register.usernameUniqueWarning": "Your username needs to be unique.",
   "search.noResultsFound": "No results found",
+  "search.profileImage.alt": "{name} profile picture",
   "search.searchFieldPlaceholder": "Search for someone...",
   "search.title": "Search"
 }

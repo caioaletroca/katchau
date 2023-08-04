@@ -491,6 +491,16 @@
       "value": "No results found"
     }
   ],
+  "search.profileImage.alt": [
+    {
+      "type": 1,
+      "value": "name"
+    },
+    {
+      "type": 0,
+      "value": " profile picture"
+    }
+  ],
   "search.searchFieldPlaceholder": [
     {
       "type": 0,

@@ -1,18 +1,20 @@
 'use client';
 
-import React from 'react';
 import { useUserSearch } from '@/api/users';
+import Avatar from '@/components/Avatar';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useRouter } from '@/lib/intl/client';
 import {
 	CircularProgress,
 	List,
+	ListItemAvatar,
 	ListItemButton,
 	ListItemText,
 	TextField,
 	Typography,
 } from '@mui/material';
 import { User } from '@prisma/client';
+import React from 'react';
 import { useIntl } from 'react-intl';
 
 const EmptyScreen = () => {
@@ -74,6 +76,22 @@ export default function Content() {
 				<List>
 					{users?.map((user) => (
 						<ListItemButton key={user.id} onClick={() => handleClick(user)}>
+							<ListItemAvatar>
+								<Avatar
+									size="small"
+									name={user.name!}
+									alt={intl.formatMessage(
+										{
+											id: 'search.profileImage.alt',
+											defaultMessage: '{name} profile picture',
+										},
+										{
+											name: user.name,
+										}
+									)}
+									url={user.profile_picture[0]?.url}
+								/>
+							</ListItemAvatar>
 							<ListItemText primary={user.name} />
 						</ListItemButton>
 					))}
