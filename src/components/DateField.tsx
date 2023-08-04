@@ -13,16 +13,12 @@ export default function DateField({
 }: React.ComponentProps<typeof MuiDateField>) {
 	const [field, meta, helpers] = useField<dayjs.Dayjs>(name!);
 
-	const handleChange = (value: dayjs.Dayjs) => {
-		helpers.setValue(value);
-	};
-
 	return (
 		<MuiDateField
 			name={field.name}
 			value={field.value}
 			onBlur={field.onBlur}
-			onChange={handleChange}
+			onChange={(value) => helpers.setValue(value as dayjs.Dayjs)}
 			helperText={meta.touched ? meta.error : helperText}
 			InputProps={{
 				error: meta.touched && !!meta.error,

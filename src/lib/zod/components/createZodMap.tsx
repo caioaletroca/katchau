@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import get from 'lodash/get';
 import { IntlShape } from 'react-intl';
 import {
@@ -7,7 +8,6 @@ import {
 	ZodIssueOptionalMessage,
 	ZodParsedType,
 } from 'zod';
-import dayjs from 'dayjs';
 import messages from '../messages';
 
 export default function createZodMap(intl: IntlShape) {
@@ -40,6 +40,8 @@ export default function createZodMap(intl: IntlShape) {
 					);
 				}
 
+				// TODO: review this error
+				// @ts-ignore
 				message = intl.formatMessage(messages[keyMinimum], { minimum });
 				break;
 			case ZodIssueCode.too_big:
@@ -60,6 +62,8 @@ export default function createZodMap(intl: IntlShape) {
 					);
 				}
 
+				// TODO: review this error
+				// @ts-ignore
 				message = intl.formatMessage(messages[keyMaximum], { maximum });
 				break;
 			case ZodIssueCode.custom:

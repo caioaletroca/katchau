@@ -50,7 +50,7 @@ export default function PostHeader({
 						defaultMessage: 'Post profile picture',
 					})}
 					size="small"
-					src={profileImage?.url}
+					url={profileImage?.url}
 				/>
 				<Typography>{user.name}</Typography>
 			</div>

@@ -44,7 +44,8 @@ export async function POST(req: NextRequest) {
 		},
 	});
 
-	const extension = formData.get('fileName')?.split('.').pop();
+	const filename = formData.get('fileName') as string;
+	const extension = filename?.split('.').pop();
 	const filePath = `/${token?.sub}/${profileImage.id}.${extension}`;
 
 	const fileResponse = await supabase.storage

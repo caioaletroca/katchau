@@ -48,7 +48,7 @@ export async function POST(
 	} else {
 		await prisma.postLike.create({
 			data: {
-				user_id: token?.sub,
+				user_id: token?.sub!,
 				post_id: params.post_id,
 			},
 		});
