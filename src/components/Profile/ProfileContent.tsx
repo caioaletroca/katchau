@@ -8,18 +8,14 @@ import { Button, Grid, Skeleton, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 
-type ContentProps = {
-	user_id: string;
-};
-
-function ProfileContentLoading() {
+export function ProfileContentLoading() {
 	return (
 		<Grid container spacing={0.5}>
 			{Array(5)
 				.fill(0)
 				.map((_, index) => (
 					<Grid key={index} item xs={4}>
-						<Skeleton variant="rectangular" height={window.innerWidth / 3} />
+						<Skeleton className="h-screen-2/6-w" variant="rectangular" />
 					</Grid>
 				))}
 		</Grid>
@@ -38,7 +34,7 @@ function ProfileContentEmpty() {
 				{intl.formatMessage({
 					id: 'profile.emptyMessage',
 					defaultMessage:
-						"It's empty here, right? You can start by uploading pictures!",
+						"It's little empty here, right? You can start by uploading pictures!",
 				})}
 			</Typography>
 			<Button size="small" onClick={handleClick}>
@@ -51,7 +47,12 @@ function ProfileContentEmpty() {
 	);
 }
 
-export default function ProfileContent({ user_id }: ContentProps) {
+type ProfileContentProps = {
+	user_id: string;
+};
+
+export default function ProfileContent({ user_id }: ProfileContentProps) {
+	const intl = useIntl();
 	const router = useRouter();
 	const { data: posts, isLoading } = usePosts({ user_id });
 
@@ -70,13 +71,21 @@ export default function ProfileContent({ user_id }: ContentProps) {
 	return (
 		<>
 			<Grid container spacing={0.5}>
-				{posts?.map((post) => (
-					<Grid key={post.id} item xs={4}>
+				{posts?.map((post, index) => (
+					<Grid key={post.id} item xs={4} className="h-screen-2/6-w relative">
 						<Image
 							key={post.id}
-							alt=""
-							width={window.innerWidth / 3}
-							height={window.innerWidth / 3}
+							alt={intl.formatMessage(
+								{
+									id: 'profile.postImageAlt',
+									defaultMessage: 'Post image {number}',
+								},
+								{
+									number: index + 1,
+								}
+							)}
+							fill
+							sizes="33vw"
 							src={getStoragePath('posts', post?.images[0]?.url)}
 							onClick={() => handleClick(post)}
 						/>

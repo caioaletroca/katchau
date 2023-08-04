@@ -348,7 +348,7 @@
   "profile.emptyMessage": [
     {
       "type": 0,
-      "value": "It's empty here, right? You can start by uploading pictures!"
+      "value": "It's little empty here, right? You can start by uploading pictures!"
     }
   ],
   "profile.followersLabel": [
@@ -363,6 +363,16 @@
       "value": "Following"
     }
   ],
+  "profile.postImageAlt": [
+    {
+      "type": 0,
+      "value": "Post image "
+    },
+    {
+      "type": 1,
+      "value": "number"
+    }
+  ],
   "profile.postsLabel": [
     {
       "type": 0,
@@ -370,6 +380,12 @@
     }
   ],
   "profile.profileImage.alt": [
+    {
+      "type": 0,
+      "value": "Your profile picture"
+    }
+  ],
+  "profile.profilePictureAlt": [
     {
       "type": 0,
       "value": "Your profile picture"

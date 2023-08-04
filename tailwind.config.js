@@ -8,6 +8,10 @@ delete colors['blueGray'];
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+	// important: '#__next',
+	corePlugins: {
+		preflight: false,
+	},
 	content: [
 		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',

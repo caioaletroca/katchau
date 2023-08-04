@@ -1,26 +1,40 @@
 'use client';
 
-import React from 'react';
-import Header from './Header';
-import PageMobile from '@/components/Page/PageMobile';
 import BottomNavigation from '@/components/BottomNavigation';
-import Content from './Content';
+import PageMobile from '@/components/Page/PageMobile';
+import ProfileContent, {
+	ProfileContentLoading,
+} from '@/components/Profile/ProfileContent';
+import ProfileInfo, {
+	ProfileInfoLoading,
+} from '@/components/Profile/ProfileInfo';
 import { useSession } from 'next-auth/react';
-import Info from './Info';
+import Header from './Header';
+
+const ProfilePageLoading = () => (
+	<PageMobile>
+		<Header />
+		<div className="flex-1">
+			<ProfileInfoLoading />
+			<ProfileContentLoading />
+		</div>
+		<BottomNavigation />
+	</PageMobile>
+);
 
 export default async function ProfilePage() {
 	const { data } = useSession();
+
+	if (!data) {
+		return <ProfilePageLoading />;
+	}
 
 	return (
 		<PageMobile>
 			<Header />
 			<div className="flex-1">
-				{data?.user && (
-					<>
-						<Info user_id={data?.user.id} />
-						<Content user_id={data?.user.id} />
-					</>
-				)}
+				<ProfileInfo user_id={data?.user.id} />
+				<ProfileContent user_id={data?.user.id} />
 			</div>
 			<BottomNavigation />
 		</PageMobile>
