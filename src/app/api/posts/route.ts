@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
 	const post = await prisma.post.create({
 		data: {
-			user_id: token.sub,
+			user_id: token.sub!,
 			description: formData.get('description') && '',
 		},
 	});

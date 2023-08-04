@@ -13,6 +13,7 @@ enum MobileViews {
 	'/register/mobile/birth',
 	'/register/mobile/username',
 	'/register/mobile/terms',
+	'/register/mobile/profile-picture',
 }
 
 type FormData = {
@@ -25,11 +26,13 @@ type FormData = {
 
 const RegisterContext = React.createContext<{
 	formData: Partial<FormData>;
+	isRegistering: boolean;
 	setFormData: (data: Partial<FormData>) => void;
 	handleNext: () => void;
 	handleRegister: () => void;
 }>({
 	formData: {},
+	isRegistering: false,
 	setFormData: () => {},
 	handleNext: () => {},
 	handleRegister: () => {},
@@ -45,7 +48,6 @@ export function RegisterProvider({ children }: RegisterProviderProps) {
 	const router = useRouter();
 	const pathname = useUnlocalizedPathname();
 	const [formData, _setFormData] = React.useState({});
-	const { trigger } = useRegisterRequest();
 
 	const setFormData = (data: Partial<FormData>) => {
 		_setFormData((prev) => ({ ...prev, ...data }));
@@ -65,6 +67,10 @@ export function RegisterProvider({ children }: RegisterProviderProps) {
 		}
 	};
 
+	const { trigger, isMutating } = useRegisterRequest({
+		onSuccess: handleNext,
+	});
+
 	const handleRegister = () => {
 		trigger(formData);
 	};
@@ -73,6 +79,7 @@ export function RegisterProvider({ children }: RegisterProviderProps) {
 		<RegisterContext.Provider
 			value={{
 				formData,
+				isRegistering: isMutating,
 				setFormData,
 				handleNext,
 				handleRegister,

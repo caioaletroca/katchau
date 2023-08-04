@@ -1,7 +1,8 @@
 'use client';
 
 import PageMobile from '@/components/Page/PageMobile';
-import { Button, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Typography } from '@mui/material';
 import { useIntl } from 'react-intl';
 import { useRegister } from '../../RegisterProvider';
 import { Content, ContentWrapper } from '../Content';
@@ -11,7 +12,7 @@ import Title from '../Title';
 
 export default function RegisterTermsMobilePage() {
 	const intl = useIntl();
-	const { handleRegister } = useRegister();
+	const { handleRegister, isRegistering } = useRegister();
 
 	return (
 		<PageMobile>
@@ -52,12 +53,16 @@ export default function RegisterTermsMobilePage() {
 						)}
 					</Typography>
 					<div className="mt-8 flex w-full flex-col">
-						<Button type="submit" variant="contained" onClick={handleRegister}>
+						<LoadingButton
+							type="submit"
+							variant="contained"
+							loading={isRegistering}
+							onClick={handleRegister}>
 							{intl.formatMessage({
 								id: 'common.agree',
 								defaultMessage: 'I agree',
 							})}
-						</Button>
+						</LoadingButton>
 					</div>
 				</Content>
 				<LoginButton />
