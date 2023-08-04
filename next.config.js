@@ -7,6 +7,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withPlugins([
 	{
 		images: {
+			dangerouslyAllowSVG: true,
 			domains: ['cwlieuwgmwcsbydffhja.supabase.co', 'ui-avatars.com'],
 		},
 		transpilePackages: ['lodash', '@mui/system', '@mui/material'],

@@ -3,8 +3,8 @@
 import { useProfileImage, useUploadProfileImage } from '@/api/profileImage';
 import PageMobile from '@/components/Page/PageMobile';
 import ProfilePictureUpload from '@/components/ProfilePictureUpload';
+import useDownloadFile from '@/hooks/useDownloadFile';
 import { useRouter } from '@/lib/intl/client';
-import downloadImage from '@/utils/image/downloadImage';
 import getStoragePath from '@/utils/storage/getStoragePath';
 import { LoadingButton } from '@mui/lab';
 import { Button } from '@mui/material';
@@ -19,9 +19,11 @@ export default function RegisterProfilePictureMobilePage() {
 	const intl = useIntl();
 	const router = useRouter();
 	const { data: profileImage, isLoading } = useProfileImage();
-	const [currentFile, setCurrentFile] = React.useState<File>();
 	const [fileName, setFileName] = React.useState<string>();
 	const [file, setFile] = React.useState<File>();
+	const currentFile = useDownloadFile(
+		getStoragePath('profiles', profileImage?.url!)
+	);
 	const { trigger, isMutating } = useUploadProfileImage({
 		onSuccess: () => {
 			router.push('/profile');
@@ -29,17 +31,6 @@ export default function RegisterProfilePictureMobilePage() {
 	});
 
 	const { formData } = useRegister();
-
-	React.useEffect(() => {
-		(async () => {
-			if (profileImage && !currentFile) {
-				const file = await downloadImage(
-					getStoragePath('profiles', profileImage.url!)
-				);
-				setCurrentFile(file);
-			}
-		})();
-	}, [profileImage, currentFile]);
 
 	const handleChange = (fileName: string, file: File) => {
 		setFileName(fileName);
@@ -86,14 +77,14 @@ export default function RegisterProfilePictureMobilePage() {
 							loading={isMutating}
 							onClick={handleSave}>
 							{intl.formatMessage({
-								id: 'commons.save',
+								id: 'common.save',
 								defaultMessage: 'Save',
 							})}
 						</LoadingButton>
 					)}
 					<Button variant="outlined" disabled={isMutating} onClick={handleSkip}>
 						{intl.formatMessage({
-							id: 'commons.skip',
+							id: 'common.skip',
 							defaultMessage: 'Skip',
 						})}
 					</Button>

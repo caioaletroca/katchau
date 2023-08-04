@@ -63,3 +63,25 @@ export async function POST(req: NextRequest) {
 
 	return NextResponse.json(profileImage);
 }
+
+export async function DELETE(req: NextRequest) {
+	const token = await getToken({ req });
+
+	const profileImage = await prisma.profileImage.findFirst({
+		where: {
+			user_id: token?.sub,
+		},
+	});
+	if (profileImage) {
+		// Delete old records
+		await supabase.storage.from('profiles').remove([profileImage.url!]);
+
+		await prisma.profileImage.delete({
+			where: {
+				id: profileImage.id,
+			},
+		});
+	}
+
+	return NextResponse.json({});
+}

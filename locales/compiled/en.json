@@ -5,6 +5,12 @@
       "value": "I agree"
     }
   ],
+  "common.bio": [
+    {
+      "type": 0,
+      "value": "Bio"
+    }
+  ],
   "common.birth": [
     {
       "type": 0,
@@ -23,6 +29,24 @@
     {
       "type": 0,
       "value": " old)"
+    }
+  ],
+  "common.cancel": [
+    {
+      "type": 0,
+      "value": "Cancel"
+    }
+  ],
+  "common.confirm": [
+    {
+      "type": 0,
+      "value": "Confirm"
+    }
+  ],
+  "common.edit": [
+    {
+      "type": 0,
+      "value": "Edit"
     }
   ],
   "common.email": [
@@ -49,28 +73,22 @@
       "value": "Password"
     }
   ],
-  "common.username": [
-    {
-      "type": 0,
-      "value": "Username"
-    }
-  ],
-  "commons.edit": [
-    {
-      "type": 0,
-      "value": "Edit"
-    }
-  ],
-  "commons.save": [
+  "common.save": [
     {
       "type": 0,
       "value": "Save"
     }
   ],
-  "commons.skip": [
+  "common.skip": [
     {
       "type": 0,
       "value": "Skip"
+    }
+  ],
+  "common.username": [
+    {
+      "type": 0,
+      "value": "Username"
     }
   ],
   "configurations.appsAndMediaSectionTitle": [
@@ -337,6 +355,42 @@
     {
       "type": 0,
       "value": "Configurations"
+    }
+  ],
+  "profile.edit.addNewProfilePicture": [
+    {
+      "type": 0,
+      "value": "New profile picture"
+    }
+  ],
+  "profile.edit.deleteProfilePicture": [
+    {
+      "type": 0,
+      "value": "Remove current picture"
+    }
+  ],
+  "profile.edit.deleteProfilePicture.dialogTitle": [
+    {
+      "type": 0,
+      "value": "Remove profile picture?"
+    }
+  ],
+  "profile.edit.profilePicture.subtitle": [
+    {
+      "type": 0,
+      "value": "Click below to upload a new profile picture."
+    }
+  ],
+  "profile.edit.profilePicture.title": [
+    {
+      "type": 0,
+      "value": "New profile picture"
+    }
+  ],
+  "profile.edit.title": [
+    {
+      "type": 0,
+      "value": "Edit profile"
     }
   ],
   "profile.emptyButton": [

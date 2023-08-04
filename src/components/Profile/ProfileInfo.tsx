@@ -4,7 +4,8 @@ import { usePosts } from '@/api/posts';
 import { useUserProfileImage } from '@/api/profileImage';
 import { useUser } from '@/api/users';
 import Avatar from '@/components/Avatar';
-import { Skeleton, Typography } from '@mui/material';
+import { useRouter } from '@/lib/intl/client';
+import { Button, Skeleton, Typography } from '@mui/material';
 import { useIntl } from 'react-intl';
 
 type ProfileInfoBlockProps = {
@@ -36,6 +37,7 @@ type ProfileInfoProps = {
 
 export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 	const intl = useIntl();
+	const router = useRouter();
 	const { data: user, isLoading: userLoading } = useUser({ user_id });
 	const { data: profileImage, isLoading: profileImageLoading } =
 		useUserProfileImage({ user_id });
@@ -76,7 +78,17 @@ export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 					})}
 				/>
 			</div>
-			<Typography variant="body2">{user?.name}</Typography>
+			<div className="mb-4 flex flex-col">
+				<Typography variant="body2">{user?.name}</Typography>
+			</div>
+			<div className="flex">
+				<Button
+					variant="outlined"
+					size="small"
+					onClick={() => router.push('/profile/edit')}>
+					Edit profile
+				</Button>
+			</div>
 		</div>
 	);
 }

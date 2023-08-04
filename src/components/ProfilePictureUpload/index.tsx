@@ -50,7 +50,6 @@ export default function ProfilePictureUpload({
 	const [fileName, setFileName] = React.useState<string>();
 	const [file, setFile] = React.useState<File>();
 	const [cropped, setCropped] = React.useState<File>();
-
 	const defaultUrl = useUIAvatar({ name });
 	const currentImageUrl = useFileURL(current);
 	const croppedImageUrl = useFileURL(cropped);
@@ -92,11 +91,24 @@ export default function ProfilePictureUpload({
 			{
 				// Current profile picture
 				!file && currentImageUrl && (
-					<div className="flex justify-center">
-						<ProfilePictureAvatar
-							src={currentImageUrl}
-							onClick={openFileInput}
-						/>
+					<div className="flex flex-col gap-4">
+						<div className="flex justify-center">
+							<ProfilePictureAvatar
+								src={currentImageUrl}
+								onClick={openFileInput}
+							/>
+						</div>
+						<Button
+							variant="outlined"
+							onClick={() => setOpen(true)}
+							sx={{
+								margin: 'auto',
+							}}>
+							{intl.formatMessage({
+								id: 'common.edit',
+								defaultMessage: 'Edit',
+							})}
+						</Button>
 					</div>
 				)
 			}
@@ -117,7 +129,7 @@ export default function ProfilePictureUpload({
 								margin: 'auto',
 							}}>
 							{intl.formatMessage({
-								id: 'commons.edit',
+								id: 'common.edit',
 								defaultMessage: 'Edit',
 							})}
 						</Button>

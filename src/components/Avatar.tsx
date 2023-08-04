@@ -19,7 +19,12 @@ export type AvatarProps = MuiAvatarProps & {
 	size?: AvatarSize;
 };
 
-export default function Avatar({ name, url, size = 'normal' }: AvatarProps) {
+export default function Avatar({
+	name,
+	url,
+	size = 'normal',
+	...others
+}: AvatarProps) {
 	const intl = useIntl();
 
 	const defaultUrl = useUIAvatar({ name });
@@ -36,6 +41,7 @@ export default function Avatar({ name, url, size = 'normal' }: AvatarProps) {
 				width: AvatarSizeValue[size],
 				height: AvatarSizeValue[size],
 			}}
+			{...others}
 		/>
 	);
 }
