@@ -9,6 +9,7 @@ import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import SwipeableDrawer from '@/components/SwipeableDrawer';
 import TextField from '@/components/TextField';
 import { useRouter } from '@/lib/intl/client';
+import { user } from '@/validation/user';
 import { LoadingButton } from '@mui/lab';
 import {
 	Button,
@@ -21,16 +22,26 @@ import {
 	ListItemIcon,
 	ListItemText,
 } from '@mui/material';
-import { Form, Formik } from 'formik';
+import { Form, FormikProvider, useFormik } from 'formik';
+import { withZodSchema } from 'formik-validator-zod';
 import { useSession } from 'next-auth/react';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { z } from 'zod';
 
 const initialValues = {
 	name: '',
 	username: '',
 	bio: '',
 };
+
+const ProfileSchema = z.object({
+	name: user.name,
+	username: user.username,
+	bio: user.bio,
+});
+
+type ProfileData = z.infer<typeof ProfileSchema>;
 
 export default function ProfileEditPage() {
 	const intl = useIntl();
@@ -52,13 +63,26 @@ export default function ProfileEditPage() {
 	const [openDrawer, setOpenDrawer] = React.useState(false);
 	const [openDialog, setOpenDialog] = React.useState(false);
 
+	const handleSubmit = (values: ProfileData) => {
+		console.log(values);
+	};
+
+	const formikValues = Object.assign({}, initialValues, {
+		name: user?.name,
+		username: user?.username,
+		bio: user?.bio,
+	});
+
+	const formik = useFormik({
+		enableReinitialize: true,
+		initialValues: formikValues,
+		validate: withZodSchema(ProfileSchema),
+		onSubmit: handleSubmit,
+	});
+
 	if (isLoading) {
 		return null;
 	}
-
-	const handleSubmit = () => {};
-
-	const formikValues = Object.assign({}, initialValues, user);
 
 	return (
 		<PageMobile>
@@ -71,8 +95,8 @@ export default function ProfileEditPage() {
 					id: 'common.save',
 					defaultMessage: 'Save',
 				})}
-				onConfirm={handleSubmit}
-				onBackClick={() => router.back()}
+				onConfirm={formik.handleSubmit}
+				onBackClick={() => router.push('/profile')}
 			/>
 			<div className="mb-4 flex flex-col items-center justify-center gap-4 p-4">
 				<Avatar name={user?.name!} url={profileImage?.url} />
@@ -88,10 +112,7 @@ export default function ProfileEditPage() {
 				</Button>
 			</div>
 			<div className="flex flex-col gap-4 p-2">
-				<Formik
-					enableReinitialize
-					initialValues={formikValues}
-					onSubmit={handleSubmit}>
+				<FormikProvider value={formik}>
 					<Form className="flex flex-col gap-4">
 						<TextField
 							name="name"
@@ -118,10 +139,12 @@ export default function ProfileEditPage() {
 								defaultMessage: 'Bio',
 							})}
 							size="small"
+							maxRows={4}
+							multiline
 							fullWidth
 						/>
 					</Form>
-				</Formik>
+				</FormikProvider>
 			</div>
 			<SwipeableDrawer
 				anchor="bottom"

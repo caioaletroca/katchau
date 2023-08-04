@@ -50,6 +50,7 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
 	birth					DateTime?
+	bio						String?
 	created_at		DateTime   @default(now())
 	updated_at		DateTime?   @updatedAt
 	deleted_at		DateTime?

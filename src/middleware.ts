@@ -17,6 +17,7 @@ export default async function middleware(
 			}),
 			apiMiddleware({
 				basePath: '/api',
+				whitelist: ['/api/auth/profile', '/api/auth/profile/(.*)'],
 				blacklist: ['/api/auth/(.*)', '/api/users/username', '/api/register'],
 			}),
 			authMiddleware({
