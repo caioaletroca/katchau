@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
-import { useSession } from 'next-auth/react';
+import Icon from '@/components/Icon';
+import SwipeableDrawer from '@/components/SwipeableDrawer';
+import { useRouter } from '@/lib/intl/client';
 import {
 	IconButton,
 	List,
@@ -10,12 +11,11 @@ import {
 	ListItemText,
 	Typography,
 } from '@mui/material';
-import Icon from '@/components/Icon';
-import SwipeableDrawer from '@/components/SwipeableDrawer';
-import { useRouter } from '@/lib/intl/client';
+import { useSession } from 'next-auth/react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 
-export default function Header() {
+export default function ProfileHeader() {
 	const intl = useIntl();
 	const router = useRouter();
 	const { data: session } = useSession();

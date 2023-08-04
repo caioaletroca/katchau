@@ -1,17 +1,17 @@
 'use client';
 
-import { Grid } from '@mui/material';
-import getStoragePath from '@/utils/storage/getStoragePath';
-import Image from 'next/image';
+import { usePosts } from '@/api/posts';
 import { useRouter } from '@/lib/intl/client';
 import { PostWithImage } from '@/types/posts';
-import { usePosts } from '@/api/posts';
+import getStoragePath from '@/utils/storage/getStoragePath';
+import { Grid } from '@mui/material';
+import Image from 'next/image';
 
 type ContentProps = {
 	user_id: string;
 };
 
-export default function Content({ user_id }: ContentProps) {
+export default function ProfileContent({ user_id }: ContentProps) {
 	const router = useRouter();
 	const { data: posts } = usePosts({ user_id });
 

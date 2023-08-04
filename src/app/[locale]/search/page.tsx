@@ -1,9 +1,9 @@
 'use client';
 
+import BottomNavigation from '@/components/BottomNavigation';
 import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import { useRouter } from '@/lib/intl/client';
-import React from 'react';
 import { useIntl } from 'react-intl';
 import Content from './Content';
 
@@ -23,6 +23,7 @@ export default function SearchPage() {
 				onBackClick={handleBack}
 			/>
 			<Content />
+			<BottomNavigation />
 		</PageMobile>
 	);
 }
