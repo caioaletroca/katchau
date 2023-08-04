@@ -339,6 +339,18 @@
       "value": "Configurations"
     }
   ],
+  "profile.emptyButton": [
+    {
+      "type": 0,
+      "value": "Create a post"
+    }
+  ],
+  "profile.emptyMessage": [
+    {
+      "type": 0,
+      "value": "It's empty here, right? You can start by uploading pictures!"
+    }
+  ],
   "profile.followersLabel": [
     {
       "type": 0,
