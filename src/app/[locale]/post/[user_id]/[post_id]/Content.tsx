@@ -23,7 +23,7 @@ export default function Content() {
 			<Post
 				user={user}
 				post={post}
-				profileImage={profileImage}
+				profileImage={profileImage as any}
 				onDelete={handleDelete}
 			/>
 		</div>
