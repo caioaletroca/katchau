@@ -17,7 +17,7 @@
 		"migrate:dev": "prisma migrate dev",
 		"migrate:reset": "prisma migrate reset",
 		"prepare": "husky install",
-		"postinstall": "prisma generate"
+		"postinstall": "prisma generate --quiet"
 	},
 	"prisma": {
 		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} ./prisma/seeds/index.ts"
