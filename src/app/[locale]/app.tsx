@@ -11,7 +11,6 @@ import React from 'react';
 export default function App({ children }: React.PropsWithChildren) {
 	return (
 		<React.Suspense>
-			{/* @ts-expect-error Server Component */}
 			<LocalizationProvider>
 				<MuiLocalizationProvider dateAdapter={AdapterDayjs}>
 					<ZodSchemaProvider>
