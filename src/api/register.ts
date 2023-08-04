@@ -1,6 +1,6 @@
 import useSWRMutation from 'swr/mutation';
-import { postFetcher } from '.';
+import { postFetcher, RequestSWROptions } from '.';
 
-export function useRegister(options?: any) {
+export function useRegister(options?: RequestSWROptions) {
 	return useSWRMutation('/register', postFetcher, options);
 }

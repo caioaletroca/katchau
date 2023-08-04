@@ -1,7 +1,7 @@
 import { ProfileImage } from '@prisma/client';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { getFetcher, postFormDataFetcher } from '.';
+import { getFetcher, postFormDataFetcher, RequestSWROptions } from '.';
 
 export function useUserProfileImage({ user_id }: { user_id: string }) {
 	return useSWR<ProfileImage>(`/users/${user_id}/profile/image`, getFetcher);
@@ -12,6 +12,6 @@ export function useProfileImage() {
 }
 
 // TODO: revisit this any
-export function useUploadProfileImage(options?: any) {
+export function useUploadProfileImage(options: RequestSWROptions) {
 	return useSWRMutation('/auth/profile/image', postFormDataFetcher, options);
 }

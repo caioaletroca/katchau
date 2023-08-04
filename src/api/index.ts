@@ -1,5 +1,14 @@
 import axios from 'axios';
 
+export type RequestSWRParams = {
+	user_id?: string;
+	post_id?: string;
+};
+
+export type RequestSWROptions = {
+	onSuccess?: () => void;
+};
+
 const api = axios.create({
 	baseURL: '/api',
 });
