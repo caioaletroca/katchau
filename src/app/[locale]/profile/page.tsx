@@ -32,7 +32,7 @@ export default async function ProfilePage() {
 	return (
 		<PageMobile>
 			<Header />
-			<div className="flex-1">
+			<div className="flex flex-1 flex-col">
 				<ProfileInfo user_id={data?.user.id} />
 				<ProfileContent user_id={data?.user.id} />
 			</div>

@@ -6,6 +6,7 @@ import { useUser } from '@/api/users';
 import Avatar from '@/components/Avatar';
 import { useRouter } from '@/lib/intl/client';
 import { Button, Skeleton, Typography } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import { useIntl } from 'react-intl';
 
 type ProfileInfoBlockProps = {
@@ -38,6 +39,7 @@ type ProfileInfoProps = {
 export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 	const intl = useIntl();
 	const router = useRouter();
+	const { data: session } = useSession();
 	const { data: user, isLoading: userLoading } = useUser({ user_id });
 	const { data: profileImage, isLoading: profileImageLoading } =
 		useUserProfileImage({ user_id });
@@ -78,16 +80,21 @@ export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 					})}
 				/>
 			</div>
-			<div className="mb-4 flex flex-col">
-				<Typography variant="body2">{user?.name}</Typography>
+			<div className="mb-2 flex flex-col">
+				<Typography className="font-bold" variant="subtitle2">
+					{user?.name}
+				</Typography>
+				<Typography variant="body2">{user?.bio}</Typography>
 			</div>
 			<div className="flex">
-				<Button
-					variant="outlined"
-					size="small"
-					onClick={() => router.push('/profile/edit')}>
-					Edit profile
-				</Button>
+				{session?.user?.id === user_id && (
+					<Button
+						variant="outlined"
+						size="small"
+						onClick={() => router.push('/profile/edit')}>
+						Edit profile
+					</Button>
+				)}
 			</div>
 		</div>
 	);

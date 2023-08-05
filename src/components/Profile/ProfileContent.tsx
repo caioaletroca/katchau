@@ -29,7 +29,7 @@ function ProfileContentEmpty() {
 	const handleClick = () => router.push('/new-post');
 
 	return (
-		<div className="flex h-full flex-col justify-center gap-4 p-10">
+		<div className="flex flex-1 flex-col justify-center gap-4 p-10">
 			<Typography variant="body2" color="grey" align="center">
 				{intl.formatMessage({
 					id: 'profile.emptyMessage',
@@ -86,7 +86,7 @@ export default function ProfileContent({ user_id }: ProfileContentProps) {
 							)}
 							fill
 							sizes="33vw"
-							src={getStoragePath('posts', post?.images[0]?.url)}
+							src={getStoragePath('posts', post?.images[0]?.url)!}
 							onClick={() => handleClick(post)}
 						/>
 					</Grid>
