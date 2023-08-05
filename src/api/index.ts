@@ -37,6 +37,11 @@ export const postFormDataFetcher = async (
 	return data;
 };
 
+export const patchFetcher = async (url: string, { arg }: { arg: any }) => {
+	const { data } = await api.patch(url, arg);
+	return data;
+};
+
 export const deleteFetcher = async (url: string, { arg }: { arg: any }) => {
 	const { data } = await api.delete(url, arg);
 	return data;

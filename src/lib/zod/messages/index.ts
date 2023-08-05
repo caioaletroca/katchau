@@ -83,6 +83,10 @@ const messages = defineMessages({
 		id: 'errors.custom.date.invalid',
 		defaultMessage: 'Invalid date',
 	},
+	custom_username_exists: {
+		id: 'errors.custom.username.exists',
+		defaultMessage: 'Username already exists',
+	},
 });
 
 export default messages;

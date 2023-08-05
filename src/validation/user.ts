@@ -12,6 +12,7 @@ import {
 const username = z
 	.string()
 	.min(1)
+	.max(60)
 	.refine(regex(/^[a-zA-Z0-9.]*$/), {
 		params: { id: 'custom_special_characters' },
 	});
@@ -19,13 +20,14 @@ const username = z
 const name = z
 	.string()
 	.trim()
-	.min(1)
 	.max(255)
 	.refine(regex(specialCharacters), {
 		params: { id: 'custom_special_characters' },
 	});
 
 const email = z.string().trim().email();
+
+const bio = z.string().max(512);
 
 const password = z
 	.string()
@@ -48,5 +50,6 @@ export const user = {
 	name,
 	email,
 	password,
+	bio,
 	birth,
 };

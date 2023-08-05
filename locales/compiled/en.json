@@ -133,6 +133,12 @@
       "value": "Field must not contain special characters"
     }
   ],
+  "errors.custom.username.exists": [
+    {
+      "type": 0,
+      "value": "Username already exists"
+    }
+  ],
   "errors.invalid_type": [
   ],
   "errors.invalid_type_received_undefined": [

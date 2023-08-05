@@ -1,5 +1,6 @@
 'use client';
 
+import { useUpdateProfile } from '@/api/profile';
 import { useDeleteProfileImage, useProfileImage } from '@/api/profileImage';
 import { useUser } from '@/api/users';
 import Avatar from '@/components/Avatar';
@@ -8,6 +9,7 @@ import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import SwipeableDrawer from '@/components/SwipeableDrawer';
 import TextField from '@/components/TextField';
+import UsernameTextField from '@/components/UsernameTextField';
 import { useRouter } from '@/lib/intl/client';
 import { user } from '@/validation/user';
 import { LoadingButton } from '@mui/lab';
@@ -21,6 +23,7 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
+	Skeleton,
 } from '@mui/material';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
@@ -43,6 +46,35 @@ const ProfileSchema = z.object({
 
 type ProfileData = z.infer<typeof ProfileSchema>;
 
+function ProfileEditPageLoading() {
+	const intl = useIntl();
+	const router = useRouter();
+
+	return (
+		<PageMobile>
+			<PageMobileHeader
+				title={intl.formatMessage({
+					id: 'profile.edit.title',
+					defaultMessage: 'Edit profile',
+				})}
+				confirmLabel={intl.formatMessage({
+					id: 'common.save',
+					defaultMessage: 'Save',
+				})}
+				onBackClick={() => router.push('/profile')}
+			/>
+			<div className="mb-4 flex flex-col items-center justify-center gap-4 p-4">
+				<Skeleton variant="circular" width={56} height={56} />
+			</div>
+			<div className="flex flex-col gap-4 p-2">
+				<Skeleton variant="rectangular" height={40} />
+				<Skeleton variant="rectangular" height={40} />
+				<Skeleton variant="rectangular" height={40} />
+			</div>
+		</PageMobile>
+	);
+}
+
 export default function ProfileEditPage() {
 	const intl = useIntl();
 	const router = useRouter();
@@ -53,18 +85,23 @@ export default function ProfileEditPage() {
 		isLoading: profileImageLoading,
 		mutate,
 	} = useProfileImage();
-	const { trigger, isMutating: deletingProfileImage } = useDeleteProfileImage({
-		onSuccess: () => {
-			mutate();
-			setOpenDialog(false);
-			setOpenDrawer(false);
-		},
-	});
+	const { trigger: updateProfile, isMutating: updatingProfile } =
+		useUpdateProfile({
+			onSuccess: () => router.push('/profile'),
+		});
+	const { trigger: deleteProfileImage, isMutating: deletingProfileImage } =
+		useDeleteProfileImage({
+			onSuccess: () => {
+				mutate();
+				setOpenDialog(false);
+				setOpenDrawer(false);
+			},
+		});
 	const [openDrawer, setOpenDrawer] = React.useState(false);
 	const [openDialog, setOpenDialog] = React.useState(false);
 
 	const handleSubmit = (values: ProfileData) => {
-		console.log(values);
+		updateProfile(values);
 	};
 
 	const formikValues = Object.assign({}, initialValues, {
@@ -81,7 +118,7 @@ export default function ProfileEditPage() {
 	});
 
 	if (isLoading) {
-		return null;
+		return <ProfileEditPageLoading />;
 	}
 
 	return (
@@ -95,6 +132,8 @@ export default function ProfileEditPage() {
 					id: 'common.save',
 					defaultMessage: 'Save',
 				})}
+				disabled={updatingProfile}
+				loading={updatingProfile}
 				onConfirm={formik.handleSubmit}
 				onBackClick={() => router.push('/profile')}
 			/>
@@ -123,7 +162,7 @@ export default function ProfileEditPage() {
 							size="small"
 							fullWidth
 						/>
-						<TextField
+						<UsernameTextField
 							name="username"
 							label={intl.formatMessage({
 								id: 'common.username',
@@ -202,7 +241,7 @@ export default function ProfileEditPage() {
 					<LoadingButton
 						loading={deletingProfileImage}
 						color="error"
-						onClick={() => trigger()}>
+						onClick={() => deleteProfileImage()}>
 						{intl.formatMessage({
 							id: 'common.confirm',
 							defaultMessage: 'Confirm',

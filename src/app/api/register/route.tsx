@@ -6,9 +6,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
 const PostSchema = z.object({
-	username: user.username,
+	username: z.string(user.username).min(1),
 	email: user.email,
-	name: user.name,
+	name: z.string(user.name).min(1),
 	password: user.password,
 });
 

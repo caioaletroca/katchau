@@ -44,6 +44,7 @@ export default function RegisterUsernameMobilePage() {
 		onSubmit: handleSubmit,
 	});
 
+	// TODO: Update here to use hooks
 	useDebounce(
 		() => {
 			if (formik.values.username === '') {

@@ -20,6 +20,7 @@
   "errors.custom.one_number": "Field must contain at least 1 number",
   "errors.custom.one_uppercase_letter": "Field must contain at least 1 uppercase letter",
   "errors.custom.special_characters": "Field must not contain special characters",
+  "errors.custom.username.exists": "Username already exists",
   "errors.invalid_type": "",
   "errors.invalid_type_received_undefined": "Required field",
   "errors.too_big.date.exact": "Date must be exactly {maximum}",
