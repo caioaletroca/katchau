@@ -33,7 +33,7 @@ export default function Post({
 				alt=""
 				width={window.innerWidth}
 				height={window.innerWidth}
-				src={getStoragePath('posts', post.images[0].url)}
+				src={getStoragePath('posts', post.images[0].url)!}
 			/>
 			<PostInteraction post={post} />
 			<Typography>{post.description}</Typography>
