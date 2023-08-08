@@ -2,7 +2,9 @@
 
 import BottomNavigation from '@/components/BottomNavigation';
 import PageMobile from '@/components/Page/PageMobile';
-import ProfileActions from '@/components/Profile/ProfileActions';
+import ProfileActions, {
+	ProfileActionsLoading,
+} from '@/components/Profile/ProfileActions';
 import ProfileContent, {
 	ProfileContentLoading,
 } from '@/components/Profile/ProfileContent';
@@ -17,6 +19,7 @@ const ProfilePageLoading = () => (
 		<Header />
 		<div className="flex-1">
 			<ProfileInfoLoading />
+			<ProfileActionsLoading />
 			<ProfileContentLoading />
 		</div>
 		<BottomNavigation />

@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import {
+	Follows,
 	Post,
 	PostImage,
 	PrismaClient,
@@ -133,11 +134,36 @@ async function generatePostImages(
 	return images;
 }
 
+async function generateFollows(
+	prisma: PrismaClient,
+	users: User[],
+	n: number = 1
+) {
+	let follows: Follows[] = [];
+
+	for (let i = 0; i < n; i++) {
+		const index1 = Math.floor(Math.random() * (users.length - 1));
+		const index2 = Math.floor(Math.random() * (users.length - 1));
+		const follow = await prisma.follows.create({
+			data: {
+				followed_id: users[index1].id,
+				following_id: users[index2].id,
+			},
+		});
+		follows.push(follow);
+	}
+
+	console.log(`${follows.length} follows created`);
+
+	return follows;
+}
+
 export async function main() {
 	const users = await generateUsers(prisma, MAX_USERS);
 	const profileImages = await generateProfileImages(prisma, users);
 	const posts = await generatePosts(prisma, users, MAX_POSTS);
 	const images = await generatePostImages(prisma, users, posts, MAX_IMAGES);
+	const follows = await generateFollows(prisma, users, 5);
 
 	// Special users
 	const specialUsers = [
@@ -164,6 +190,14 @@ export async function main() {
 	const sarahPosts = await generatePosts(prisma, [sarah], 20);
 	const sarahProfileImage = await generateProfileImages(prisma, [sarah]);
 	const sarahImages = await generatePostImages(prisma, [sarah], sarahPosts, 20);
+
+	// Make everyone follows Sarah
+	await prisma.follows.createMany({
+		data: users.map((user) => ({
+			followed_id: sarah.id,
+			following_id: user.id,
+		})),
+	});
 }
 
 main()

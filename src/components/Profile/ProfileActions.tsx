@@ -9,6 +9,7 @@ import {
 	List,
 	ListItemButton,
 	ListItemText,
+	Skeleton,
 	Typography,
 } from '@mui/material';
 import { useSession } from 'next-auth/react';
@@ -16,6 +17,19 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import Icon from '../Icon';
 import SwipeableDrawer from '../SwipeableDrawer';
+
+export function ProfileActionsLoading() {
+	return (
+		<Grid container className="mx-4 mb-4" spacing={1}>
+			<Grid item xs={5}>
+				<Skeleton variant="rectangular" height={30} />
+			</Grid>
+			<Grid item xs={5}>
+				<Skeleton variant="rectangular" height={30} />
+			</Grid>
+		</Grid>
+	);
+}
 
 type ProfileActionsProps = {
 	user_id: string;
@@ -25,8 +39,12 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 	const intl = useIntl();
 	const router = useRouter();
 	const { data: session } = useSession();
-	const { data: user } = useUser({ user_id });
-	const { data: follows, mutate } = useFollow({ user_id });
+	const { data: user, isLoading: userLoading } = useUser({ user_id });
+	const {
+		data: follows,
+		mutate,
+		isLoading: followsLoading,
+	} = useFollow({ user_id });
 	const { trigger, isMutating } = useUpdateFollow(
 		{ user_id },
 		{
@@ -47,9 +65,13 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 		);
 	}, [follows, session]);
 
+	if (userLoading || followsLoading) {
+		return <ProfileActionsLoading />;
+	}
+
 	return (
 		<>
-			<Grid container className="mx-4 mb-4">
+			<Grid container className="mx-4 mb-4" spacing={1}>
 				<Grid item xs={5}>
 					<div className="flex flex-col">
 						{ownProfile && (
