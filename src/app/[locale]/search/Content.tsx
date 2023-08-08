@@ -1,19 +1,16 @@
 'use client';
 
 import { useUserSearch } from '@/api/users';
-import Avatar from '@/components/Avatar';
+import Icon from '@/components/Icon';
+import UserListItem from '@/components/UserListItem';
 import { useDebounce } from '@/hooks/useDebounce';
-import { useRouter } from '@/lib/intl/client';
 import {
 	CircularProgress,
+	InputAdornment,
 	List,
-	ListItemAvatar,
-	ListItemButton,
-	ListItemText,
 	TextField,
 	Typography,
 } from '@mui/material';
-import { User } from '@prisma/client';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -40,7 +37,6 @@ const LoadingScreen = () => (
 
 export default function Content() {
 	const intl = useIntl();
-	const router = useRouter();
 	const [search, setSearch] = React.useState('');
 	const { data: users, isLoading, trigger } = useUserSearch();
 
@@ -52,10 +48,6 @@ export default function Content() {
 		[search]
 	);
 
-	const handleClick = (user: User) => {
-		router.push(`/users/${user.id}`);
-	};
-
 	return (
 		<div className="flex h-full flex-col px-2">
 			<TextField
@@ -65,7 +57,15 @@ export default function Content() {
 					defaultMessage: 'Search for someone...',
 				})}
 				value={search}
+				InputProps={{
+					startAdornment: (
+						<InputAdornment position="start">
+							<Icon name="search" />
+						</InputAdornment>
+					),
+				}}
 				onChange={(e) => setSearch(e.target.value)}
+				size="small"
 				fullWidth
 			/>
 			{isLoading ? (
@@ -75,25 +75,7 @@ export default function Content() {
 			) : (
 				<List>
 					{users?.map((user) => (
-						<ListItemButton key={user.id} onClick={() => handleClick(user)}>
-							<ListItemAvatar>
-								<Avatar
-									size="small"
-									name={user.name!}
-									alt={intl.formatMessage(
-										{
-											id: 'search.profileImage.alt',
-											defaultMessage: '{name} profile picture',
-										},
-										{
-											name: user.name,
-										}
-									)}
-									url={user.profile_picture[0]?.url}
-								/>
-							</ListItemAvatar>
-							<ListItemText primary={user.name} />
-						</ListItemButton>
+						<UserListItem key={user.id} user={user} />
 					))}
 				</List>
 			)}

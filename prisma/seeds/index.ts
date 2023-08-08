@@ -23,12 +23,14 @@ async function generateUsers(prisma: PrismaClient, n: number = 1) {
 	for (let i = 0; i < n; i++) {
 		const firstName = faker.person.firstName();
 		const lastName = faker.person.lastName();
+		const username = faker.internet.userName({ firstName, lastName });
 		const name = faker.person.fullName({ firstName, lastName });
 		const email = faker.internet.email({ firstName, lastName });
 		const bio = `${faker.internet.emoji()} ${faker.lorem.lines(1)}`;
 		const user = await prisma.user.create({
 			data: {
 				name,
+				username,
 				email,
 				bio,
 			},
@@ -169,10 +171,12 @@ export async function main() {
 	const specialUsers = [
 		{
 			name: 'Mark Empty',
+			username: 'mark.empty',
 			email: 'mark.empty@gmail.com',
 		},
 		{
 			name: 'Sarah Troti',
+			username: 'sarah.troti',
 			email: 'sarah.troti@gmail.com',
 			bio: `🌈|28y
 			✈️ loves travel
