@@ -24,15 +24,15 @@ const RegisterUsernameSchema = z.object({
 	username: z.string(user.username).min(1),
 });
 
-type RegisterUsernameFormData = z.infer<typeof RegisterUsernameSchema>;
+export type RegisterUsernameFormData = z.infer<typeof RegisterUsernameSchema>;
 
-type RegisterUserNameMobileProps = {
-	onSubmit: ({ username }: { username: string }) => {};
+type RegisterUsernameMobilePageProps = {
+	onSubmit?: (values: RegisterUsernameFormData) => void;
 };
 
 export default function RegisterUsernameMobilePage({
 	onSubmit,
-}: RegisterUserNameMobileProps) {
+}: RegisterUsernameMobilePageProps) {
 	const intl = useIntl();
 
 	// TODO: block user from submitting already used username
