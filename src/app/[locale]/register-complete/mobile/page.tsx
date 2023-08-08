@@ -4,10 +4,10 @@ import {
 	default as Page,
 	RegisterBirthFormData,
 } from '@/components/Register/Mobile/BirthPage';
-import { useRegister } from '../../RegisterProvider';
+import { useRegisterComplete } from '../RegisterCompleteProvider';
 
 export default function RegisterBirthMobilePage() {
-	const { setFormData, handleNext } = useRegister();
+	const { setFormData, handleNext } = useRegisterComplete();
 
 	const handleSubmit = (values: RegisterBirthFormData) => {
 		setFormData(values);

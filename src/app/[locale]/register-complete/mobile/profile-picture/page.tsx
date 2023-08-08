@@ -1,10 +1,10 @@
 'use client';
 
 import { default as Page } from '@/components/Register/Mobile/ProfilePicturePage';
-import { useRegister } from '../../RegisterProvider';
+import { useSession } from 'next-auth/react';
 
 export default function RegisterProfilePictureMobilePage() {
-	const { formData } = useRegister();
+	const { data: session } = useSession();
 
-	return <Page name={formData.name!} />;
+	return <Page name={session?.user.name!} />;
 }

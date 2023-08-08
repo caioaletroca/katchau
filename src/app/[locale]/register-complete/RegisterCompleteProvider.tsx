@@ -1,16 +1,16 @@
 'use client';
 
-import { useRegister as useRegisterRequest } from '@/api/register';
+import { useUpdateProfile } from '@/api/profile';
 import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
 import dayjs from 'dayjs';
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 
 enum MobileViews {
-	'/register/mobile/birth',
-	'/register/mobile/username',
-	'/register/mobile/terms',
-	'/register/mobile/profile-picture',
+	'/register-complete/mobile',
+	'/register-complete/mobile/username',
+	'/register-complete/mobile/terms',
+	'/register-complete/mobile/profile-picture',
 }
 
 type FormData = {
@@ -20,16 +20,16 @@ type FormData = {
 
 const RegisterCompleteContext = React.createContext<{
 	formData: Partial<FormData>;
-	isRegistering: boolean;
+	isSubmitting: boolean;
 	setFormData: (data: Partial<FormData>) => void;
 	handleNext: () => void;
-	handleRegister: () => void;
+	handleSubmit: () => void;
 }>({
 	formData: {},
-	isRegistering: false,
+	isSubmitting: false,
 	setFormData: () => {},
 	handleNext: () => {},
-	handleRegister: () => {},
+	handleSubmit: () => {},
 });
 
 export function useRegisterComplete() {
@@ -63,11 +63,11 @@ export function RegisterCompleteProvider({
 		}
 	};
 
-	const { trigger, isMutating } = useRegisterRequest({
+	const { trigger, isMutating } = useUpdateProfile({
 		onSuccess: handleNext,
 	});
 
-	const handleRegister = () => {
+	const handleSubmit = () => {
 		trigger(formData);
 	};
 
@@ -75,10 +75,10 @@ export function RegisterCompleteProvider({
 		<RegisterCompleteContext.Provider
 			value={{
 				formData,
-				isRegistering: isMutating,
+				isSubmitting: isMutating,
 				setFormData,
 				handleNext,
-				handleRegister,
+				handleSubmit,
 			}}>
 			{children}
 		</RegisterCompleteContext.Provider>
