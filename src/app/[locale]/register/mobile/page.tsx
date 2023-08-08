@@ -2,6 +2,10 @@
 
 import Icon from '@/components/Icon';
 import PageMobile from '@/components/Page/PageMobile';
+import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
+import RegisterMobileLoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
+import RegisterMobileNextButton from '@/components/Register/Mobile/RegisterMobileNextButton';
+import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import TextField from '@/components/TextField';
 import { user } from '@/validation/user';
 import { IconButton, InputAdornment } from '@mui/material';
@@ -14,10 +18,6 @@ import {
 	RegisterMobileContentWrapper,
 } from '../../../../components/Register/Mobile/RegisterMobileContent';
 import { useRegister } from '../RegisterProvider';
-import Header from './Header';
-import LoginButton from './LoginButton';
-import NextButton from './NextButton';
-import Title from './Title';
 
 const initialValues = {
 	email: '',
@@ -40,7 +40,7 @@ export default function RegisterMobilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
+			<RegisterMobileHeader />
 			<RegisterMobileContentWrapper>
 				<RegisterMobileContent>
 					<Formik
@@ -49,7 +49,7 @@ export default function RegisterMobilePage() {
 						onSubmit={handleSubmit}>
 						{({ handleSubmit, setFieldValue }) => (
 							<Form onSubmit={handleSubmit}>
-								<Title
+								<RegisterMobileTitle
 									title={intl.formatMessage({
 										id: 'register.emailTitle',
 										defaultMessage: "What's your email address?",
@@ -78,12 +78,12 @@ export default function RegisterMobilePage() {
 									}}
 									fullWidth
 								/>
-								<NextButton />
+								<RegisterMobileNextButton />
 							</Form>
 						)}
 					</Formik>
 				</RegisterMobileContent>
-				<LoginButton />
+				<RegisterMobileLoginButton />
 			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);

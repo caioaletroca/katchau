@@ -1,5 +1,6 @@
 import { prisma } from '@/database/db';
 import hasher from '@/utils/bcrypt';
+import { User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 const credentialProvider = CredentialsProvider({
@@ -7,7 +8,7 @@ const credentialProvider = CredentialsProvider({
 		username: { label: 'Username', type: 'text' },
 		password: { label: 'Password', type: 'password' },
 	},
-	async authorize(credentials) {
+	async authorize(credentials): Promise<User | null> {
 		if (!credentials) return null;
 
 		// Check if user exists
@@ -31,7 +32,12 @@ const credentialProvider = CredentialsProvider({
 		const match = await hasher.compare(credentials.password, account.password!);
 		if (!match) return null;
 
-		return user;
+		return {
+			id: user.id,
+			name: user.name,
+			email: user.email,
+			username: user.username!,
+		};
 	},
 });
 
