@@ -1,9 +1,13 @@
+import { FollowedWithUser, FollowingWithUser } from '@/types/follows';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { getFetcher, postFetcher, RequestSWROptions } from '.';
+import { RequestSWROptions, getFetcher, postFetcher } from '.';
 
 export function useFollow({ user_id }: { user_id: string }) {
-	return useSWR(`/users/${user_id}/follows`, getFetcher);
+	return useSWR<{
+		followeds: FollowedWithUser[];
+		followings: FollowingWithUser[];
+	}>(`/users/${user_id}/follows`, getFetcher);
 }
 
 export function useUpdateFollow(

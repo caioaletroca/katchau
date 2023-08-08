@@ -57,7 +57,7 @@ model User {
 
   accounts      Account[]
   sessions      Session[]
-	followers			Follows[]	@relation("Follower")
+	followed			Follows[]	@relation("Followed")
 	following			Follows[] @relation("Following")
 	profile_picture	ProfileImage[]
 	posts					Post[]
@@ -77,12 +77,12 @@ model VerificationToken {
 
 model Follows {
 	@@map("follows")
-	follower_id	String
+	followed_id	String
 	following_id	String
-	follower	User	@relation("Follower", fields: [follower_id], references: [id])
+	followed	User	@relation("Followed", fields: [followed_id], references: [id])
 	following	User	@relation("Following", fields: [following_id], references: [id])
 
-	@@id([follower_id, following_id])
+	@@id([followed_id, following_id])
 }
 
 model Post {

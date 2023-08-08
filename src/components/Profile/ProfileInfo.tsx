@@ -1,12 +1,12 @@
 'use client';
 
+import { useFollow } from '@/api/follows';
 import { usePosts } from '@/api/posts';
 import { useUserProfileImage } from '@/api/profileImage';
 import { useUser } from '@/api/users';
 import Avatar from '@/components/Avatar';
 import { useRouter } from '@/lib/intl/client';
-import { Button, Skeleton, Typography } from '@mui/material';
-import { useSession } from 'next-auth/react';
+import { Skeleton, Typography } from '@mui/material';
 import { useIntl } from 'react-intl';
 
 type ProfileInfoBlockProps = {
@@ -39,13 +39,13 @@ type ProfileInfoProps = {
 export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 	const intl = useIntl();
 	const router = useRouter();
-	const { data: session } = useSession();
 	const { data: user, isLoading: userLoading } = useUser({ user_id });
 	const { data: profileImage, isLoading: profileImageLoading } =
 		useUserProfileImage({ user_id });
 	const { data: posts, isLoading: postLoading } = usePosts({ user_id });
+	const { data: follows, isLoading: followsLoading } = useFollow({ user_id });
 
-	if (userLoading || postLoading || profileImageLoading) {
+	if (userLoading || postLoading || profileImageLoading || followsLoading) {
 		return <ProfileInfoLoading />;
 	}
 
@@ -72,12 +72,14 @@ export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 						id: 'profile.followersLabel',
 						defaultMessage: 'Followers',
 					})}
+					value={follows?.followeds?.length}
 				/>
 				<ProfileInfoBlock
 					label={intl.formatMessage({
 						id: 'profile.followingLabel',
 						defaultMessage: 'Following',
 					})}
+					value={follows?.followings?.length}
 				/>
 			</div>
 			<div className="mb-2 flex flex-col">
@@ -85,16 +87,6 @@ export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 					{user?.name}
 				</Typography>
 				<Typography variant="body2">{user?.bio}</Typography>
-			</div>
-			<div className="flex">
-				{session?.user?.id === user_id && (
-					<Button
-						variant="outlined"
-						size="small"
-						onClick={() => router.push('/profile/edit')}>
-						Edit profile
-					</Button>
-				)}
 			</div>
 		</div>
 	);

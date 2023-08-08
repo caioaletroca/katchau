@@ -7,16 +7,34 @@ type GetParams = {
 };
 
 export async function GET(req: NextRequest, { params }: { params: GetParams }) {
-	const token = await getToken({ req });
-
-	const follow = await prisma.follows.findFirst({
+	// Fetch all people who follows the user
+	const followeds = await prisma.follows.findMany({
 		where: {
-			follower_id: token?.sub,
+			followed_id: params.user_id,
+		},
+		include: {
+			followed: {
+				include: {
+					profile_picture: true,
+				},
+			},
+		},
+	});
+	// Fetch all people who this user follows
+	const following = await prisma.follows.findMany({
+		where: {
 			following_id: params.user_id,
+		},
+		include: {
+			followed: {
+				include: {
+					profile_picture: true,
+				},
+			},
 		},
 	});
 
-	return NextResponse.json(follow);
+	return NextResponse.json({ followeds, following });
 }
 
 type PostParams = {
@@ -31,16 +49,16 @@ export async function POST(
 
 	const oldFollow = await prisma.follows.findFirst({
 		where: {
-			follower_id: token?.sub!,
-			following_id: params.user_id,
+			followed_id: params.user_id,
+			following_id: token?.sub,
 		},
 	});
 	if (oldFollow) {
 		await prisma.follows.delete({
 			where: {
-				follower_id_following_id: {
-					follower_id: token?.sub!,
-					following_id: params.user_id,
+				followed_id_following_id: {
+					followed_id: params.user_id,
+					following_id: token?.sub!,
 				},
 			},
 		});
@@ -49,8 +67,8 @@ export async function POST(
 	} else {
 		const follow = await prisma.follows.create({
 			data: {
-				follower_id: token?.sub!,
-				following_id: params.user_id,
+				followed_id: params.user_id,
+				following_id: token?.sub!,
 			},
 		});
 

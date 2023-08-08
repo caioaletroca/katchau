@@ -26,7 +26,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 	const router = useRouter();
 	const { data: session } = useSession();
 	const { data: user } = useUser({ user_id });
-	const { data: follow, mutate } = useFollow({ user_id });
+	const { data: follows, mutate } = useFollow({ user_id });
 	const { trigger, isMutating } = useUpdateFollow(
 		{ user_id },
 		{
@@ -35,9 +35,17 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 	);
 	const [open, setOpen] = React.useState(false);
 
-	const handleFollow = () => trigger();
+	const handleFollow = () => {
+		setOpen(false);
+		trigger();
+	};
 
 	const ownProfile = session?.user.id === user?.id;
+	const ownFollow = React.useMemo(() => {
+		return follows?.followeds.find(
+			({ following_id }) => following_id === session?.user.id
+		);
+	}, [follows, session]);
 
 	return (
 		<>
@@ -55,7 +63,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 								})}
 							</Button>
 						)}
-						{!ownProfile && follow && (
+						{!ownProfile && ownFollow && (
 							<LoadingButton
 								loading={isMutating}
 								variant="outlined"
@@ -68,7 +76,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 								})}
 							</LoadingButton>
 						)}
-						{!ownProfile && !follow && (
+						{!ownProfile && !ownFollow && (
 							<LoadingButton
 								loading={isMutating}
 								variant="contained"
@@ -93,7 +101,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 				</Typography>
 				<Divider />
 				<List>
-					<ListItemButton>
+					<ListItemButton onClick={handleFollow}>
 						<ListItemText
 							primary={intl.formatMessage({
 								id: 'common.unfollow',
