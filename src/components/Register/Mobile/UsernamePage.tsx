@@ -7,12 +7,14 @@ import { Form, FormikProvider, useFormik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
-import { useRegister } from '../../RegisterProvider';
-import { Content, ContentWrapper } from '../Content';
-import Header from '../Header';
-import LoginButton from '../LoginButton';
-import NextButton from '../NextButton';
-import Title from '../Title';
+import {
+	RegisterMobileContent,
+	RegisterMobileContentWrapper,
+} from './RegisterMobileContent';
+import RegisterMobileHeader from './RegisterMobileHeader';
+import RegisterMobileLoginButton from './RegisterMobileLoginButton';
+import RegisterMobileNextButton from './RegisterMobileNextButton';
+import RegisterMobileTitle from './RegisterMobileTitle';
 
 const initialValues = {
 	username: '',
@@ -24,14 +26,18 @@ const RegisterUsernameSchema = z.object({
 
 type RegisterUsernameFormData = z.infer<typeof RegisterUsernameSchema>;
 
-export default function RegisterUsernameMobilePage() {
+type RegisterUserNameMobileProps = {
+	onSubmit: ({ username }: { username: string }) => {};
+};
+
+export default function RegisterUsernameMobilePage({
+	onSubmit,
+}: RegisterUserNameMobileProps) {
 	const intl = useIntl();
-	const { setFormData, handleNext } = useRegister();
 
 	// TODO: block user from submitting already used username
 	const handleSubmit = (values: RegisterUsernameFormData) => {
-		setFormData(values);
-		handleNext();
+		onSubmit?.(values);
 	};
 
 	const formik = useFormik({
@@ -42,10 +48,10 @@ export default function RegisterUsernameMobilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
-			<ContentWrapper>
-				<Content>
-					<Title
+			<RegisterMobileHeader />
+			<RegisterMobileContentWrapper>
+				<RegisterMobileContent>
+					<RegisterMobileTitle
 						title={intl.formatMessage({
 							id: 'register.usernameTitle',
 							defaultMessage: 'Create a username',
@@ -66,12 +72,12 @@ export default function RegisterUsernameMobilePage() {
 								})}
 								fullWidth
 							/>
-							<NextButton />
+							<RegisterMobileNextButton />
 						</Form>
 					</FormikProvider>
-				</Content>
-				<LoginButton />
-			</ContentWrapper>
+				</RegisterMobileContent>
+				<RegisterMobileLoginButton />
+			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
 }

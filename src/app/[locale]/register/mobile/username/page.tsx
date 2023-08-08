@@ -6,7 +6,7 @@ import {
 	RegisterMobileContentWrapper,
 } from '@/components/Register/Mobile/RegisterMobileContent';
 import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
-import LoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
+import RegisterMobileLoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
 import RegisterMobileNextButton from '@/components/Register/Mobile/RegisterMobileNextButton';
 import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import UsernameTextField from '@/components/UsernameTextField';
@@ -73,7 +73,7 @@ export default function RegisterUsernameMobilePage() {
 						</Form>
 					</FormikProvider>
 				</RegisterMobileContent>
-				<LoginButton />
+				<RegisterMobileLoginButton />
 			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);

@@ -4,7 +4,7 @@ import { useRouter } from '@/lib/intl/client';
 import { Button } from '@mui/material';
 import { useIntl } from 'react-intl';
 
-export default function LoginButton() {
+export default function RegisterMobileLoginButton() {
 	const intl = useIntl();
 	const router = useRouter();
 

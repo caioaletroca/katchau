@@ -6,7 +6,7 @@ import {
 	RegisterMobileContentWrapper,
 } from '@/components/Register/Mobile/RegisterMobileContent';
 import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
-import LoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
+import RegisterMobileLoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
 import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import { LoadingButton } from '@mui/lab';
 import { Typography } from '@mui/material';
@@ -68,7 +68,7 @@ export default function RegisterTermsMobilePage() {
 						</LoadingButton>
 					</div>
 				</RegisterMobileContent>
-				<LoginButton />
+				<RegisterMobileLoginButton />
 			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
