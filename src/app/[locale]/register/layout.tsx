@@ -13,7 +13,7 @@ export default function RootLayout({
 	const pathname = useUnlocalizedPathname();
 
 	if (isMobile && !pathname.startsWith('/register/mobile')) {
-		router.push('/register/mobile');
+		router.push(pathname.replace('/register', '/register/mobile'));
 	}
 
 	return <RegisterProvider>{children}</RegisterProvider>;

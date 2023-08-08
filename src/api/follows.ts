@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { RequestSWROptions, getFetcher, postFetcher } from '.';
 
-export function useFollow({ user_id }: { user_id: string }) {
+export function useFollows({ user_id }: { user_id: string }) {
 	return useSWR<{
 		followeds: FollowedWithUser[];
 		followings: FollowingWithUser[];

@@ -1,6 +1,6 @@
 'use client';
 
-import { useFollow } from '@/api/follows';
+import { useFollows } from '@/api/follows';
 import { usePosts } from '@/api/posts';
 import { useUserProfileImage } from '@/api/profileImage';
 import { useUser } from '@/api/users';
@@ -43,7 +43,7 @@ export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 	const { data: profileImage, isLoading: profileImageLoading } =
 		useUserProfileImage({ user_id });
 	const { data: posts, isLoading: postLoading } = usePosts({ user_id });
-	const { data: follows, isLoading: followsLoading } = useFollow({ user_id });
+	const { data: follows, isLoading: followsLoading } = useFollows({ user_id });
 
 	if (userLoading || postLoading || profileImageLoading || followsLoading) {
 		return <ProfileInfoLoading />;

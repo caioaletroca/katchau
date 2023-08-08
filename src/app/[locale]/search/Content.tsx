@@ -13,15 +13,22 @@ import {
 	TextField,
 	Typography,
 } from '@mui/material';
+import isEmpty from 'lodash/isEmpty';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import { useIntl } from 'react-intl';
+
+/**
+ * TODO: Maybe put this file back into root?
+ * @returns
+ */
 
 const EmptyScreen = () => {
 	const intl = useIntl();
 
 	return (
-		<div className="flex h-full items-center justify-center">
+		<div className="flex h-full flex-col items-center justify-center gap-4">
+			<Icon className="text-8xl text-neutral-700" name="search_off" />
 			<Typography color="grey" variant="body2">
 				{intl.formatMessage({
 					id: 'search.noResultsFound',
@@ -54,7 +61,7 @@ export default function Content() {
 		const searchString = current.get('q');
 
 		// Do nothing if empty
-		if (searchString === '') {
+		if (isEmpty(searchString)) {
 			return;
 		}
 
@@ -72,7 +79,7 @@ export default function Content() {
 			const current = new URLSearchParams(Array.from(searchParams.entries()));
 
 			// Avoid setting if empty
-			if (search === '') {
+			if (isEmpty(search)) {
 				current.delete('q');
 			} else {
 				current.set('q', search);

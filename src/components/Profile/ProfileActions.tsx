@@ -1,4 +1,4 @@
-import { useFollow, useUpdateFollow } from '@/api/follows';
+import { useFollows, useUpdateFollow } from '@/api/follows';
 import { useUser } from '@/api/users';
 import { useRouter } from '@/lib/intl/client';
 import { LoadingButton } from '@mui/lab';
@@ -44,7 +44,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 		data: follows,
 		mutate,
 		isLoading: followsLoading,
-	} = useFollow({ user_id });
+	} = useFollows({ user_id });
 	const { trigger, isMutating } = useUpdateFollow(
 		{ user_id },
 		{
