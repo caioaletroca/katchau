@@ -71,48 +71,50 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 
 	return (
 		<>
-			<Grid container className="mx-4 mb-4" spacing={1}>
-				<Grid item xs={5}>
-					<div className="flex flex-col">
-						{ownProfile && (
-							<Button
-								variant="outlined"
-								size="small"
-								onClick={() => router.push('/profile/edit')}>
-								{intl.formatMessage({
-									id: 'common.editProfile',
-									defaultMessage: 'Edit profile',
-								})}
-							</Button>
-						)}
-						{!ownProfile && ownFollow && (
-							<LoadingButton
-								loading={isMutating}
-								variant="outlined"
-								size="small"
-								endIcon={<Icon name="expand_more" />}
-								onClick={() => setOpen(true)}>
-								{intl.formatMessage({
-									id: 'common.following',
-									defaultMessage: 'Following',
-								})}
-							</LoadingButton>
-						)}
-						{!ownProfile && !ownFollow && (
-							<LoadingButton
-								loading={isMutating}
-								variant="contained"
-								size="small"
-								onClick={handleFollow}>
-								{intl.formatMessage({
-									id: 'common.follow',
-									defaultMessage: 'Follow',
-								})}
-							</LoadingButton>
-						)}
-					</div>
+			<div className="mx-4 mb-4 flex flex-col">
+				<Grid container className="" spacing={1}>
+					<Grid item xs={5}>
+						<div className="flex flex-col">
+							{ownProfile && (
+								<Button
+									variant="outlined"
+									size="small"
+									onClick={() => router.push('/profile/edit')}>
+									{intl.formatMessage({
+										id: 'common.editProfile',
+										defaultMessage: 'Edit profile',
+									})}
+								</Button>
+							)}
+							{!ownProfile && ownFollow && (
+								<LoadingButton
+									loading={isMutating}
+									variant="outlined"
+									size="small"
+									endIcon={<Icon name="expand_more" />}
+									onClick={() => setOpen(true)}>
+									{intl.formatMessage({
+										id: 'common.following',
+										defaultMessage: 'Following',
+									})}
+								</LoadingButton>
+							)}
+							{!ownProfile && !ownFollow && (
+								<LoadingButton
+									loading={isMutating}
+									variant="contained"
+									size="small"
+									onClick={handleFollow}>
+									{intl.formatMessage({
+										id: 'common.follow',
+										defaultMessage: 'Follow',
+									})}
+								</LoadingButton>
+							)}
+						</div>
+					</Grid>
 				</Grid>
-			</Grid>
+			</div>
 			<SwipeableDrawer
 				anchor="bottom"
 				open={open}

@@ -5,12 +5,14 @@ import Icon from '@/components/Icon';
 import SwipeableDrawer from '@/components/SwipeableDrawer';
 import { useRouter } from '@/lib/intl/client';
 import {
+	AppBar,
 	IconButton,
 	List,
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
 	Skeleton,
+	Toolbar,
 	Typography,
 } from '@mui/material';
 import React from 'react';
@@ -59,13 +61,15 @@ export default function ProfileHeader({ user_id, onBack }: ProfileHeaderProps) {
 
 	return (
 		<>
-			<div className="flex w-full flex-row items-center gap-2 p-2 px-4">
-				{onBack && <ProfileHeaderBackButton onBack={onBack} />}
-				<Typography className="flex-1">{user?.username}</Typography>
-				<IconButton onClick={() => setOpen(true)}>
-					<Icon name="menu" />
-				</IconButton>
-			</div>
+			<AppBar position="static">
+				<Toolbar>
+					{onBack && <ProfileHeaderBackButton onBack={onBack} />}
+					<Typography className="flex-1">{user?.username}</Typography>
+					<IconButton onClick={() => setOpen(true)}>
+						<Icon name="menu" />
+					</IconButton>
+				</Toolbar>
+			</AppBar>
 			<SwipeableDrawer
 				open={open}
 				disableSwipeToOpen
