@@ -1,9 +1,9 @@
 'use client';
 
 import PageMobile from '@/components/Page/PageMobile';
-import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import ProfileActions from '@/components/Profile/ProfileActions';
 import ProfileContent from '@/components/Profile/ProfileContent';
+import ProfileHeader from '@/components/Profile/ProfileHeader';
 import ProfileInfo from '@/components/Profile/ProfileInfo';
 import { useRouter } from '@/lib/intl/client';
 import { useParams } from 'next/navigation';
@@ -16,7 +16,7 @@ export default function UserPage() {
 
 	return (
 		<PageMobile>
-			<PageMobileHeader onBackClick={handleBack} />
+			<ProfileHeader user_id={user_id} onBack={handleBack} />
 			<ProfileInfo user_id={user_id} />
 			<ProfileActions user_id={user_id} />
 			<ProfileContent user_id={user_id} />

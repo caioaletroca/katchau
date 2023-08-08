@@ -8,15 +8,17 @@ import ProfileActions, {
 import ProfileContent, {
 	ProfileContentLoading,
 } from '@/components/Profile/ProfileContent';
+import ProfileHeader, {
+	ProfileHeaderLoading,
+} from '@/components/Profile/ProfileHeader';
 import ProfileInfo, {
 	ProfileInfoLoading,
 } from '@/components/Profile/ProfileInfo';
 import { useSession } from 'next-auth/react';
-import Header from './Header';
 
 const ProfilePageLoading = () => (
 	<PageMobile>
-		<Header />
+		<ProfileHeaderLoading />
 		<div className="flex-1">
 			<ProfileInfoLoading />
 			<ProfileActionsLoading />
@@ -35,7 +37,7 @@ export default async function ProfilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
+			<ProfileHeader user_id={data?.user.id} />
 			<div className="flex flex-1 flex-col">
 				<ProfileInfo user_id={data?.user.id} />
 				<ProfileActions user_id={data?.user.id} />
