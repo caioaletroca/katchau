@@ -1,14 +1,17 @@
 'use client';
 
 import PageMobile from '@/components/Page/PageMobile';
+import {
+	RegisterMobileContent,
+	RegisterMobileContentWrapper,
+} from '@/components/Register/Mobile/RegisterMobileContent';
+import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
+import LoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
+import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import { LoadingButton } from '@mui/lab';
 import { Typography } from '@mui/material';
 import { useIntl } from 'react-intl';
 import { useRegister } from '../../RegisterProvider';
-import { Content, ContentWrapper } from '../Content';
-import Header from '../Header';
-import LoginButton from '../LoginButton';
-import Title from '../Title';
 
 export default function RegisterTermsMobilePage() {
 	const intl = useIntl();
@@ -16,10 +19,10 @@ export default function RegisterTermsMobilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
-			<ContentWrapper>
-				<Content>
-					<Title
+			<RegisterMobileHeader />
+			<RegisterMobileContentWrapper>
+				<RegisterMobileContent>
+					<RegisterMobileTitle
 						title={intl.formatMessage({
 							id: 'register.termsTitle',
 							defaultMessage: "Agree to Katchau's terms and policies",
@@ -64,9 +67,9 @@ export default function RegisterTermsMobilePage() {
 							})}
 						</LoadingButton>
 					</div>
-				</Content>
+				</RegisterMobileContent>
 				<LoginButton />
-			</ContentWrapper>
+			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
 }

@@ -1,7 +1,7 @@
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import { useRouter } from '@/lib/intl/client';
 
-export default function Header() {
+export default function RegisterMobileHeader() {
 	const router = useRouter();
 
 	const handleBack = () => router.back();

@@ -3,7 +3,7 @@
 import { Button, ButtonProps } from '@mui/material';
 import { useIntl } from 'react-intl';
 
-export default function NextButton(props: ButtonProps) {
+export default function RegisterMobileNextButton(props: ButtonProps) {
 	const intl = useIntl();
 
 	return (

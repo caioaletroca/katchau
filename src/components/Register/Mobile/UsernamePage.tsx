@@ -1,14 +1,6 @@
 'use client';
 
 import PageMobile from '@/components/Page/PageMobile';
-import {
-	RegisterMobileContent,
-	RegisterMobileContentWrapper,
-} from '@/components/Register/Mobile/RegisterMobileContent';
-import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
-import LoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
-import RegisterMobileNextButton from '@/components/Register/Mobile/RegisterMobileNextButton';
-import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import UsernameTextField from '@/components/UsernameTextField';
 import { user } from '@/validation/user';
 import { Form, FormikProvider, useFormik } from 'formik';
@@ -16,6 +8,11 @@ import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
 import { useRegister } from '../../RegisterProvider';
+import { Content, ContentWrapper } from '../Content';
+import Header from '../Header';
+import LoginButton from '../LoginButton';
+import NextButton from '../NextButton';
+import Title from '../Title';
 
 const initialValues = {
 	username: '',
@@ -45,10 +42,10 @@ export default function RegisterUsernameMobilePage() {
 
 	return (
 		<PageMobile>
-			<RegisterMobileHeader />
-			<RegisterMobileContentWrapper>
-				<RegisterMobileContent>
-					<RegisterMobileTitle
+			<Header />
+			<ContentWrapper>
+				<Content>
+					<Title
 						title={intl.formatMessage({
 							id: 'register.usernameTitle',
 							defaultMessage: 'Create a username',
@@ -69,12 +66,12 @@ export default function RegisterUsernameMobilePage() {
 								})}
 								fullWidth
 							/>
-							<RegisterMobileNextButton />
+							<NextButton />
 						</Form>
 					</FormikProvider>
-				</RegisterMobileContent>
+				</Content>
 				<LoginButton />
-			</RegisterMobileContentWrapper>
+			</ContentWrapper>
 		</PageMobile>
 	);
 }

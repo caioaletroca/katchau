@@ -591,12 +591,6 @@
       "value": "Create a username"
     }
   ],
-  "register.usernameUniqueWarning": [
-    {
-      "type": 0,
-      "value": "Your username needs to be unique."
-    }
-  ],
   "search.noResultsFound": [
     {
       "type": 0,

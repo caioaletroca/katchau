@@ -2,17 +2,20 @@
 
 import PageMobile from '@/components/Page/PageMobile';
 import PasswordTextField from '@/components/PasswordTextField';
+import {
+	RegisterMobileContent,
+	RegisterMobileContentWrapper,
+} from '@/components/Register/Mobile/RegisterMobileContent';
+import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
+import LoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
+import RegisterMobileNextButton from '@/components/Register/Mobile/RegisterMobileNextButton';
+import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import { user } from '@/validation/user';
 import { Formik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
 import { useRegister } from '../../RegisterProvider';
-import { Content, ContentWrapper } from '../Content';
-import Header from '../Header';
-import LoginButton from '../LoginButton';
-import NextButton from '../NextButton';
-import Title from '../Title';
 
 const initialValues = {
 	password: '',
@@ -35,10 +38,10 @@ export default function RegisterPasswordMobilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
-			<ContentWrapper>
-				<Content>
-					<Title
+			<RegisterMobileHeader />
+			<RegisterMobileContentWrapper>
+				<RegisterMobileContent>
+					<RegisterMobileTitle
 						title={intl.formatMessage({
 							id: 'register.passwordTitle',
 							defaultMessage: 'Create a password',
@@ -63,13 +66,13 @@ export default function RegisterPasswordMobilePage() {
 									})}
 									fullWidth
 								/>
-								<NextButton />
+								<RegisterMobileNextButton />
 							</form>
 						)}
 					</Formik>
-				</Content>
+				</RegisterMobileContent>
 				<LoginButton />
-			</ContentWrapper>
+			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
 }

@@ -3,6 +3,12 @@
 import { useProfileImage, useUploadProfileImage } from '@/api/profileImage';
 import PageMobile from '@/components/Page/PageMobile';
 import ProfilePictureUpload from '@/components/ProfilePictureUpload';
+import {
+	RegisterMobileContent,
+	RegisterMobileContentWrapper,
+} from '@/components/Register/Mobile/RegisterMobileContent';
+import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
+import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import useDownloadFile from '@/hooks/useDownloadFile';
 import { useRouter } from '@/lib/intl/client';
 import getStoragePath from '@/utils/storage/getStoragePath';
@@ -11,9 +17,6 @@ import { Button } from '@mui/material';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useRegister } from '../../RegisterProvider';
-import { Content, ContentWrapper } from '../Content';
-import Header from '../Header';
-import Title from '../Title';
 
 export default function RegisterProfilePictureMobilePage() {
 	const intl = useIntl();
@@ -48,10 +51,10 @@ export default function RegisterProfilePictureMobilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
-			<ContentWrapper>
-				<Content>
-					<Title
+			<RegisterMobileHeader />
+			<RegisterMobileContentWrapper>
+				<RegisterMobileContent>
+					<RegisterMobileTitle
 						title={intl.formatMessage({
 							id: 'register.profilePictureTitle',
 							defaultMessage: 'Add a profile picture',
@@ -69,7 +72,7 @@ export default function RegisterProfilePictureMobilePage() {
 							onChange={handleChange}
 						/>
 					)}
-				</Content>
+				</RegisterMobileContent>
 				<div className="flex flex-col gap-4">
 					{file && (
 						<LoadingButton
@@ -89,7 +92,7 @@ export default function RegisterProfilePictureMobilePage() {
 						})}
 					</Button>
 				</div>
-			</ContentWrapper>
+			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
 }

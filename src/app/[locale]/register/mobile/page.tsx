@@ -9,8 +9,11 @@ import { Form, Formik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
+import {
+	RegisterMobileContent,
+	RegisterMobileContentWrapper,
+} from '../../../../components/Register/Mobile/RegisterMobileContent';
 import { useRegister } from '../RegisterProvider';
-import { Content, ContentWrapper } from './Content';
 import Header from './Header';
 import LoginButton from './LoginButton';
 import NextButton from './NextButton';
@@ -38,8 +41,8 @@ export default function RegisterMobilePage() {
 	return (
 		<PageMobile>
 			<Header />
-			<ContentWrapper>
-				<Content>
+			<RegisterMobileContentWrapper>
+				<RegisterMobileContent>
 					<Formik
 						initialValues={initialValues}
 						validate={withZodSchema(RegisterEmailSchema)}
@@ -79,9 +82,9 @@ export default function RegisterMobilePage() {
 							</Form>
 						)}
 					</Formik>
-				</Content>
+				</RegisterMobileContent>
 				<LoginButton />
-			</ContentWrapper>
+			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
 }

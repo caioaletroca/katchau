@@ -2,6 +2,14 @@
 
 import DateField from '@/components/DateField';
 import PageMobile from '@/components/Page/PageMobile';
+import {
+	RegisterMobileContent,
+	RegisterMobileContentWrapper,
+} from '@/components/Register/Mobile/RegisterMobileContent';
+import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
+import LoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
+import RegisterMobileNextButton from '@/components/Register/Mobile/RegisterMobileNextButton';
+import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import { user } from '@/validation/user';
 import dayjs from 'dayjs';
 import { Form, Formik } from 'formik';
@@ -9,11 +17,6 @@ import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
 import { useRegister } from '../../RegisterProvider';
-import { Content, ContentWrapper } from '../Content';
-import Header from '../Header';
-import LoginButton from '../LoginButton';
-import NextButton from '../NextButton';
-import Title from '../Title';
 
 const initialValues = {
 	birth: dayjs(null),
@@ -36,10 +39,10 @@ export default function RegisterBirthMobilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
-			<ContentWrapper>
-				<Content>
-					<Title
+			<RegisterMobileHeader />
+			<RegisterMobileContentWrapper>
+				<RegisterMobileContent>
+					<RegisterMobileTitle
 						title={intl.formatMessage({
 							id: 'register.birthTitle',
 							defaultMessage: "What's your date of birth?",
@@ -78,13 +81,13 @@ export default function RegisterBirthMobilePage() {
 									disableFuture
 									fullWidth
 								/>
-								<NextButton />
+								<RegisterMobileNextButton />
 							</Form>
 						)}
 					</Formik>
-				</Content>
+				</RegisterMobileContent>
 				<LoginButton />
-			</ContentWrapper>
+			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
 }

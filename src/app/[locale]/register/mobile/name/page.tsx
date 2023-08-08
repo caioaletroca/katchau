@@ -1,6 +1,14 @@
 'use client';
 
 import PageMobile from '@/components/Page/PageMobile';
+import {
+	RegisterMobileContent,
+	RegisterMobileContentWrapper,
+} from '@/components/Register/Mobile/RegisterMobileContent';
+import RegisterMobileHeader from '@/components/Register/Mobile/RegisterMobileHeader';
+import LoginButton from '@/components/Register/Mobile/RegisterMobileLoginButton';
+import RegisterMobileNextButton from '@/components/Register/Mobile/RegisterMobileNextButton';
+import RegisterMobileTitle from '@/components/Register/Mobile/RegisterMobileTitle';
 import TextField from '@/components/TextField';
 import { user } from '@/validation/user';
 import { Form, Formik } from 'formik';
@@ -8,11 +16,6 @@ import { withZodSchema } from 'formik-validator-zod';
 import { useIntl } from 'react-intl';
 import { z } from 'zod';
 import { useRegister } from '../../RegisterProvider';
-import { Content, ContentWrapper } from '../Content';
-import Header from '../Header';
-import LoginButton from '../LoginButton';
-import NextButton from '../NextButton';
-import Title from '../Title';
 
 const initialValues = {
 	name: '',
@@ -35,15 +38,15 @@ export default function RegisterNameMobilePage() {
 
 	return (
 		<PageMobile>
-			<Header />
-			<ContentWrapper>
-				<Content>
+			<RegisterMobileHeader />
+			<RegisterMobileContentWrapper>
+				<RegisterMobileContent>
 					<Formik
 						initialValues={initialValues}
 						validate={withZodSchema(RegisterNameSchema)}
 						onSubmit={handleSubmit}>
 						<Form>
-							<Title
+							<RegisterMobileTitle
 								title={intl.formatMessage({
 									id: 'register.nameTitle',
 									defaultMessage: "What's your name?",
@@ -61,12 +64,12 @@ export default function RegisterNameMobilePage() {
 								})}
 								fullWidth
 							/>
-							<NextButton />
+							<RegisterMobileNextButton />
 						</Form>
 					</Formik>
-				</Content>
+				</RegisterMobileContent>
 				<LoginButton />
-			</ContentWrapper>
+			</RegisterMobileContentWrapper>
 		</PageMobile>
 	);
 }
