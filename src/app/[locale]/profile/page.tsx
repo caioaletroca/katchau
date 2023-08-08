@@ -2,6 +2,7 @@
 
 import BottomNavigation from '@/components/BottomNavigation';
 import PageMobile from '@/components/Page/PageMobile';
+import ProfileActions from '@/components/Profile/ProfileActions';
 import ProfileContent, {
 	ProfileContentLoading,
 } from '@/components/Profile/ProfileContent';
@@ -34,6 +35,7 @@ export default async function ProfilePage() {
 			<Header />
 			<div className="flex flex-1 flex-col">
 				<ProfileInfo user_id={data?.user.id} />
+				<ProfileActions user_id={data?.user.id} />
 				<ProfileContent user_id={data?.user.id} />
 			</div>
 			<BottomNavigation />

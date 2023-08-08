@@ -5,6 +5,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
+		"start:cloud": "supabase start",
+		"stop:cloud": "supabase stop",
 		"analyze": "cross-env ANALYZE=true next build",
 		"lint": "next lint --fix",
 		"prettier": "prettier --write ./src",

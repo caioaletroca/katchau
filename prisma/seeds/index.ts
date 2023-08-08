@@ -24,10 +24,12 @@ async function generateUsers(prisma: PrismaClient, n: number = 1) {
 		const lastName = faker.person.lastName();
 		const name = faker.person.fullName({ firstName, lastName });
 		const email = faker.internet.email({ firstName, lastName });
+		const bio = `${faker.internet.emoji()} ${faker.lorem.lines(1)}`;
 		const user = await prisma.user.create({
 			data: {
 				name,
 				email,
+				bio,
 			},
 		});
 		users.push(user);
@@ -146,6 +148,9 @@ export async function main() {
 		{
 			name: 'Sarah Troti',
 			email: 'sarah.troti@gmail.com',
+			bio: `🌈|28y
+			✈️ loves travel
+			🎭 actress`,
 		},
 	];
 

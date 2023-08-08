@@ -49,10 +49,28 @@
       "value": "Edit"
     }
   ],
+  "common.editProfile": [
+    {
+      "type": 0,
+      "value": "Edit profile"
+    }
+  ],
   "common.email": [
     {
       "type": 0,
       "value": "Email"
+    }
+  ],
+  "common.follow": [
+    {
+      "type": 0,
+      "value": "Follow"
+    }
+  ],
+  "common.following": [
+    {
+      "type": 0,
+      "value": "Following"
     }
   ],
   "common.name": [
@@ -83,6 +101,12 @@
     {
       "type": 0,
       "value": "Skip"
+    }
+  ],
+  "common.unfollow": [
+    {
+      "type": 0,
+      "value": "Unfollow"
     }
   ],
   "common.username": [
