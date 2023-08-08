@@ -18,7 +18,7 @@ export default function PostPage() {
 				onBackClick={handleBack}
 				title={intl.formatMessage({
 					id: 'post.title',
-					defaultMessage: 'Post',
+					defaultMessage: 'Posts',
 				})}
 			/>
 			<Content />

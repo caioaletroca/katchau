@@ -363,16 +363,34 @@
       "value": "Username"
     }
   ],
+  "post.comment.commentFieldPlaceholder": [
+    {
+      "type": 0,
+      "value": "Add a comment..."
+    }
+  ],
+  "post.comment.title": [
+    {
+      "type": 0,
+      "value": "Comments"
+    }
+  ],
   "post.header.deleteButton": [
     {
       "type": 0,
       "value": "Delete"
     }
   ],
+  "post.imageAlt": [
+    {
+      "type": 0,
+      "value": "Main post image"
+    }
+  ],
   "post.title": [
     {
       "type": 0,
-      "value": "Post"
+      "value": "Posts"
     }
   ],
   "post.userProfilePicture.alt": [

@@ -1,3 +1,5 @@
+'use client';
+
 import { useFollows, useUpdateFollow } from '@/api/follows';
 import { useUser } from '@/api/users';
 import { useRouter } from '@/lib/intl/client';
@@ -120,6 +122,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 				open={open}
 				onOpen={() => setOpen(true)}
 				onClose={() => setOpen(false)}>
+				{/* TODO: Use inbuilt title */}
 				<Typography className="mb-2 font-bold" align="center">
 					{user?.name}
 				</Typography>
