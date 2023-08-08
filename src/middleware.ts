@@ -3,6 +3,7 @@ import { applyMiddleware } from './lib/masterMiddleware';
 import apiMiddleware from './middlewares/apiMiddleware';
 import authMiddleware from './middlewares/authMiddleware';
 import localizationMiddleware from './middlewares/localizationMiddleware';
+import registerMiddleware from './middlewares/registerMiddleware';
 import resourceMiddleware from './middlewares/resourceMiddleware';
 
 export default async function middleware(
@@ -19,6 +20,14 @@ export default async function middleware(
 				basePath: '/api',
 				whitelist: ['/api/auth/profile', '/api/auth/profile/(.*)'],
 				blacklist: ['/api/auth/(.*)', '/api/users/username', '/api/register'],
+			}),
+			registerMiddleware({
+				blacklist: [
+					'/api',
+					'/api/(.*)',
+					'/register-complete',
+					'/register-complete/(.*)',
+				],
 			}),
 			authMiddleware({
 				blacklist: [

@@ -22,9 +22,18 @@ const handler = NextAuth({
 		signIn: '/login',
 	},
 	callbacks: {
-		session: async ({ session, token }) => {
+		jwt: async ({ token, account, profile, user }) => {
+			if (user) {
+				token.username = user.username;
+			}
+
+			return token;
+		},
+		session: async ({ session, token, user }) => {
+			// console.log(session, token, user);
 			if (session?.user && token.sub) {
 				session.user.id = token.sub;
+				session.user.username = token.username;
 			}
 			return session;
 		},
