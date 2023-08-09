@@ -3,6 +3,7 @@ import axios from 'axios';
 export type RequestSWRParams = {
 	user_id?: string;
 	post_id?: string;
+	comment_id?: string;
 };
 
 export type RequestSWROptions = {

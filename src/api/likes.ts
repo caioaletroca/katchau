@@ -7,6 +7,10 @@ export function usePostLike({ post_id }: RequestSWRParams) {
 	return useSWR<PostLike>(`/posts/${post_id}/likes`, postFetcher);
 }
 
-export function usePostLikeUpdate({ post_id }: RequestSWRParams) {
+export function useUpdatePostLike({ post_id }: RequestSWRParams) {
 	return useSWRMutation<PostLike>(`/posts/${post_id}/likes`, postFetcher);
+}
+
+export function useUpdateCommentLike({ comment_id }: RequestSWRParams) {
+	return useSWRMutation<PostLike>(`/comments/${comment_id}/likes`, postFetcher);
 }

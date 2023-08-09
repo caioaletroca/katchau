@@ -1,3 +1,4 @@
+import { CommentWithUserAndLike } from '@/types/comments';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import {
@@ -8,7 +9,10 @@ import {
 } from '.';
 
 export function useComments({ post_id }: RequestSWRParams) {
-	return useSWR(`/posts/${post_id}/comments`, getFetcher);
+	return useSWR<CommentWithUserAndLike[]>(
+		`/posts/${post_id}/comments`,
+		getFetcher
+	);
 }
 
 export function useCreateComment(
