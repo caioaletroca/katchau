@@ -11,6 +11,7 @@ on:
 jobs:
   Install:
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,6 +25,7 @@ jobs:
 
   Build:
     runs-on: ubuntu-latest
+    environment: Production
     needs: Install
     steps:
       - name: Checkout
@@ -44,14 +46,14 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/.vercel/output
-          # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-
 
   Migrate:
     runs-on: ubuntu-latest
+    environment: Production
     needs: Build
     steps:
       - name: Checkout
@@ -68,11 +70,10 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/.vercel/output
-          # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-
       - name: Deploy Migration
         run: npx prisma migrate deploy
         env:
@@ -80,6 +81,7 @@ jobs:
 
   Tests:
     runs-on: ubuntu-latest
+    environment: Production
     needs: Build
     steps:
       - name: Checkout
@@ -96,16 +98,16 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/.vercel/output
-          # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-
       - name: Unit tests
         run: npm run test
 
   Deploy:
     runs-on: ubuntu-latest
+    environment: Production
     needs: Tests
     steps:
       - name: Checkout
@@ -126,10 +128,9 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/.vercel/output
-          # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-
       - name: Deploy Project Artifacts
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
