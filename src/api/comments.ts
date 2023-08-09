@@ -2,11 +2,16 @@ import { CommentWithUserAndLike } from '@/types/comments';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
 import {
+	deleteFetcher,
 	getFetcher,
 	postFetcher,
 	RequestSWROptions,
 	RequestSWRParams,
 } from '.';
+
+export function useComment({ comment_id }: RequestSWRParams) {
+	return useSWR<CommentWithUserAndLike>(`/comments/${comment_id}`, getFetcher);
+}
 
 export function useComments({ post_id }: RequestSWRParams) {
 	return useSWR<CommentWithUserAndLike[]>(
@@ -20,4 +25,11 @@ export function useCreateComment(
 	options?: RequestSWROptions
 ) {
 	return useSWRMutation(`/posts/${post_id}/comments`, postFetcher, options);
+}
+
+export function useDeleteComment(
+	{ comment_id }: RequestSWRParams,
+	options?: RequestSWROptions
+) {
+	return useSWRMutation(`/comments/${comment_id}`, deleteFetcher, options);
 }
