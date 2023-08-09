@@ -123,7 +123,7 @@ export default function PostComment({
 			{ownComment && selected && (
 				<div className="flex flex-col items-center justify-center">
 					{deleteCommentLoading ? (
-						<CircularProgress className="mr-2" size={24} />
+						<CircularProgress className="mr-2" size={16} />
 					) : (
 						<IconButton
 							onClick={handleDelete}

@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import {
+	Comment,
 	Follows,
 	Post,
 	PostImage,
@@ -136,6 +137,32 @@ async function generatePostImages(
 	return images;
 }
 
+async function generateComments(
+	prisma: PrismaClient,
+	users: User[],
+	posts: Post[],
+	n: number = 1
+) {
+	let comments: Comment[] = [];
+
+	for (let i = 0; i < n; i++) {
+		const index1 = Math.floor(Math.random() * (users.length - 1));
+		const index2 = Math.floor(Math.random() * (users.length - 1));
+		const comment = await prisma.comment.create({
+			data: {
+				user_id: users[index1].id,
+				post_id: posts[index2].id,
+				content: faker.lorem.lines(1),
+			},
+		});
+		comments.push(comment);
+	}
+
+	console.log(`${comments.length} comments created`);
+
+	return comments;
+}
+
 async function generateFollows(
 	prisma: PrismaClient,
 	users: User[],
@@ -165,6 +192,7 @@ export async function main() {
 	const profileImages = await generateProfileImages(prisma, users);
 	const posts = await generatePosts(prisma, users, MAX_POSTS);
 	const images = await generatePostImages(prisma, users, posts, MAX_IMAGES);
+	const comments = await generateComments(prisma, users, posts, 100);
 	const follows = await generateFollows(prisma, users, 5);
 
 	// Special users
@@ -192,6 +220,7 @@ export async function main() {
 	});
 
 	const sarahPosts = await generatePosts(prisma, [sarah], 20);
+	const sarahComments = await generateComments(prisma, users, sarahPosts, 50);
 	const sarahProfileImage = await generateProfileImages(prisma, [sarah]);
 	const sarahImages = await generatePostImages(prisma, [sarah], sarahPosts, 20);
 

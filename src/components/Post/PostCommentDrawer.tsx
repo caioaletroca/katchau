@@ -4,7 +4,6 @@ import api from '@/api';
 import { useComments } from '@/api/comments';
 import { useSession } from 'next-auth/react';
 import { useParams } from 'next/navigation';
-import { useIntl } from 'react-intl';
 import PullToRefresh from '../PullToRefresh';
 import SwipeableDrawer, { SwipeableDrawerProps } from '../SwipeableDrawer';
 import PostComment, { PostCommentLoading } from './PostComment';
@@ -35,7 +34,6 @@ export function PostCommentDrawerLoading({
 type PostCommentDrawerProps = SwipeableDrawerProps & {};
 
 export function PostCommentDrawer({ ...others }: PostCommentDrawerProps) {
-	const intl = useIntl();
 	const { post_id } = useParams();
 	const { data: session } = useSession();
 
@@ -82,7 +80,7 @@ export function PostCommentDrawer({ ...others }: PostCommentDrawerProps) {
 			}}
 			disableDiscovery
 			{...others}>
-			<PullToRefresh onRefresh={handleRefresh}>
+			<PullToRefresh loading={isLoading} onRefresh={handleRefresh}>
 				{comments?.map((comment) => (
 					<PostComment
 						key={comment.id}

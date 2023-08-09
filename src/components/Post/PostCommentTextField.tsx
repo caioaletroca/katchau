@@ -72,17 +72,18 @@ export default function PostCommentTextField({
 							/>
 						</InputAdornment>
 					),
-					endAdornment: (
-						<InputAdornment position="end">
-							{createCommentLoading ? (
-								<CircularProgress size={24} />
-							) : (
-								<IconButton onClick={handleSubmit}>
-									<Icon name="send" />
-								</IconButton>
-							)}
-						</InputAdornment>
-					),
+					endAdornment:
+						comment !== '' ? (
+							<InputAdornment position="end">
+								{createCommentLoading ? (
+									<CircularProgress size={24} />
+								) : (
+									<IconButton onClick={handleSubmit}>
+										<Icon name="send" />
+									</IconButton>
+								)}
+							</InputAdornment>
+						) : undefined,
 				}}
 				size="small"
 				fullWidth

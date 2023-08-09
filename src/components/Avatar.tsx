@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useUIAvatar } from '@/hooks/useUIAvatar';
 import getStoragePath from '@/utils/storage/getStoragePath';
