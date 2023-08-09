@@ -387,6 +387,24 @@
       "value": "Username"
     }
   ],
+  "new.post.descriptionLabel": [
+    {
+      "type": 0,
+      "value": "Description"
+    }
+  ],
+  "new.post.descriptionPlaceholder": [
+    {
+      "type": 0,
+      "value": "Write a caption..."
+    }
+  ],
+  "new.post.loading.label": [
+    {
+      "type": 0,
+      "value": "Uploading your post"
+    }
+  ],
   "post.comment.commentFieldPlaceholder": [
     {
       "type": 0,

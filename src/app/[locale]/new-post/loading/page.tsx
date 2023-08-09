@@ -1,11 +1,15 @@
 'use client';
 
 import PageMobile from '@/components/Page/PageMobile';
-import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
+import Image from 'next/image';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { useNewPost } from '../NewPostContext';
+import './styles.scss';
 
 export default function NewPostLoadingPage() {
+	const intl = useIntl();
 	const { handleSubmit } = useNewPost();
 
 	React.useEffect(() => {
@@ -14,8 +18,17 @@ export default function NewPostLoadingPage() {
 
 	return (
 		<PageMobile>
-			<p>Loading</p>
-			<Button onClick={handleSubmit}>Send</Button>
+			<div className="flex h-full flex-col items-center justify-center gap-12">
+				<div className="animated-logo relative flex overflow-hidden rounded-full">
+					<Image alt="" height={128} width={128} src="/block-inverted.svg" />
+				</div>
+				<Typography className="text-neutral-400" variant="h5">
+					{intl.formatMessage({
+						id: 'new.post.loading.label',
+						defaultMessage: 'Uploading your post',
+					})}
+				</Typography>
+			</div>
 		</PageMobile>
 	);
 }

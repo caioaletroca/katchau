@@ -79,6 +79,7 @@ export default function ConfigurationPage() {
 				})}>
 				<List dense>
 					<ListItemButton
+						className="text-red-600"
 						color="secondary"
 						onClick={() => signOut({ callbackUrl: `/${locale}/login` })}>
 						<ListItemText primary="Log off" />
