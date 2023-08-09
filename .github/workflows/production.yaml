@@ -24,6 +24,8 @@ jobs:
         run: npm install --global vercel@latest
       - name: Install
         run: npm ci
+      - name: Generate Prisma Client
+        run: npx prisma generate
       - name: Cache NPM
         uses: actions/cache@v3
         with:
@@ -51,8 +53,6 @@ jobs:
           path: ${{ github.workspace }}/node_modules
           key: ${{ runner.os }}-node_modules-prod-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node_modules-prod-
-      - name: Generate Prisma Client
-        run: npx prisma generate
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: 'Cache Build'
@@ -92,8 +92,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-prod-
-      - name: Generate Prisma Client
-        run: npx prisma generate
       - name: Deploy Migration
         run: npx prisma migrate deploy
         env:
@@ -141,10 +139,22 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
+      - name: Restore NPM
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-node_modules-prod-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node_modules-prod-
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: 'Restore Cache Build'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/.vercel/output
+          key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-
       - name: Deploy Project Artifacts
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
