@@ -9,8 +9,9 @@ import {
 	User,
 } from '@prisma/client';
 import dotenv from 'dotenv';
-import supabase from '../../src/database/supabase';
 dotenv.config({ path: '.env.local' });
+
+import supabase from '../../src/database/supabase';
 
 const prisma = new PrismaClient();
 
@@ -192,7 +193,7 @@ export async function main() {
 	const profileImages = await generateProfileImages(prisma, users);
 	const posts = await generatePosts(prisma, users, MAX_POSTS);
 	const images = await generatePostImages(prisma, users, posts, MAX_IMAGES);
-	const comments = await generateComments(prisma, users, posts, 100);
+	const comments = await generateComments(prisma, users, posts, 500);
 	const follows = await generateFollows(prisma, users, 5);
 
 	// Special users
@@ -220,7 +221,7 @@ export async function main() {
 	});
 
 	const sarahPosts = await generatePosts(prisma, [sarah], 20);
-	const sarahComments = await generateComments(prisma, users, sarahPosts, 50);
+	const sarahComments = await generateComments(prisma, users, sarahPosts, 200);
 	const sarahProfileImage = await generateProfileImages(prisma, [sarah]);
 	const sarahImages = await generatePostImages(prisma, [sarah], sarahPosts, 20);
 

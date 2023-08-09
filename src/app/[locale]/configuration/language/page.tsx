@@ -3,12 +3,7 @@
 import Icon from '@/components/Icon';
 import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
-import {
-	useLanguages,
-	useRouter,
-	useSetLocale,
-	useUnlocalizedPathname,
-} from '@/lib/intl/client';
+import { useLanguages, useRouter, useSetLocale } from '@/lib/intl/client';
 import { Language } from '@/lib/intl/languages';
 import {
 	IconButton,
@@ -26,7 +21,6 @@ export default function ConfigurationLanguagePage() {
 	const router = useRouter();
 	const languages = useLanguages();
 	const setLocale = useSetLocale();
-	const pathname = useUnlocalizedPathname();
 	const [search, setSearch] = React.useState('');
 
 	const handleBack = () => router.push('/configuration');
@@ -86,7 +80,7 @@ export default function ConfigurationLanguagePage() {
 				{filteredLanguages.map((language) => (
 					<ListItemButton
 						key={language?.name}
-						onClick={() => handleSelectLanguage(language)}>
+						onClick={() => handleSelectLanguage(language!)}>
 						<ListItemText
 							primary={language?.name}
 							secondary={intl.formatMessage(language?.localizedName!)}
