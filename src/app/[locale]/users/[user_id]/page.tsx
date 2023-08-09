@@ -1,5 +1,6 @@
 'use client';
 
+import BottomNavigation from '@/components/BottomNavigation';
 import PageMobile from '@/components/Page/PageMobile';
 import ProfileActions from '@/components/Profile/ProfileActions';
 import ProfileContent from '@/components/Profile/ProfileContent';
@@ -17,9 +18,12 @@ export default function UserPage() {
 	return (
 		<PageMobile>
 			<ProfileHeader user_id={user_id} onBack={handleBack} />
-			<ProfileInfo user_id={user_id} />
-			<ProfileActions user_id={user_id} />
-			<ProfileContent user_id={user_id} />
+			<div className="flex h-full flex-col overflow-y-auto">
+				<ProfileInfo user_id={user_id} />
+				<ProfileActions user_id={user_id} />
+				<ProfileContent user_id={user_id} />
+			</div>
+			<BottomNavigation />
 		</PageMobile>
 	);
 }

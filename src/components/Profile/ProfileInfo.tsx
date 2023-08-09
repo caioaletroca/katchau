@@ -5,7 +5,6 @@ import { usePosts } from '@/api/posts';
 import { useUserProfileImage } from '@/api/profileImage';
 import { useUser } from '@/api/users';
 import Avatar from '@/components/Avatar';
-import { useRouter } from '@/lib/intl/client';
 import { Skeleton, Typography } from '@mui/material';
 import { useIntl } from 'react-intl';
 
@@ -38,7 +37,6 @@ type ProfileInfoProps = {
 
 export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 	const intl = useIntl();
-	const router = useRouter();
 	const { data: user, isLoading: userLoading } = useUser({ user_id });
 	const { data: profileImage, isLoading: profileImageLoading } =
 		useUserProfileImage({ user_id });

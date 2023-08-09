@@ -339,6 +339,18 @@
       "value": " characters"
     }
   ],
+  "fileUpload.desktop": [
+    {
+      "type": 0,
+      "value": "Click or drap and drop to select an image"
+    }
+  ],
+  "fileUpload.mobile": [
+    {
+      "type": 0,
+      "value": "Tap to select an image"
+    }
+  ],
   "language.title": [
     {
       "type": 0,
@@ -403,6 +415,12 @@
     {
       "type": 0,
       "value": "Uploading your post"
+    }
+  ],
+  "new.post.loading.logoAlt": [
+    {
+      "type": 0,
+      "value": "Katchau logo on loading animation"
     }
   ],
   "post.comment.commentFieldPlaceholder": [

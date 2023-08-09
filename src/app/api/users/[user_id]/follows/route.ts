@@ -21,7 +21,7 @@ export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 		},
 	});
 	// Fetch all people who this user follows
-	const following = await prisma.follows.findMany({
+	const followings = await prisma.follows.findMany({
 		where: {
 			following_id: params.user_id,
 		},
@@ -34,7 +34,7 @@ export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 		},
 	});
 
-	return NextResponse.json({ followeds, following });
+	return NextResponse.json({ followeds, followings });
 }
 
 type PostParams = {

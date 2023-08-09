@@ -20,7 +20,15 @@ export default function NewPostLoadingPage() {
 		<PageMobile>
 			<div className="flex h-full flex-col items-center justify-center gap-12">
 				<div className="animated-logo relative flex overflow-hidden rounded-full">
-					<Image alt="" height={128} width={128} src="/block-inverted.svg" />
+					<Image
+						alt={intl.formatMessage({
+							id: 'new.post.loading.logoAlt',
+							defaultMessage: 'Katchau logo on loading animation',
+						})}
+						height={128}
+						width={128}
+						src="/block-inverted.svg"
+					/>
 				</div>
 				<Typography className="text-neutral-400" variant="h5">
 					{intl.formatMessage({

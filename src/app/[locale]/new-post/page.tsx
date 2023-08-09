@@ -20,7 +20,7 @@ export default function NewPost() {
 	return (
 		<PageMobile>
 			<PageMobileHeader title="New Post" onBackClick={handleBack} />
-			<div className="flex flex-col p-2">
+			<div className="flex h-full flex-col items-center justify-center p-2">
 				<FileUpload name="file" onChange={handleChange} />
 			</div>
 		</PageMobile>

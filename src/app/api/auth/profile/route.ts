@@ -15,9 +15,8 @@ export const PATCH = applyMiddleware(
 	[validateBody(PatchSchema)],
 	async (req: NextRequest) => {
 		const token = await getToken({ req });
-		console.log(token);
 		const body = await req.json();
-		console.log(body);
+
 		const user = await prisma.user.update({
 			where: {
 				id: token?.sub!,
