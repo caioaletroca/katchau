@@ -4,6 +4,7 @@ import { PostWithImage } from '@/types/posts';
 import getStoragePath from '@/utils/storage/getStoragePath';
 import { Typography } from '@mui/material';
 import { ProfileImage, User } from '@prisma/client';
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import React from 'react';
 import { useIntl } from 'react-intl';
@@ -51,8 +52,13 @@ export default function Post({
 				onComment={() => setOpenCommentDrawer(true)}
 				onShare={() => setOpenShareDrawer(true)}
 			/>
-			<div className="flex flex-col px-2">
+			<div className="mb-2 flex flex-col px-2">
 				<Typography>{post.description}</Typography>
+			</div>
+			<div className="flex flex-col px-2">
+				<Typography className="text-neutral-500" variant="caption">
+					{dayjs(post.created_at).format('LL')}
+				</Typography>
 			</div>
 			<PostCommentDrawer
 				post_id={post.id}

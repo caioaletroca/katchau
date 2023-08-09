@@ -7,6 +7,11 @@ export async function GET(req: NextRequest) {
 	const token = (await getToken({ req })) as JWT;
 
 	const posts = await prisma.post.findMany({
+		orderBy: [
+			{
+				created_at: 'desc',
+			},
+		],
 		where: {
 			user_id: token.sub,
 		},
