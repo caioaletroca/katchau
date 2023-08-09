@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ${{ github.workspace }}/node_modules |
+            ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -53,7 +53,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ${{ github.workspace }}/node_modules |
+            ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -80,7 +80,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ${{ github.workspace }}/node_modules |
+            ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
@@ -107,7 +107,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ${{ github.workspace }}/node_modules |
+            ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
