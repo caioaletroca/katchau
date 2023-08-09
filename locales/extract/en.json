@@ -45,6 +45,7 @@
   "errors.too_small.string.not_inclusive": "Field must contain over {minimum} characters",
   "fileUpload.desktop": "Click or drap and drop to select an image",
   "fileUpload.mobile": "Tap to select an image",
+  "home.logoAlt": "Katchau home logo",
   "language.title": "App Language",
   "languageButtom": "Language",
   "logInSectionTitle": "Log In",

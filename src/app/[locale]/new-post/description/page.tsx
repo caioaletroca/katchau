@@ -5,7 +5,7 @@ import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import TextField from '@/components/TextField';
 import { useRouter } from '@/lib/intl/client';
 import { post } from '@/validation/post';
-import { FormikProvider, useFormik } from 'formik';
+import { Form, FormikProvider, useFormik } from 'formik';
 import { withZodSchema } from 'formik-validator-zod';
 import Image from 'next/image';
 import React from 'react';
@@ -61,19 +61,22 @@ export default function NewPostDescription() {
 			</div>
 			<div className="flex flex-col p-2">
 				<FormikProvider value={formik}>
-					<TextField
-						name="description"
-						label={intl.formatMessage({
-							id: 'new.post.descriptionLabel',
-							defaultMessage: 'Description',
-						})}
-						placeholder={intl.formatMessage({
-							id: 'new.post.descriptionPlaceholder',
-							defaultMessage: 'Write a caption...',
-						})}
-						maxRows={10}
-						multiline
-					/>
+					<Form>
+						<TextField
+							name="description"
+							label={intl.formatMessage({
+								id: 'new.post.descriptionLabel',
+								defaultMessage: 'Description',
+							})}
+							placeholder={intl.formatMessage({
+								id: 'new.post.descriptionPlaceholder',
+								defaultMessage: 'Write a caption...',
+							})}
+							maxRows={10}
+							multiline
+							fullWidth
+						/>
+					</Form>
 				</FormikProvider>
 			</div>
 		</PageMobile>

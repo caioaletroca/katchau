@@ -351,6 +351,12 @@
       "value": "Tap to select an image"
     }
   ],
+  "home.logoAlt": [
+    {
+      "type": 0,
+      "value": "Katchau home logo"
+    }
+  ],
   "language.title": [
     {
       "type": 0,

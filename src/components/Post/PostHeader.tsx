@@ -70,9 +70,9 @@ export default function PostHeader({
 				onOpen={() => setOpen(true)}
 				onClose={() => setOpen(false)}>
 				<List>
-					<ListItemButton onClick={handleDelete}>
+					<ListItemButton className="text-red-500" onClick={handleDelete}>
 						<ListItemIcon>
-							<Icon name="delete" />
+							<Icon className="text-red-500" name="delete" />
 						</ListItemIcon>
 						<ListItemText
 							primary={intl.formatMessage({
