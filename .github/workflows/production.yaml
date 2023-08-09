@@ -51,6 +51,8 @@ jobs:
           path: ${{ github.workspace }}/node_modules
           key: ${{ runner.os }}-node_modules-prod-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node_modules-prod-
+      - name: Generate Prisma Client
+        run: npx prisma generate
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: 'Cache Build'
@@ -90,6 +92,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-prod-
+      - name: Generate Prisma Client
+        run: npx prisma generate
       - name: Deploy Migration
         run: npx prisma migrate deploy
         env:
