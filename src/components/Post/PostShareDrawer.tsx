@@ -1,3 +1,5 @@
+'use client';
+
 import useClipboard from '@/hooks/useClipboard';
 import useShare from '@/hooks/useShare';
 import useTimeout from '@/hooks/useTimeout';

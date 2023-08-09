@@ -2,6 +2,8 @@
 
 import Icon from '@/components/Icon';
 import PageMobile from '@/components/Page/PageMobile';
+import PageMobileHeader from '@/components/Page/PageMobileHeader';
+import { useRouter } from '@/lib/intl/client';
 import {
 	List,
 	ListItemButton,
@@ -11,10 +13,8 @@ import {
 	Typography,
 } from '@mui/material';
 import { signOut } from 'next-auth/react';
-import PageMobileHeader from '@/components/Page/PageMobileHeader';
-import { useIntl } from 'react-intl';
-import { useRouter } from '@/lib/intl/client';
 import { useParams } from 'next/navigation';
+import { useIntl } from 'react-intl';
 
 type SectionProps = React.PropsWithChildren & {
 	title: string;
@@ -41,7 +41,7 @@ export default function ConfigurationPage() {
 	const router = useRouter();
 	const { locale } = useParams();
 
-	const handleBack = () => router.back();
+	const handleBack = () => router.push('/profile');
 
 	return (
 		<PageMobile>

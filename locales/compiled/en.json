@@ -109,6 +109,12 @@
       "value": "Save"
     }
   ],
+  "common.search": [
+    {
+      "type": 0,
+      "value": "Search"
+    }
+  ],
   "common.share": [
     {
       "type": 0,
