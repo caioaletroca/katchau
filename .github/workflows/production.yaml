@@ -9,7 +9,37 @@ on:
     branches: [main]
 
 jobs:
-  Deploy-Production:
+  Install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+
+  Migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Deploy Migration
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
