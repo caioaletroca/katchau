@@ -158,5 +158,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-prod-
+      - name: Generate Prisma Client
+        run: npx prisma generate
       - name: Deploy Project Artifacts
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
