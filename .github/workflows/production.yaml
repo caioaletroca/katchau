@@ -20,8 +20,16 @@ jobs:
         with:
           node-version: '19'
           cache: 'npm'
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
       - name: Install
         run: npm ci
+      - name: Cache NPM
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-node_modules-prod-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node_modules-prod-
 
   Build:
     runs-on: ubuntu-latest
@@ -35,8 +43,6 @@ jobs:
         with:
           node-version: '19'
           cache: 'npm'
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
@@ -63,8 +69,12 @@ jobs:
         with:
           node-version: '19'
           cache: 'npm'
-      - name: Install
-        run: npm ci
+      - name: Restore NPM
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-node_modules-prod-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node_modules-prod-
       - name: 'Restore Cache Build'
         uses: actions/cache@v3
         with:
@@ -91,8 +101,12 @@ jobs:
         with:
           node-version: '19'
           cache: 'npm'
-      - name: Install
-        run: npm ci
+      - name: Restore NPM
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-node_modules-prod-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node_modules-prod-
       - name: 'Restore Cache Build'
         uses: actions/cache@v3
         with:
@@ -117,10 +131,12 @@ jobs:
         with:
           node-version: '19'
           cache: 'npm'
-      - name: Install
-        run: npm ci
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+      - name: Restore NPM
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-node_modules-prod-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node_modules-prod-
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: 'Restore Cache Build'
