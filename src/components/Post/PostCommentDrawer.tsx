@@ -3,7 +3,6 @@
 import api from '@/api';
 import { useComments } from '@/api/comments';
 import { useSession } from 'next-auth/react';
-import { useParams } from 'next/navigation';
 import PullToRefresh from '../PullToRefresh';
 import SwipeableDrawer, { SwipeableDrawerProps } from '../SwipeableDrawer';
 import PostComment, { PostCommentLoading } from './PostComment';
@@ -31,10 +30,14 @@ export function PostCommentDrawerLoading({
 	);
 }
 
-type PostCommentDrawerProps = SwipeableDrawerProps & {};
+type PostCommentDrawerProps = SwipeableDrawerProps & {
+	post_id: string;
+};
 
-export function PostCommentDrawer({ ...others }: PostCommentDrawerProps) {
-	const { post_id } = useParams();
+export function PostCommentDrawer({
+	post_id,
+	...others
+}: PostCommentDrawerProps) {
 	const { data: session } = useSession();
 
 	const { data: comments, isLoading, mutate } = useComments({ post_id });

@@ -10,6 +10,7 @@ import { useIntl } from 'react-intl';
 import { PostCommentDrawer } from './PostCommentDrawer';
 import PostHeader from './PostHeader';
 import PostInteraction from './PostInteraction';
+import { PostShareDrawer } from './PostShareDrawer';
 
 type PostProps = {
 	user: User;
@@ -25,7 +26,8 @@ export default function Post({
 	onDelete,
 }: PostProps) {
 	const intl = useIntl();
-	const [open, setOpen] = React.useState(false);
+	const [openCommentDrawer, setOpenCommentDrawer] = React.useState(false);
+	const [openShareDrawer, setOpenShareDrawer] = React.useState(false);
 
 	return (
 		<div className="flex w-full flex-col">
@@ -44,18 +46,29 @@ export default function Post({
 				height={window.innerWidth}
 				src={getStoragePath('posts', post.images[0].url)!}
 			/>
-			<PostInteraction post={post} onComment={() => setOpen(true)} />
+			<PostInteraction
+				post={post}
+				onComment={() => setOpenCommentDrawer(true)}
+				onShare={() => setOpenShareDrawer(true)}
+			/>
 			<div className="flex flex-col px-2">
 				<Typography>{post.description}</Typography>
 			</div>
 			<PostCommentDrawer
-				open={open}
+				post_id={post.id}
+				open={openCommentDrawer}
 				title={intl.formatMessage({
 					id: 'post.comment.title',
 					defaultMessage: 'Comments',
 				})}
-				onOpen={() => setOpen(true)}
-				onClose={() => setOpen(false)}
+				onOpen={() => setOpenCommentDrawer(true)}
+				onClose={() => setOpenCommentDrawer(false)}
+			/>
+			<PostShareDrawer
+				post_id={post.id}
+				open={openShareDrawer}
+				onOpen={() => setOpenShareDrawer(true)}
+				onClose={() => setOpenShareDrawer(false)}
 			/>
 		</div>
 	);

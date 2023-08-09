@@ -43,6 +43,18 @@
       "value": "Confirm"
     }
   ],
+  "common.copied": [
+    {
+      "type": 0,
+      "value": "Copied"
+    }
+  ],
+  "common.copyLink": [
+    {
+      "type": 0,
+      "value": "Copy link"
+    }
+  ],
   "common.edit": [
     {
       "type": 0,
@@ -95,6 +107,12 @@
     {
       "type": 0,
       "value": "Save"
+    }
+  ],
+  "common.share": [
+    {
+      "type": 0,
+      "value": "Share"
     }
   ],
   "common.skip": [

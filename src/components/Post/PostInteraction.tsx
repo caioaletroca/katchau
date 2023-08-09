@@ -7,14 +7,21 @@ import Icon from '../Icon';
 type PostInteractionProps = {
 	post: Post;
 	onComment?: () => void;
+	onShare?: () => void;
 };
 
 export default function PostInteraction({
 	post,
 	onComment,
+	onShare,
 }: PostInteractionProps) {
-	const { data: like } = usePostLike({ post_id: post.id });
-	const { trigger } = useUpdatePostLike({ post_id: post.id });
+	const { data: like, mutate } = usePostLike({ post_id: post.id });
+	const { trigger } = useUpdatePostLike(
+		{ post_id: post.id },
+		{
+			onSuccess: () => mutate(),
+		}
+	);
 
 	const handleLike = () => trigger();
 
@@ -26,7 +33,7 @@ export default function PostInteraction({
 			<IconButton onClick={onComment}>
 				<Icon name="chat_bubble" />
 			</IconButton>
-			<IconButton>
+			<IconButton onClick={onShare}>
 				<Icon name="send" />
 			</IconButton>
 		</div>

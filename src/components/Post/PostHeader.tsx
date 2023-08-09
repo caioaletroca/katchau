@@ -10,6 +10,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { ProfileImage, User } from '@prisma/client';
+import { useSession } from 'next-auth/react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Avatar from '../Avatar';
@@ -31,6 +32,7 @@ export default function PostHeader({
 }: PostHeaderProps) {
 	const intl = useIntl();
 	const [open, setOpen] = React.useState(false);
+	const { data: session } = useSession();
 	const { trigger } = useDeletePost(
 		{ user_id: user.id, post_id },
 		{
@@ -39,6 +41,8 @@ export default function PostHeader({
 	);
 
 	const handleDelete = () => trigger();
+
+	const ownPost = session?.user.id === user.id;
 
 	return (
 		<div className="flex flex-row items-center justify-between p-2">
@@ -54,9 +58,11 @@ export default function PostHeader({
 				/>
 				<Typography>{user.name}</Typography>
 			</div>
-			<IconButton onClick={() => setOpen(true)}>
-				<Icon name="more_vert" />
-			</IconButton>
+			{ownPost && (
+				<IconButton onClick={() => setOpen(true)}>
+					<Icon name="more_vert" />
+				</IconButton>
+			)}
 			<SwipeableDrawer
 				open={open}
 				disableSwipeToOpen
