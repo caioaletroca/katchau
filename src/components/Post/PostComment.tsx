@@ -38,9 +38,6 @@ type PostCommentProps = {
 	onDelete?: (comment_id: string) => void;
 };
 
-var relativeTime = require('dayjs/plugin/relativeTime');
-dayjs.extend(relativeTime);
-
 export default function PostComment({
 	comment,
 	onLike,

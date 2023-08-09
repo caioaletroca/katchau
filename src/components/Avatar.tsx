@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 type AvatarSize = 'small' | 'normal';
 
 enum AvatarSizeValue {
-	'small' = 24,
+	'small' = 32,
 	'normal' = 56,
 }
 
