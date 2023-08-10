@@ -3,6 +3,7 @@
 import { useUpdateProfile } from '@/api/profile';
 import { useRouter, useUnlocalizedPathname } from '@/lib/intl/client';
 import dayjs from 'dayjs';
+import { useSession } from 'next-auth/react';
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 
@@ -41,6 +42,7 @@ type RegisterCompleteProviderProps = React.PropsWithChildren;
 export function RegisterCompleteProvider({
 	children,
 }: RegisterCompleteProviderProps) {
+	const { update } = useSession();
 	const router = useRouter();
 	const pathname = useUnlocalizedPathname();
 	const [formData, _setFormData] = React.useState({});
@@ -64,7 +66,12 @@ export function RegisterCompleteProvider({
 	};
 
 	const { trigger, isMutating } = useUpdateProfile({
-		onSuccess: handleNext,
+		onSuccess: (data) => {
+			update({
+				username: data.username,
+			});
+			handleNext();
+		},
 	});
 
 	const handleSubmit = () => {

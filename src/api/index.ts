@@ -6,8 +6,8 @@ export type RequestSWRParams = {
 	comment_id?: string;
 };
 
-export type RequestSWROptions = {
-	onSuccess?: () => void;
+export type RequestSWROptions<T = any> = {
+	onSuccess?: (data: T) => void;
 };
 
 export type PaginationResponse<T = any> = {

@@ -8,7 +8,13 @@ module.exports = withPlugins([
 	{
 		images: {
 			dangerouslyAllowSVG: true,
-			domains: ['cwlieuwgmwcsbydffhja.supabase.co', 'ui-avatars.com'],
+			domains: [
+				// Storage Localhost
+				'localhost',
+				// Storage Production
+				'cwlieuwgmwcsbydffhja.supabase.co',
+				'ui-avatars.com',
+			],
 		},
 		transpilePackages: ['lodash', '@mui/system', '@mui/material'],
 		modularizeImports: {

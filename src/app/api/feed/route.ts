@@ -27,7 +27,7 @@ export const GET = applyMiddleware(
 		// Get all posts from users the client is following;
 		const posts = await prisma.post.findMany({
 			orderBy: {
-				created_at: 'asc',
+				created_at: 'desc',
 			},
 			take: limit ?? 10,
 			skip: cursor ? 1 : 0,

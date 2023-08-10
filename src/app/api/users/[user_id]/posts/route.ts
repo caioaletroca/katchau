@@ -7,6 +7,9 @@ type GetParams = {
 
 export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 	const posts = await prisma.post.findMany({
+		orderBy: {
+			created_at: 'desc',
+		},
 		where: {
 			user_id: params.user_id,
 		},
