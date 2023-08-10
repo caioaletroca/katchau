@@ -6,7 +6,7 @@ import useSWRMutation from 'swr/mutation';
 import { getFetcher, postFetcher, RequestSWRParams } from '.';
 
 export function useUser({ user_id }: RequestSWRParams) {
-	return useSWR<User>(`/users/${user_id}`, getFetcher);
+	return useSWR<User>(user_id ? `/users/${user_id}` : null, getFetcher);
 }
 
 export function useUserSearch() {

@@ -11,6 +11,7 @@ import SwipeableDrawer from '@/components/SwipeableDrawer';
 import TextField from '@/components/TextField';
 import UsernameTextField from '@/components/UsernameTextField';
 import { useRouter } from '@/lib/intl/client';
+import getFormikValues from '@/utils/form/formikValues';
 import { user } from '@/validation/user';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -104,11 +105,11 @@ export default function ProfileEditPage() {
 		updateProfile(values);
 	};
 
-	const formikValues = Object.assign({}, initialValues, {
-		name: user?.name,
-		username: user?.username,
-		bio: user?.bio,
-	});
+	const formikValues = getFormikValues(initialValues, user, [
+		'name',
+		'username',
+		'bio',
+	]);
 
 	const formik = useFormik({
 		enableReinitialize: true,
