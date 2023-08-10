@@ -12,5 +12,12 @@ export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 		},
 	});
 
+	if (!user) {
+		return NextResponse.json(
+			{ message: 'Resource not found' },
+			{ status: 404 }
+		);
+	}
+
 	return NextResponse.json(user);
 }

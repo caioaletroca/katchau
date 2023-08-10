@@ -17,6 +17,8 @@
 		"compile:i18n": "formatjs compile-folder \"./locales/extract\" --ast --format simple \"./locales/compiled\"",
 		"i18n": "npm run extract:i18n & npm run compile:i18n",
 		"seed": "prisma db seed",
+		"seed:postman": "npm run seed:runtime -- ./prisma/seeds/postman.ts",
+		"seed:runtime": "ts-node --compiler-options {\"\"\"module\"\"\":\"\"\"CommonJS\"\"\"}",
 		"migrate:dev": "prisma migrate dev",
 		"migrate:reset": "prisma migrate reset",
 		"prepare": "husky install",
