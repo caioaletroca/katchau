@@ -43,6 +43,8 @@
   "errors.too_small.string.exact": "Field must contain exactly {minimum} characters",
   "errors.too_small.string.inclusive": "Field must contain at least {minimum} characters",
   "errors.too_small.string.not_inclusive": "Field must contain over {minimum} characters",
+  "feed.noResultsFound": "You can start by looking for your friends!",
+  "feed.noResultsFoundButton": "Search for friends",
   "fileUpload.desktop": "Click or drap and drop to select an image",
   "fileUpload.mobile": "Tap to select an image",
   "home.logoAlt": "Katchau home logo",

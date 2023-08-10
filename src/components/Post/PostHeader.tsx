@@ -1,12 +1,14 @@
 'use client';
 
 import { useDeletePost } from '@/api/posts';
+import { useRouter } from '@/lib/intl/client';
 import {
 	IconButton,
 	List,
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
+	Skeleton,
 	Typography,
 } from '@mui/material';
 import { ProfileImage, User } from '@prisma/client';
@@ -16,6 +18,17 @@ import { useIntl } from 'react-intl';
 import Avatar from '../Avatar';
 import Icon from '../Icon';
 import SwipeableDrawer from '../SwipeableDrawer';
+
+export function PostHeaderLoading() {
+	return (
+		<div className="flex flex-row items-center p-2">
+			<div className="flex w-full flex-1 flex-row items-center gap-3">
+				<Skeleton variant="circular" height={32} width={32} />
+				<Skeleton variant="rectangular" height={16} width={256} />
+			</div>
+		</div>
+	);
+}
 
 type PostHeaderProps = {
 	user: User;
@@ -31,6 +44,7 @@ export default function PostHeader({
 	onDelete,
 }: PostHeaderProps) {
 	const intl = useIntl();
+	const router = useRouter();
 	const [open, setOpen] = React.useState(false);
 	const { data: session } = useSession();
 	const { trigger } = useDeletePost(
@@ -40,13 +54,17 @@ export default function PostHeader({
 		}
 	);
 
+	const handleClick = () => {
+		router.push(`/users/${user.id}`);
+	};
+
 	const handleDelete = () => trigger();
 
 	const ownPost = session?.user.id === user.id;
 
 	return (
 		<div className="flex flex-row items-center justify-between p-2">
-			<div className="flex flex-row items-center gap-3">
+			<div className="flex flex-row items-center gap-3" onClick={handleClick}>
 				<Avatar
 					name={user.name!}
 					alt={intl.formatMessage({

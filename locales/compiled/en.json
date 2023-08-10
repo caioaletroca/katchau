@@ -339,6 +339,18 @@
       "value": " characters"
     }
   ],
+  "feed.noResultsFound": [
+    {
+      "type": 0,
+      "value": "You can start by looking for your friends!"
+    }
+  ],
+  "feed.noResultsFoundButton": [
+    {
+      "type": 0,
+      "value": "Search for friends"
+    }
+  ],
   "fileUpload.desktop": [
     {
       "type": 0,

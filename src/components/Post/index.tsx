@@ -2,16 +2,30 @@
 
 import { PostWithImage } from '@/types/posts';
 import getStoragePath from '@/utils/storage/getStoragePath';
-import { Typography } from '@mui/material';
+import { Skeleton, Typography } from '@mui/material';
 import { ProfileImage, User } from '@prisma/client';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { PostCommentDrawer } from './PostCommentDrawer';
-import PostHeader from './PostHeader';
+import PostHeader, { PostHeaderLoading } from './PostHeader';
 import PostInteraction from './PostInteraction';
 import { PostShareDrawer } from './PostShareDrawer';
+
+export function PostLoading() {
+	return (
+		<div className="flex w-full flex-col">
+			<PostHeaderLoading />
+			<Skeleton className="h-full-w mb-2 w-full" variant="rectangular" />
+			<div className="mb-2 flex flex-col gap-2 px-2">
+				<Skeleton className="w-full" variant="rectangular" height={16} />
+				<Skeleton className="w-full" variant="rectangular" height={16} />
+				<Skeleton className="w-2/3" variant="rectangular" height={16} />
+			</div>
+		</div>
+	);
+}
 
 type PostProps = {
 	user: User;
