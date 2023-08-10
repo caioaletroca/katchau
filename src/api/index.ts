@@ -10,6 +10,11 @@ export type RequestSWROptions = {
 	onSuccess?: () => void;
 };
 
+export type PaginationResponse<T = any> = {
+	data: T[];
+	nextCursor: string;
+};
+
 const api = axios.create({
 	baseURL: '/api',
 });
@@ -47,5 +52,20 @@ export const deleteFetcher = async (url: string, { arg }: { arg: any }) => {
 	const { data } = await api.delete(url, arg);
 	return data;
 };
+
+export function getKeyCursorPagination(
+	index: number,
+	previousPageData: PaginationResponse
+) {
+	if (previousPageData && !previousPageData.data) {
+		return null;
+	}
+
+	if (index === 0) {
+		return `/feed`;
+	}
+
+	return `/feed?cursor=${previousPageData.nextCursor}`;
+}
 
 export default api;

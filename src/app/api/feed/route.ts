@@ -29,7 +29,7 @@ export const GET = applyMiddleware(
 			orderBy: {
 				created_at: 'asc',
 			},
-			take: limit ?? 3,
+			take: limit ?? 10,
 			skip: cursor ? 1 : 0,
 			cursor: queryCursor,
 			where: {
