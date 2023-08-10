@@ -5,21 +5,28 @@ type PullToRefresh = React.PropsWithChildren & {
 	loading?: boolean;
 	disabled?: boolean;
 	maxPull?: number;
+	loadingFetchMore?: boolean;
+	distanceToFetchPercentage?: number;
 	distanceToRefresh?: number;
 	onRefresh?: () => void;
+	onFetchMore?: () => void;
 };
 
 export default function PullToRefresh({
 	loading,
 	maxPull = 128,
+	loadingFetchMore,
+	distanceToFetchPercentage = 20,
 	distanceToRefresh = 76,
 	disabled: globalDisabled,
 	onRefresh,
+	onFetchMore,
 	children,
 }: PullToRefresh) {
 	const loadingSize = 64;
 	const rootRef = React.useRef<HTMLDivElement>(null);
 	const [scroll, setScroll] = React.useState(0);
+	const [scrollTriggered, setScrollTriggered] = React.useState(false);
 	const [start, setStart] = React.useState(false);
 	const [startPoint, setStartPoint] = React.useState(0);
 	const [pullChange, setPullChange] = React.useState(0);
@@ -114,7 +121,30 @@ export default function PullToRefresh({
 	};
 
 	const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-		setScroll(event.currentTarget.scrollTop);
+		const currentScroll = event.currentTarget.scrollTop;
+
+		// Only enable infinite scroll behavior if the event is passed
+		if (onFetchMore) {
+			// Calculate max scroll value
+			const maxScroll =
+				rootRef.current?.scrollHeight! - rootRef.current?.clientHeight!;
+
+			// Percentage to reach the end
+			const scrollPercentage = ((maxScroll - currentScroll) / maxScroll) * 100;
+
+			// Re-enable event when the user went back above the trigger point
+			if (scrollTriggered && scrollPercentage > distanceToFetchPercentage) {
+				setScrollTriggered(false);
+			}
+
+			// Trigger event when reached the point
+			if (!scrollTriggered && scrollPercentage < distanceToFetchPercentage) {
+				onFetchMore?.();
+				setScrollTriggered(true);
+			}
+		}
+
+		setScroll(currentScroll);
 	};
 
 	const rootPaddingTop = React.useMemo(() => {
@@ -160,6 +190,11 @@ export default function PullToRefresh({
 				</div>
 			}
 			{children}
+			{loadingFetchMore && (
+				<div className="flex w-full justify-center py-4">
+					<CircularProgress size={32} />
+				</div>
+			)}
 		</div>
 	);
 }

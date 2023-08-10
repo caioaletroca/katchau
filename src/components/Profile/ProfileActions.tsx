@@ -120,6 +120,8 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 			<SwipeableDrawer
 				anchor="bottom"
 				open={open}
+				disableDiscovery
+				disableSwipeToOpen
 				onOpen={() => setOpen(true)}
 				onClose={() => setOpen(false)}>
 				{/* TODO: Use inbuilt title */}

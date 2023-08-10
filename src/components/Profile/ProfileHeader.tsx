@@ -72,6 +72,7 @@ export default function ProfileHeader({ user_id, onBack }: ProfileHeaderProps) {
 			</AppBar>
 			<SwipeableDrawer
 				open={open}
+				disableDiscovery
 				disableSwipeToOpen
 				anchor="bottom"
 				onOpen={() => setOpen(true)}

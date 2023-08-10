@@ -1,3 +1,4 @@
 export * from './getLocale';
-export * from './getUnlocalizedPathname';
 export * from './getPathname';
+export * from './getSearchParams';
+export * from './getUnlocalizedPathname';
