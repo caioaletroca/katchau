@@ -57,6 +57,8 @@ export default function Post({
 					id: 'post.imageAlt',
 					defaultMessage: 'Main post image',
 				})}
+				placeholder="blur"
+				blurDataURL={post.images[0].blur!}
 				width={window.innerWidth}
 				height={window.innerWidth}
 				src={getStoragePath('posts', post.images[0].url)!}

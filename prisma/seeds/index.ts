@@ -12,6 +12,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
 import supabase from '../../src/database/supabase';
+import blurImage from './blurImage';
 
 const prisma = new PrismaClient();
 
@@ -86,12 +87,15 @@ async function generateProfileImages(prisma: PrismaClient, users: User[]) {
 			.from('profiles')
 			.upload(filePath, file);
 
+		const blur = await blurImage(file);
+
 		const newProfileImage = await prisma.profileImage.update({
 			where: {
 				id: profileImage.id,
 			},
 			data: {
 				url: fileResponse.data?.path,
+				blur,
 			},
 		});
 		profileImages.push(newProfileImage);
@@ -124,10 +128,13 @@ async function generatePostImages(
 			.from('posts')
 			.upload(filePath, file);
 
+		const blur = await blurImage(file);
+
 		const image = await prisma.postImage.create({
 			data: {
 				post_id: posts[i].id,
 				url: fileResponse.data?.path!,
+				blur,
 			},
 		});
 		images.push(image);

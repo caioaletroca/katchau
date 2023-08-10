@@ -1,5 +1,6 @@
 import { prisma } from '@/database/db';
 import supabase from '@/database/supabase';
+import blurImage from '@/utils/image/blurImage';
 import { getToken, JWT } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -23,11 +24,18 @@ export async function GET(req: NextRequest) {
 	return NextResponse.json(posts);
 }
 
+const BLUR_IMAGE_SIZE = 10;
+
 export async function POST(req: NextRequest) {
 	const token = (await getToken({ req })) as JWT;
 	const formData = await req.formData();
 
 	// TODO: error handling
+	const filename = formData.get('fileName') as string;
+	const image = formData.get('image') as Blob;
+	const extension = filename?.split('.').pop();
+
+	const blur = await blurImage(image, BLUR_IMAGE_SIZE);
 
 	const post = await prisma.post.create({
 		data: {
@@ -36,18 +44,17 @@ export async function POST(req: NextRequest) {
 		},
 	});
 
-	const filename = formData.get('fileName') as string;
-	const extension = filename?.split('.').pop();
 	const filePath = `/${token?.sub}/${post.id}.${extension}`;
 
 	const fileResponse = await supabase.storage
 		.from('posts')
-		.upload(filePath, formData.get('image')!);
+		.upload(filePath, image);
 
 	await prisma.postImage.create({
 		data: {
 			post_id: post.id,
 			url: fileResponse.data?.path ?? '',
+			blur,
 		},
 	});
 

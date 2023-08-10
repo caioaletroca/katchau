@@ -84,6 +84,8 @@ export default function ProfileContent({ user_id }: ProfileContentProps) {
 									number: index + 1,
 								}
 							)}
+							placeholder="blur"
+							blurDataURL={post?.images[0]?.blur!}
 							fill
 							sizes="33vw"
 							src={getStoragePath('posts', post?.images[0]?.url)!}
