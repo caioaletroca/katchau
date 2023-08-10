@@ -1,5 +1,6 @@
 import { prisma } from '@/database/db';
 import supabase from '@/database/supabase';
+import blurImage from '@/utils/image/blurImage';
 import { getToken, JWT } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -14,6 +15,8 @@ export async function GET(req: NextRequest) {
 
 	return NextResponse.json(profileImage);
 }
+
+const BLUR_IMAGE_SIZE = 10;
 
 export async function POST(req: NextRequest) {
 	const token = (await getToken({ req })) as JWT;
@@ -44,9 +47,12 @@ export async function POST(req: NextRequest) {
 		},
 	});
 
+	const image = formData.get('image') as Blob;
 	const filename = formData.get('fileName') as string;
 	const extension = filename?.split('.').pop();
 	const filePath = `/${token?.sub}/${profileImage.id}.${extension}`;
+
+	const blur = await blurImage(image, BLUR_IMAGE_SIZE);
 
 	const fileResponse = await supabase.storage
 		.from('profiles')
@@ -58,6 +64,7 @@ export async function POST(req: NextRequest) {
 		},
 		data: {
 			url: fileResponse.data?.path ?? '',
+			blur,
 		},
 	});
 
