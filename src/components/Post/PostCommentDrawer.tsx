@@ -1,7 +1,7 @@
 'use client';
 
-import api from '@/api';
 import { useComments } from '@/api/comments';
+import { api } from '@/lib/fetcher';
 import { useSession } from 'next-auth/react';
 import PullToRefresh from '../PullToRefresh';
 import SwipeableDrawer, { SwipeableDrawerProps } from '../SwipeableDrawer';
