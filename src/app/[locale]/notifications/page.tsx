@@ -80,7 +80,7 @@ export default function NotificationsPage() {
 
 	React.useEffect(() => {
 		trigger();
-	}, []);
+	}, [trigger]);
 
 	const notifications = notificationsResponse?.map((f) => f.data).flat();
 

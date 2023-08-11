@@ -1,6 +1,6 @@
 'use client';
 
-import api from '@/lib/fetcher';
+import { api } from '@/lib/fetcher';
 import { useRouter } from '@/lib/intl/client';
 import React from 'react';
 
