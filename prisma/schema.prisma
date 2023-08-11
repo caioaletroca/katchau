@@ -65,6 +65,8 @@ model User {
 	comments			Comment[]
 	post_likes		PostLike[]
 	comment_likes	CommentLike[]
+	notifications	Notification[] @relation("UserNotification")
+	notification_actors Notification[] @relation("ActorNotification")
 }
 
 model VerificationToken {
@@ -167,4 +169,18 @@ model CommentLike {
 
 	user	User	@relation(fields: [user_id], references: [id], onDelete: Cascade)
 	comment	Comment?	@relation(fields: [comment_id], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+	@@map("notifications")
+	id	String @id @default(cuid())
+	user_id String
+	actor_id	String
+	event	String
+	url	String
+	visualized	Boolean		 @default(false)
+	created_at	DateTime   @default(now())
+
+	user	User	@relation("UserNotification", fields: [user_id], references: [id], onDelete: Cascade)
+	actor User	@relation("ActorNotification", fields: [actor_id], references: [id], onDelete: Cascade)
 }
