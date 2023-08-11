@@ -3,7 +3,7 @@
  * @param obj
  * @returns
  */
-export function getQueryString(obj: any) {
+export default function getQueryString(obj: any) {
 	const searchParams = new URLSearchParams();
 
 	if (!obj) {

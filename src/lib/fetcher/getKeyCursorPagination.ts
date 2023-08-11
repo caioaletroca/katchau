@@ -1,4 +1,4 @@
-import { getQueryString } from '@/utils/searchParams/getQueryString';
+import getQueryString from '@/utils/searchParams/getQueryString';
 import { PaginationResponse } from './types';
 
 export function getKeyCursorPagination(basePath: string, queryParams?: any) {
