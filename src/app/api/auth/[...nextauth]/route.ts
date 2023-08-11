@@ -1,8 +1,7 @@
+import { CustomPrismaAdapter } from '@/database/adapter';
 import { prisma } from '@/database/db';
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import isEmpty from 'lodash/isEmpty';
 import NextAuth from 'next-auth';
-import { Adapter } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
 import credentialProvider from './CredentialsProvider';
 
@@ -14,7 +13,7 @@ const handler = NextAuth({
 			clientSecret: process.env.NEXT_PUBLIC_GOOGLE_PROVIDER_SECRET_ID!,
 		}),
 	],
-	adapter: PrismaAdapter(prisma) as Adapter,
+	adapter: CustomPrismaAdapter(prisma),
 	session: {
 		strategy: 'jwt',
 		maxAge: 30 * 24 * 60 * 60,
