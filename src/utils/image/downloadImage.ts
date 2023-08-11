@@ -1,6 +1,6 @@
 'use client';
 
-import api from '@/api';
+import api from '@/lib/fetcher';
 
 export default async function downloadImage(url: string) {
 	const { data } = await api.get(url, { responseType: 'blob' });

@@ -1,6 +1,6 @@
+import getSearchParams from '@/utils/searchParams/getSearchParams';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { getSearchParams } from '../intl/server';
 import { NextHandler } from './types';
 
 export function validateSearchParams(schema: z.ZodObject<any>) {
