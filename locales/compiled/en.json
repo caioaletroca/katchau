@@ -447,6 +447,12 @@
       "value": "Katchau logo on loading animation"
     }
   ],
+  "notification.empty": [
+    {
+      "type": 0,
+      "value": "No notifications for now"
+    }
+  ],
   "notification.followedMessage": [
     {
       "children": [

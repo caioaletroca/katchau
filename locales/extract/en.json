@@ -61,6 +61,7 @@
   "new.post.descriptionPlaceholder": "Write a caption...",
   "new.post.loading.label": "Uploading your post",
   "new.post.loading.logoAlt": "Katchau logo on loading animation",
+  "notification.empty": "No notifications for now",
   "notification.followedMessage": "<bold>{username}</bold> started following you",
   "notification.likedCommentMessage": "<bold>{username}</bold> liked your comment on a post",
   "notification.likedPostMessage": "<bold>{username}</bold> liked your post",
