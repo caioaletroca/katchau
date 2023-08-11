@@ -1,6 +1,10 @@
 import { Prisma } from '@prisma/client';
 
-export type NotificationEvent = 'liked_post' | 'liked_comment' | 'followed';
+export type NotificationEvent =
+	| 'liked_post'
+	| 'liked_comment'
+	| 'followed'
+	| 'commented';
 
 const notificationWithActor = Prisma.validator<Prisma.NotificationArgs>()({
 	include: {

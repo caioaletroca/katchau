@@ -34,6 +34,7 @@ function NotificationPageLoading() {
 						<NotificationLoading key={index} />
 					))}
 			</div>
+			<BottomNavigation />
 		</PageMobile>
 	);
 }
@@ -62,6 +63,7 @@ function NotificationPageEmpty() {
 					})}
 				</Typography>
 			</div>
+			<BottomNavigation />
 		</PageMobile>
 	);
 }
@@ -94,6 +96,19 @@ export default function NotificationsPage() {
 		setSize(size + 1);
 	};
 
+	const handleDelete = (notification_id: string) => {
+		mutate((response) => {
+			return response?.map((notifications) => {
+				return {
+					...notifications,
+					data: notifications.data.filter(
+						(notification) => notification.id === notification_id
+					),
+				};
+			});
+		});
+	};
+
 	if ((!notifications || notifications?.length === 0) && isLoading) {
 		return <NotificationPageLoading />;
 	}
@@ -116,7 +131,11 @@ export default function NotificationsPage() {
 				loadingFetchMore={isLoading}
 				onFetchMore={handleFetchMore}>
 				{notifications?.map((notification) => (
-					<Notification key={notification.id} notification={notification} />
+					<Notification
+						key={notification.id}
+						notification={notification}
+						onDelete={handleDelete}
+					/>
 				))}
 			</PullToRefresh>
 			<BottomNavigation />

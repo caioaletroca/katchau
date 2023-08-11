@@ -1,5 +1,6 @@
 'use client';
 
+import BottomNavigation from '@/components/BottomNavigation';
 import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
 import { useRouter } from '@/lib/intl/client';
@@ -21,7 +22,10 @@ export default function PostPage() {
 					defaultMessage: 'Posts',
 				})}
 			/>
-			<Content />
+			<div className="flex flex-1 flex-col">
+				<Content />
+			</div>
+			<BottomNavigation />
 		</PageMobile>
 	);
 }

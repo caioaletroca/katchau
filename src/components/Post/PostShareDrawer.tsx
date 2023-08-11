@@ -38,7 +38,12 @@ export function PostShareDrawer({
 	};
 
 	return (
-		<SwipeableDrawer onClose={onClose} anchor="bottom" {...others}>
+		<SwipeableDrawer
+			anchor="bottom"
+			disableDiscovery
+			disableSwipeToOpen
+			onClose={onClose}
+			{...others}>
 			<div className="flex">
 				<div className="flex flex-col justify-center p-4">
 					<IconButton onClick={handleShare}>

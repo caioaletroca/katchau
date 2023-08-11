@@ -86,7 +86,7 @@ export default function PostComment({
 			<div className="flex py-4">
 				<Avatar
 					name={comment.user.name!}
-					url={comment.user.profile_picture[0].url}
+					url={comment.user.profile_picture?.[0]?.url}
 					size="small"
 				/>
 			</div>

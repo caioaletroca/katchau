@@ -17,6 +17,7 @@ import {
 	Skeleton,
 	Typography,
 } from '@mui/material';
+import isEmpty from 'lodash/isEmpty';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -107,6 +108,19 @@ export default function Notification({
 			);
 		}
 
+		if (event === 'commented') {
+			return intl.formatMessage(
+				{
+					id: 'notification.commentedMessage',
+					defaultMessage: '<bold>{username}</bold> commented on your post',
+				},
+				{
+					username,
+					bold: (str: React.ReactNode) => <b>{str}</b>,
+				}
+			);
+		}
+
 		return '';
 	};
 
@@ -127,7 +141,7 @@ export default function Notification({
 			<div className="flex py-4">
 				<Avatar
 					name={notification.actor.name!}
-					url={notification.actor.profile_picture[0].url}
+					url={notification.actor.profile_picture?.[0]?.url}
 					size="small"
 				/>
 			</div>
@@ -139,7 +153,7 @@ export default function Notification({
 					)}
 				</Typography>
 			</div>
-			{notification.event === 'followed' && !follows && (
+			{notification.event === 'followed' && !isEmpty(follows) && (
 				<div className="flex items-center">
 					<LoadingButton
 						loading={updateFollowLoading}
@@ -153,7 +167,7 @@ export default function Notification({
 					</LoadingButton>
 				</div>
 			)}
-			{notification.event === 'followed' && follows && (
+			{notification.event === 'followed' && isEmpty(follows) && (
 				<div className="flex items-center">
 					<Button
 						disabled

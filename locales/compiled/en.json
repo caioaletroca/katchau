@@ -447,6 +447,22 @@
       "value": "Katchau logo on loading animation"
     }
   ],
+  "notification.commentedMessage": [
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "username"
+        }
+      ],
+      "type": 8,
+      "value": "bold"
+    },
+    {
+      "type": 0,
+      "value": " commented on your post"
+    }
+  ],
   "notification.empty": [
     {
       "type": 0,
