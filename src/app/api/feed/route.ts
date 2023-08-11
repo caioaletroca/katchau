@@ -1,8 +1,10 @@
 import { prisma } from '@/database/db';
-import { getSearchParams } from '@/lib/intl/server';
 import { applyMiddleware, validateSearchParams } from '@/lib/routerMiddleware';
+import { ApiResponse } from '@/utils/response';
+import getParseSearchParams from '@/utils/searchParams/getParseSearchParams';
+import getSearchParams from '@/utils/searchParams/getSearchParams';
 import { getToken } from 'next-auth/jwt';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { z } from 'zod';
 
 const SearchSchema = z.object({
@@ -16,22 +18,14 @@ export const GET = applyMiddleware(
 	[validateSearchParams(SearchSchema)],
 	async (req: NextRequest) => {
 		const token = await getToken({ req });
-		const { cursor, limit } = getSearchParams<SearchType>(req);
-
-		const queryCursor = cursor
-			? {
-					id: cursor,
-			  }
-			: undefined;
+		const search = getSearchParams<SearchType>(req);
 
 		// Get all posts from users the client is following;
 		const posts = await prisma.post.findMany({
+			...getParseSearchParams(search),
 			orderBy: {
 				created_at: 'desc',
 			},
-			take: limit ?? 10,
-			skip: cursor ? 1 : 0,
-			cursor: queryCursor,
 			where: {
 				user: {
 					is: {
@@ -53,9 +47,6 @@ export const GET = applyMiddleware(
 			},
 		});
 
-		return NextResponse.json({
-			data: posts,
-			nextCursor: posts.length ? posts[posts.length - 1].id : undefined,
-		});
+		return ApiResponse.sendCursorPagination(posts);
 	}
 );
