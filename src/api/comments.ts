@@ -1,13 +1,13 @@
-import { CommentWithUserAndLike } from '@/types/comments';
-import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation';
 import {
 	deleteFetcher,
 	getFetcher,
 	postFetcher,
 	RequestSWROptions,
 	RequestSWRParams,
-} from '.';
+} from '@/lib/fetcher';
+import { CommentWithUserAndLike } from '@/types/comments';
+import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
 
 export function useComment({ comment_id }: RequestSWRParams) {
 	return useSWR<CommentWithUserAndLike>(`/comments/${comment_id}`, getFetcher);

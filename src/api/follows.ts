@@ -1,7 +1,7 @@
+import { RequestSWROptions, getFetcher, postFetcher } from '@/lib/fetcher';
 import { FollowedWithUser, FollowingWithUser } from '@/types/follows';
 import useSWR from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { RequestSWROptions, getFetcher, postFetcher } from '.';
 
 export function useFollows({ user_id }: { user_id: string }) {
 	return useSWR<{

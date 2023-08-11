@@ -1,12 +1,12 @@
-import { PostLike } from '@prisma/client';
-import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation';
 import {
 	getFetcher,
 	postFetcher,
 	RequestSWROptions,
 	RequestSWRParams,
-} from '.';
+} from '@/lib/fetcher';
+import { PostLike } from '@prisma/client';
+import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
 
 export function usePostLike({ post_id }: RequestSWRParams) {
 	return useSWR<PostLike>(`/posts/${post_id}/likes`, getFetcher);

@@ -1,12 +1,12 @@
-import { PostWithImage } from '@/types/posts';
-import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation';
 import {
 	deleteFetcher,
 	getFetcher,
 	RequestSWROptions,
 	RequestSWRParams,
-} from '.';
+} from '@/lib/fetcher';
+import { PostWithImage } from '@/types/posts';
+import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
 
 export function usePost({ user_id, post_id }: RequestSWRParams) {
 	return useSWR<PostWithImage>(

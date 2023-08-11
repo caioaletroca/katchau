@@ -1,12 +1,12 @@
-import { ProfileImage } from '@prisma/client';
-import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation';
 import {
 	deleteFetcher,
 	getFetcher,
 	postFormDataFetcher,
 	RequestSWROptions,
-} from '.';
+} from '@/lib/fetcher';
+import { ProfileImage } from '@prisma/client';
+import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
 
 export function useUserProfileImage({ user_id }: { user_id: string }) {
 	return useSWR<ProfileImage>(`/users/${user_id}/profile/image`, getFetcher);

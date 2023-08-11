@@ -1,23 +1,4 @@
-import axios from 'axios';
-
-export type RequestSWRParams = {
-	user_id?: string;
-	post_id?: string;
-	comment_id?: string;
-};
-
-export type RequestSWROptions<T = any> = {
-	onSuccess?: (data: T) => void;
-};
-
-export type PaginationResponse<T = any> = {
-	data: T[];
-	nextCursor: string;
-};
-
-const api = axios.create({
-	baseURL: '/api',
-});
+import { api } from './api';
 
 export const getFetcher = async (url: string) => {
 	const { data } = await api.get(url);
@@ -52,20 +33,3 @@ export const deleteFetcher = async (url: string, { arg }: { arg: any }) => {
 	const { data } = await api.delete(url, arg);
 	return data;
 };
-
-export function getKeyCursorPagination(
-	index: number,
-	previousPageData: PaginationResponse
-) {
-	if (previousPageData && !previousPageData.data) {
-		return null;
-	}
-
-	if (index === 0) {
-		return `/feed`;
-	}
-
-	return `/feed?cursor=${previousPageData.nextCursor}`;
-}
-
-export default api;
