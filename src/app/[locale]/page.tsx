@@ -1,13 +1,14 @@
 'use client';
 
 import { useFeed } from '@/api/feed';
+import { useNotifications } from '@/api/notifications';
 import BottomNavigation from '@/components/BottomNavigation';
 import Icon from '@/components/Icon';
 import PageMobile from '@/components/Page/PageMobile';
 import Post, { PostLoading } from '@/components/Post';
 import PullToRefresh from '@/components/PullToRefresh';
 import { useRouter } from '@/lib/intl/client';
-import { Button, Typography } from '@mui/material';
+import { Badge, Button, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 
@@ -54,19 +55,34 @@ function FeedLoading() {
 
 function FeedHeader() {
 	const intl = useIntl();
+	const router = useRouter();
+	const { data: notificationResponse } = useNotifications({
+		visualized: false,
+	});
+
+	const notifications = notificationResponse?.map((f) => f.data).flat();
+
+	const handleClick = () => router.push('/notifications');
 
 	return (
-		<div className="flex flex-row">
-			<div className="relative flex h-14 w-28">
-				<Image
-					alt={intl.formatMessage({
-						id: 'home.logoAlt',
-						defaultMessage: 'Katchau home logo',
-					})}
-					fill
-					src="/text-inverted.svg"
-				/>
+		<div className="flex flex-row pr-2">
+			<div className="flex flex-1 flex-row">
+				<div className="relative flex h-14 w-28">
+					<Image
+						alt={intl.formatMessage({
+							id: 'home.logoAlt',
+							defaultMessage: 'Katchau home logo',
+						})}
+						fill
+						src="/text-inverted.svg"
+					/>
+				</div>
 			</div>
+			<IconButton onClick={handleClick}>
+				<Badge badgeContent={notifications?.length} color="primary">
+					<Icon name="favorite" />
+				</Badge>
+			</IconButton>
 		</div>
 	);
 }
