@@ -1,6 +1,7 @@
 import {
 	deleteFetcher,
 	getFetcher,
+	patchFetcher,
 	postFormDataFetcher,
 	RequestSWROptions,
 	RequestSWRParams,
@@ -22,6 +23,13 @@ export function usePosts({ user_id }: RequestSWRParams) {
 
 export function useCreatePost(options?: RequestSWROptions) {
 	return useSWRMutation('/posts', postFormDataFetcher, options);
+}
+
+export function useUpdatePost(
+	{ post_id }: RequestSWRParams,
+	options?: RequestSWROptions
+) {
+	return useSWRMutation(`/posts/${post_id}`, patchFetcher, options);
 }
 
 export function useDeletePost(

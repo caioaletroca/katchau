@@ -57,7 +57,14 @@ export default function NewPostDescription() {
 				onConfirm={formik.handleSubmit}
 			/>
 			<div className="h-full-w relative mb-4">
-				<Image alt="" src={imageUrl} layout="fill" />
+				<Image
+					alt={intl.formatMessage({
+						id: 'post.postImageAlt',
+						defaultMessage: 'Image of your post',
+					})}
+					src={imageUrl}
+					layout="fill"
+				/>
 			</div>
 			<div className="flex flex-col p-2">
 				<FormikProvider value={formik}>
@@ -65,11 +72,11 @@ export default function NewPostDescription() {
 						<TextField
 							name="description"
 							label={intl.formatMessage({
-								id: 'new.post.descriptionLabel',
+								id: 'post.descriptionLabel',
 								defaultMessage: 'Description',
 							})}
 							placeholder={intl.formatMessage({
-								id: 'new.post.descriptionPlaceholder',
+								id: 'post.descriptionPlaceholder',
 								defaultMessage: 'Write a caption...',
 							})}
 							maxRows={10}

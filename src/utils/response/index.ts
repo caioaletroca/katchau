@@ -13,7 +13,7 @@ export const ApiResponse = {
 		return new NextResponse('', { status: 200 });
 	},
 
-	send(data: Data, meta: any) {
+	send(data?: Data, meta?: any) {
 		return NextResponse.json({
 			data,
 			meta,

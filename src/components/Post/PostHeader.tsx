@@ -58,6 +58,8 @@ export default function PostHeader({
 		router.push(`/users/${user.id}`);
 	};
 
+	const handleEdit = () => router.push(`/post/${user.id}/${post_id}/edit`);
+
 	const handleDelete = () => trigger();
 
 	const ownPost = session?.user.id === user.id;
@@ -88,13 +90,24 @@ export default function PostHeader({
 				onOpen={() => setOpen(true)}
 				onClose={() => setOpen(false)}>
 				<List>
+					<ListItemButton onClick={handleEdit}>
+						<ListItemIcon>
+							<Icon name="edit" />
+						</ListItemIcon>
+						<ListItemText
+							primary={intl.formatMessage({
+								id: 'common.edit',
+								defaultMessage: 'Edit',
+							})}
+						/>
+					</ListItemButton>
 					<ListItemButton className="text-red-500" onClick={handleDelete}>
 						<ListItemIcon>
 							<Icon className="text-red-500" name="delete" />
 						</ListItemIcon>
 						<ListItemText
 							primary={intl.formatMessage({
-								id: 'post.header.deleteButton',
+								id: 'common.delete',
 								defaultMessage: 'Delete',
 							})}
 						/>

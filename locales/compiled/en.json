@@ -55,6 +55,12 @@
       "value": "Copy link"
     }
   ],
+  "common.delete": [
+    {
+      "type": 0,
+      "value": "Delete"
+    }
+  ],
   "common.edit": [
     {
       "type": 0,
@@ -423,18 +429,6 @@
       "value": "Username"
     }
   ],
-  "new.post.descriptionLabel": [
-    {
-      "type": 0,
-      "value": "Description"
-    }
-  ],
-  "new.post.descriptionPlaceholder": [
-    {
-      "type": 0,
-      "value": "Write a caption..."
-    }
-  ],
   "new.post.loading.label": [
     {
       "type": 0,
@@ -535,16 +529,34 @@
       "value": "Comments"
     }
   ],
-  "post.header.deleteButton": [
+  "post.descriptionLabel": [
     {
       "type": 0,
-      "value": "Delete"
+      "value": "Description"
+    }
+  ],
+  "post.descriptionPlaceholder": [
+    {
+      "type": 0,
+      "value": "Write a caption..."
+    }
+  ],
+  "post.edit.title": [
+    {
+      "type": 0,
+      "value": "Post Edit"
     }
   ],
   "post.imageAlt": [
     {
       "type": 0,
       "value": "Main post image"
+    }
+  ],
+  "post.postImageAlt": [
+    {
+      "type": 0,
+      "value": "Image of your post"
     }
   ],
   "post.title": [
