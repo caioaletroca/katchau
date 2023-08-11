@@ -58,6 +58,7 @@ function FeedHeader() {
 	const router = useRouter();
 	const { data: notificationResponse } = useNotifications({
 		visualized: false,
+		limit: 100,
 	});
 
 	const notifications = notificationResponse?.map((f) => f.data).flat();
@@ -79,7 +80,7 @@ function FeedHeader() {
 				</div>
 			</div>
 			<IconButton onClick={handleClick}>
-				<Badge badgeContent={notifications?.length} color="primary">
+				<Badge badgeContent={notifications?.length} max={99} color="primary">
 					<Icon name="favorite" />
 				</Badge>
 			</IconButton>
