@@ -11,7 +11,7 @@ import SwipeableDrawer from '@/components/SwipeableDrawer';
 import TextField from '@/components/TextField';
 import UsernameTextField from '@/components/UsernameTextField';
 import { useRouter } from '@/lib/intl/client';
-import getFormikValues from '@/utils/form/formikValues';
+import getFormikValues from '@/utils/form/getFormikValues';
 import { user } from '@/validation/user';
 import { LoadingButton } from '@mui/lab';
 import {
