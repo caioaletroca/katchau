@@ -6,10 +6,7 @@ type GetParams = {
 	post_id: string;
 };
 
-export async function GET(
-	req: NextRequest,
-	{ params }: { params: PostParams }
-) {
+export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 	const token = await getToken({ req });
 
 	const like = await prisma.postLike.findFirst({

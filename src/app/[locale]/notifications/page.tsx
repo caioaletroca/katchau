@@ -69,7 +69,13 @@ function NotificationPageEmpty() {
 export default function NotificationsPage() {
 	const intl = useIntl();
 	const router = useRouter();
-	const { data: notificationsResponse, isLoading } = useNotifications();
+	const {
+		data: notificationsResponse,
+		isLoading,
+		size,
+		setSize,
+		mutate,
+	} = useNotifications();
 	const { trigger } = useClearNotifications();
 
 	React.useEffect(() => {
@@ -80,7 +86,15 @@ export default function NotificationsPage() {
 
 	const handleBack = () => router.push('/');
 
-	if (isLoading) {
+	const handleFetchMore = () => {
+		if (isLoading) {
+			return;
+		}
+
+		setSize(size + 1);
+	};
+
+	if ((!notifications || notifications?.length === 0) && isLoading) {
 		return <NotificationPageLoading />;
 	}
 
@@ -97,7 +111,10 @@ export default function NotificationsPage() {
 				})}
 				onBackClick={handleBack}
 			/>
-			<PullToRefresh>
+			<PullToRefresh
+				onRefresh={() => mutate()}
+				loadingFetchMore={isLoading}
+				onFetchMore={handleFetchMore}>
 				{notifications?.map((notification) => (
 					<Notification key={notification.id} notification={notification} />
 				))}

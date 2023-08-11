@@ -104,7 +104,7 @@ export default function FeedPage() {
 		return <FeedLoading />;
 	}
 
-	if (posts?.length === 0 && !isLoading) {
+	if (posts?.length === 0) {
 		return <FeedEmpty />;
 	}
 
