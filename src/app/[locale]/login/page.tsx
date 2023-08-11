@@ -62,6 +62,7 @@ export default function LoginPage() {
 							className="flex w-full flex-col gap-2"
 							onSubmit={handleSubmit}>
 							<TextField
+								data-cy="username"
 								name="username"
 								placeholder={intl.formatMessage({
 									id: 'login.usernamePlaceholder',
@@ -70,6 +71,7 @@ export default function LoginPage() {
 								variant="outlined"
 							/>
 							<TextField
+								data-cy="password"
 								type="password"
 								name="password"
 								placeholder={intl.formatMessage({
@@ -78,7 +80,7 @@ export default function LoginPage() {
 								})}
 								variant="outlined"
 							/>
-							<Button type="submit" variant="outlined">
+							<Button data-cy="submit" type="submit" variant="outlined">
 								{intl.formatMessage({
 									id: 'login.loginButton',
 									defaultMessage: 'Log In',

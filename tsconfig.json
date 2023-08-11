@@ -9,7 +9,7 @@
 		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
-		"moduleResolution": "node",
+		"moduleResolution": "node16",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
@@ -22,7 +22,10 @@
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"@badeball/cypress-cucumber-preprocessor/*": [
+				"./node_modules/@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/*"
+			]
 		}
 	},
 	"include": [
