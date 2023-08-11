@@ -82,6 +82,7 @@ export function PostCommentDrawer({
 				paper: 'h-full rounded-t-xl overflow-hidden',
 			}}
 			disableDiscovery
+			disableSwipeToOpen
 			{...others}>
 			<PullToRefresh loading={isLoading} onRefresh={handleRefresh}>
 				{comments?.map((comment) => (

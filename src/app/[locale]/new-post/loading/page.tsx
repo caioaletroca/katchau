@@ -10,11 +10,15 @@ import './styles.scss';
 
 export default function NewPostLoadingPage() {
 	const intl = useIntl();
-	const { handleSubmit } = useNewPost();
+	const { loading, handleSubmit } = useNewPost();
 
 	React.useEffect(() => {
+		if (loading) {
+			return;
+		}
+
 		handleSubmit();
-	}, [handleSubmit]);
+	}, [loading, handleSubmit]);
 
 	return (
 		<PageMobile>

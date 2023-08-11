@@ -9,23 +9,17 @@ type GetParams = {
 };
 
 export async function GET(req: NextRequest, { params }: { params: GetParams }) {
-	const user = await prisma.user.findFirst({
+	const post = await prisma.post.findFirst({
 		where: {
-			id: params.user_id,
+			id: params.post_id,
+			user_id: params.user_id,
 		},
 		include: {
-			posts: {
-				where: {
-					id: params.post_id,
-				},
-				include: {
-					images: true,
-				},
-			},
+			images: true,
 		},
 	});
 
-	return NextResponse.json(user?.posts[0]);
+	return NextResponse.json(post);
 }
 
 type DeleteParams = GetParams;

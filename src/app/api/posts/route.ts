@@ -34,13 +34,14 @@ export async function POST(req: NextRequest) {
 	const filename = formData.get('fileName') as string;
 	const image = formData.get('image') as Blob;
 	const extension = filename?.split('.').pop();
+	const description = (formData.get('description') as string) ?? '';
 
 	const blur = await blurImage(image, BLUR_IMAGE_SIZE);
 
 	const post = await prisma.post.create({
 		data: {
 			user_id: token.sub!,
-			description: formData.get('description') && '',
+			description,
 		},
 	});
 

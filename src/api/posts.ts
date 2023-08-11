@@ -1,6 +1,7 @@
 import {
 	deleteFetcher,
 	getFetcher,
+	postFormDataFetcher,
 	RequestSWROptions,
 	RequestSWRParams,
 } from '@/lib/fetcher';
@@ -17,6 +18,10 @@ export function usePost({ user_id, post_id }: RequestSWRParams) {
 
 export function usePosts({ user_id }: RequestSWRParams) {
 	return useSWR<PostWithImage[]>(`/users/${user_id}/posts`, getFetcher);
+}
+
+export function useCreatePost(options?: RequestSWROptions) {
+	return useSWRMutation('/posts', postFormDataFetcher, options);
 }
 
 export function useDeletePost(

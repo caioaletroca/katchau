@@ -7,6 +7,7 @@ export type RequestSWRParams = {
 
 export type RequestSWROptions<T = any> = {
 	onSuccess?: (data: T) => void;
+	onError?: () => void;
 };
 
 export type PaginationResponse<T = any> = {
