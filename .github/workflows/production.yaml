@@ -32,9 +32,9 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-prod-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-${{ env.cache-name }}-
             ${{ runner.os }}-build-prod-
 
   Migrate:
@@ -55,9 +55,9 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-prod-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-${{ env.cache-name }}-
             ${{ runner.os }}-build-prod-
       - name: Deploy Migration
         run: npx prisma migrate deploy
@@ -82,9 +82,9 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-prod-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-${{ env.cache-name }}-
             ${{ runner.os }}-build-prod-
       - name: Unit tests
         run: npm run test
@@ -109,9 +109,9 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-prod-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-${{ env.cache-name }}-
             ${{ runner.os }}-build-prod-
       - name: Deploy Project Artifacts
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
