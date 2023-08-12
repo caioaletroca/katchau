@@ -20,12 +20,6 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: 'Cache Build'
         uses: actions/cache@v3
         with:
@@ -36,6 +30,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ env.cache-name }}-
             ${{ runner.os }}-build-prod-
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
   Migrate:
     runs-on: ubuntu-latest
