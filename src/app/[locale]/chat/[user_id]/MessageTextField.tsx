@@ -1,3 +1,5 @@
+'use client';
+
 import { useCreateMessage } from '@/api/messages';
 import Icon from '@/components/Icon';
 import TextField from '@/components/TextField';

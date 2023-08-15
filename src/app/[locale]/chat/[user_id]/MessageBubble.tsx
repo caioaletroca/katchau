@@ -1,3 +1,5 @@
+'use client';
+
 import { Skeleton, Typography } from '@mui/material';
 import { Message } from '@prisma/client';
 import classNames from 'classnames';
