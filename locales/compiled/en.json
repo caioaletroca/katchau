@@ -435,6 +435,12 @@
       "value": "Log In With Google"
     }
   ],
+  "login.logoAlt": [
+    {
+      "type": 0,
+      "value": "Katchau logo"
+    }
+  ],
   "login.passwordPlaceholder": [
     {
       "type": 0,

@@ -45,10 +45,12 @@ export default function LoginPage() {
 
 	return (
 		<div className="flex h-full flex-col justify-center">
-			<div className="m-8 flex h-full flex-col items-center justify-center gap-2">
-				{/* TODO: Proper Logo rendering */}
+			<div className="m-6 flex h-full flex-col items-center justify-center gap-2">
 				<Image
-					alt="Logo"
+					alt={intl.formatMessage({
+						id: 'login.logoAlt',
+						defaultMessage: 'Katchau logo',
+					})}
 					src="/full-logo-inverted.svg"
 					height={256}
 					width={256}
@@ -57,39 +59,35 @@ export default function LoginPage() {
 					initialValues={initialValues}
 					validate={withZodSchema(LoginSchema)}
 					onSubmit={handleSubmit}>
-					{({ handleBlur, handleChange, handleSubmit }) => (
-						<Form
-							className="flex w-full flex-col gap-2"
-							onSubmit={handleSubmit}>
-							<TextField
-								data-cy="username"
-								name="username"
-								placeholder={intl.formatMessage({
-									id: 'login.usernamePlaceholder',
-									defaultMessage: 'Username',
-								})}
-								variant="outlined"
-							/>
-							<TextField
-								data-cy="password"
-								type="password"
-								name="password"
-								placeholder={intl.formatMessage({
-									id: 'login.passwordPlaceholder',
-									defaultMessage: 'Password',
-								})}
-								variant="outlined"
-							/>
-							<Button data-cy="submit" type="submit" variant="outlined">
-								{intl.formatMessage({
-									id: 'login.loginButton',
-									defaultMessage: 'Log In',
-								})}
-							</Button>
-						</Form>
-					)}
+					<Form className="flex w-full flex-col gap-2">
+						<TextField
+							data-cy="username"
+							name="username"
+							placeholder={intl.formatMessage({
+								id: 'login.usernamePlaceholder',
+								defaultMessage: 'Username',
+							})}
+							variant="outlined"
+						/>
+						<TextField
+							data-cy="password"
+							type="password"
+							name="password"
+							placeholder={intl.formatMessage({
+								id: 'login.passwordPlaceholder',
+								defaultMessage: 'Password',
+							})}
+							variant="outlined"
+						/>
+						<Button data-cy="submit" type="submit" variant="outlined">
+							{intl.formatMessage({
+								id: 'login.loginButton',
+								defaultMessage: 'Log In',
+							})}
+						</Button>
+					</Form>
 				</Formik>
-				<Divider>OR</Divider>
+				<Divider className="my-2">OR</Divider>
 				<Button onClick={handleGoogleLogin}>
 					{intl.formatMessage({
 						id: 'login.loginWithGoogleButton',
