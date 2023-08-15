@@ -2,8 +2,10 @@ import {
 	getFetcher,
 	getKeyCursorPagination,
 	PaginationResponse,
+	patchFetcher,
 	postFetcher,
 	RequestSWROptions,
+	RequestSWRParams,
 } from '@/lib/fetcher';
 import { Message } from '@prisma/client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
@@ -68,6 +70,13 @@ export function useMessages({ user_id }: { user_id: string }) {
 	};
 }
 
-export function useCreateMessage(options?: RequestSWROptions) {
-	return useSWRMutation('/chat', postFetcher, options);
+export function useCreateMessage(
+	{ user_id }: RequestSWRParams,
+	options?: RequestSWROptions
+) {
+	return useSWRMutation(`/chat/${user_id}`, postFetcher, options);
+}
+
+export function useClearMessages({ user_id }: RequestSWRParams) {
+	return useSWRMutation(`/chat/${user_id}`, patchFetcher);
 }

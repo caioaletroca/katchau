@@ -1,6 +1,6 @@
 'use client';
 
-import { useMessages } from '@/api/messages';
+import { useClearMessages, useMessages } from '@/api/messages';
 import { useUser } from '@/api/users';
 import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
@@ -23,7 +23,7 @@ function UserChatPageLoading() {
 	return (
 		<PageMobile>
 			<PageMobileHeader onBackClick={handleBack} />
-			<div className="flex flex-1 flex-col justify-end">
+			<div className="flex flex-1 flex-col">
 				<MessageBubbleLoading owner />
 				<MessageBubbleLoading />
 				<MessageBubbleLoading owner />
@@ -65,6 +65,11 @@ export default function UserChatPage() {
 	const { user_id } = useParams();
 	const { data: user, isLoading: userLoading } = useUser({ user_id });
 	const { messages } = useMessages({ user_id });
+	const { trigger } = useClearMessages({ user_id });
+
+	React.useEffect(() => {
+		trigger();
+	}, [trigger]);
 
 	const handleBack = () => router.back();
 

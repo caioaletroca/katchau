@@ -10,7 +10,7 @@ import { z } from 'zod';
 const SearchSchema = z.object({
 	visualized: z.enum(['true', 'false']).optional(),
 	cursor: z.string().max(64).optional(),
-	limit: z.number().max(100).optional(),
+	limit: z.coerce.number().max(100).optional(),
 });
 
 type SearchType = z.infer<typeof SearchSchema>;
@@ -19,10 +19,13 @@ export const GET = applyMiddleware(
 	[validateSearchParams(SearchSchema)],
 	async (req: NextRequest) => {
 		const token = await getToken({ req });
-		const { visualized, ...others } = getSearchParams<SearchType>(req);
+		const { visualized, ...search } = getSearchParams<SearchType>(req);
 
 		const notifications = await prisma.notification.findMany({
-			...getParseSearchParams(others),
+			...getParseSearchParams({
+				cursor: search.cursor,
+				limit: Number(search.limit),
+			}),
 			orderBy: {
 				created_at: 'desc',
 			},

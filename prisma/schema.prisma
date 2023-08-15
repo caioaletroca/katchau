@@ -193,6 +193,7 @@ model Message {
 	user_id	String
 	sender_id	String
 	content	String
+	visualized	Boolean		 @default(false)
 	created_at	DateTime   @default(now())
 
 	user	User	@relation("UserMessage", fields: [user_id], references: [id], onDelete: Cascade)

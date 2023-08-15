@@ -46,12 +46,15 @@ export default function MessageTextField({
 		onSubmit: handleSubmit,
 	});
 
-	const { trigger, isMutating } = useCreateMessage({
-		onSuccess: () => {
-			formik.resetForm();
-			onSubmit?.();
-		},
-	});
+	const { trigger, isMutating } = useCreateMessage(
+		{ user_id },
+		{
+			onSuccess: () => {
+				formik.resetForm();
+				onSubmit?.();
+			},
+		}
+	);
 
 	return (
 		<div className="flex p-2">

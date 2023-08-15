@@ -1,8 +1,13 @@
 import { prisma } from '@/database/db';
-import { applyMiddleware, validateSearchParams } from '@/lib/routerMiddleware';
+import {
+	applyMiddleware,
+	validateBody,
+	validateSearchParams,
+} from '@/lib/routerMiddleware';
 import { ApiResponse } from '@/utils/response';
 import getParseSearchParams from '@/utils/searchParams/getParseSearchParams';
 import getSearchParams from '@/utils/searchParams/getSearchParams';
+import { message } from '@/validation/message';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
@@ -49,3 +54,52 @@ export const GET = applyMiddleware(
 		return ApiResponse.sendCursorPagination(messages.reverse());
 	}
 );
+
+type PostParams = {
+	user_id: string;
+};
+
+const PostSchema = z.object({
+	content: message.content,
+});
+
+export const POST = applyMiddleware(
+	[validateBody(PostSchema)],
+	async (req: NextRequest, { params }: { params: PostParams }) => {
+		const token = await getToken({ req });
+		const body = await req.json();
+
+		const message = await prisma.message.create({
+			data: {
+				user_id: params.user_id,
+				sender_id: token?.sub!,
+				content: body.content,
+			},
+		});
+
+		return ApiResponse.send(message);
+	}
+);
+
+type PatchParams = {
+	user_id: string;
+};
+
+export async function PATCH(
+	req: NextRequest,
+	{ params }: { params: PatchParams }
+) {
+	const token = await getToken({ req });
+
+	await prisma.message.updateMany({
+		where: {
+			user_id: token?.sub!,
+			sender_id: params.user_id,
+		},
+		data: {
+			visualized: true,
+		},
+	});
+
+	return ApiResponse.empty();
+}
