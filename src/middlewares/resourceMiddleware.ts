@@ -9,7 +9,7 @@ export default async function resourceMiddleware(
 ) {
 	const pathname = getUnlocalizedPath(req);
 
-	if (pathname.match(/(.*).(svg|png|jpg|jpeg|ico)/g)) {
+	if (pathname.match(/(.*).(svg|png|jpg|jpeg|ico|json)/g)) {
 		return NextResponse.next();
 	}
 
