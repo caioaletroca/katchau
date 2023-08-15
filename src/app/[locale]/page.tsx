@@ -63,7 +63,9 @@ function FeedHeader() {
 
 	const notifications = notificationResponse?.map((f) => f.data).flat();
 
-	const handleClick = () => router.push('/notifications');
+	const handleNotification = () => router.push('/notifications');
+
+	const handleChat = () => router.push('/chat');
 
 	return (
 		<div className="flex flex-row pr-2">
@@ -79,10 +81,13 @@ function FeedHeader() {
 					/>
 				</div>
 			</div>
-			<IconButton onClick={handleClick}>
+			<IconButton onClick={handleNotification}>
 				<Badge badgeContent={notifications?.length} max={99} color="primary">
 					<Icon name="favorite" />
 				</Badge>
+			</IconButton>
+			<IconButton onClick={handleChat}>
+				<Icon name="chat_bubble" />
 			</IconButton>
 		</div>
 	);

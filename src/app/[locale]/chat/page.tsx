@@ -1,6 +1,6 @@
 'use client';
 
-import { useConversation } from '@/api/messages';
+import { useConversation } from '@/api/conversations';
 import BottomNavigation from '@/components/BottomNavigation';
 import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
@@ -40,8 +40,6 @@ export default function ChatPage() {
 	const intl = useIntl();
 	const router = useRouter();
 	const { data: conversation, isLoading } = useConversation();
-
-	console.log(conversation);
 
 	const handleBack = () => router.push('/');
 
