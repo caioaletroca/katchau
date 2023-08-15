@@ -1,7 +1,20 @@
-import { useLazySWR } from '@/hooks/useLazySWR';
-import { getFetcher, Response } from '@/lib/fetcher';
+import {
+	getFetcher,
+	getKeyCursorPagination,
+	PaginationResponse,
+} from '@/lib/fetcher';
 import { Conversation } from '@/types/conversations';
+import { CursorPaginationSearchParams } from '@/utils/searchParams/types';
+import useSWRInfinite from 'swr/infinite';
 
-export function useConversation() {
-	return useLazySWR<Response<Conversation>>(getFetcher);
+type ConversationSearchParams = CursorPaginationSearchParams & {
+	name?: string;
+	visualized?: boolean;
+};
+
+export function useConversation(params?: ConversationSearchParams) {
+	return useSWRInfinite<PaginationResponse<Conversation>>(
+		getKeyCursorPagination('/chat', params),
+		getFetcher
+	);
 }

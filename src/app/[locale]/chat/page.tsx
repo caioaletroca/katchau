@@ -8,6 +8,7 @@ import PullToRefresh from '@/components/PullToRefresh';
 import SearchTextField from '@/components/SearchTextField';
 import { useSearchTextField } from '@/hooks/useSearchTextField';
 import { useRouter } from '@/lib/intl/client';
+import getFlatPaginated from '@/utils/searchParams/getFlatPaginated';
 import { List } from '@mui/material';
 import { useIntl } from 'react-intl';
 import ConversationListItem, {
@@ -29,25 +30,37 @@ function ChatPageLoading() {
 export default function ChatPage() {
 	const intl = useIntl();
 	const router = useRouter();
-	const { data: conversation, isLoading, trigger } = useConversation();
 
 	const handleBack = () => router.push('/');
 
-	const handleStart = (path: string) => {
-		trigger(path);
-	};
-
 	const handleSubmit = (path: string) => {
 		router.push(path);
-		trigger(path);
 	};
 
 	const { search, handleChange, handleClear } = useSearchTextField({
 		name: 'name',
 		basePath: '/chat',
-		onStart: handleStart,
 		onSubmit: handleSubmit,
 	});
+
+	const {
+		data: conversationResponse,
+		isLoading,
+		size,
+		setSize,
+	} = useConversation(
+		search
+			? {
+					name: search,
+			  }
+			: {}
+	);
+
+	const conversation = getFlatPaginated(conversationResponse);
+
+	const handleFetchMore = () => {
+		setSize(size + 1);
+	};
 
 	return (
 		<PageMobile>
@@ -65,11 +78,11 @@ export default function ChatPage() {
 					onChange={handleChange}
 				/>
 			</div>
-			<PullToRefresh>
+			<PullToRefresh onFetchMore={handleFetchMore}>
 				{isLoading && <ChatPageLoading />}
 				{!isLoading && (
 					<List>
-						{conversation?.data?.map((item) => (
+						{conversation?.map((item) => (
 							<ConversationListItem key={item.id} conversation={item} />
 						))}
 					</List>

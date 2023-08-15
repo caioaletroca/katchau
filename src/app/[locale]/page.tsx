@@ -1,5 +1,6 @@
 'use client';
 
+import { useConversation } from '@/api/conversations';
 import { useFeed } from '@/api/feed';
 import { useNotifications } from '@/api/notifications';
 import BottomNavigation from '@/components/BottomNavigation';
@@ -8,6 +9,7 @@ import PageMobile from '@/components/Page/PageMobile';
 import Post, { PostLoading } from '@/components/Post';
 import PullToRefresh from '@/components/PullToRefresh';
 import { useRouter } from '@/lib/intl/client';
+import getFlatPaginated from '@/utils/searchParams/getFlatPaginated';
 import { Badge, Button, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
@@ -60,8 +62,13 @@ function FeedHeader() {
 		visualized: false,
 		limit: 100,
 	});
+	const { data: conversationResponse } = useConversation({
+		visualized: false,
+		limit: 100,
+	});
 
-	const notifications = notificationResponse?.map((f) => f.data).flat();
+	const notifications = getFlatPaginated(notificationResponse);
+	const conversations = getFlatPaginated(conversationResponse);
 
 	const handleNotification = () => router.push('/notifications');
 
@@ -87,7 +94,9 @@ function FeedHeader() {
 				</Badge>
 			</IconButton>
 			<IconButton onClick={handleChat}>
-				<Icon name="chat_bubble" />
+				<Badge badgeContent={conversations?.length} max={99} color="primary">
+					<Icon name="chat_bubble" />
+				</Badge>
 			</IconButton>
 		</div>
 	);
@@ -96,7 +105,7 @@ function FeedHeader() {
 export default function FeedPage() {
 	const { data: feed, size, setSize, mutate, isLoading } = useFeed();
 
-	const posts = feed?.map((f) => f.data).flat();
+	const posts = getFlatPaginated(feed);
 
 	const handleFetchMore = () => {
 		if (isLoading) {
