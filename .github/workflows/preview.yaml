@@ -26,7 +26,7 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-preview-
@@ -55,7 +55,7 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-preview-
@@ -82,7 +82,7 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-preview-

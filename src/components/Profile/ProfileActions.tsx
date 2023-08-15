@@ -6,13 +6,11 @@ import { useRouter } from '@/lib/intl/client';
 import { LoadingButton } from '@mui/lab';
 import {
 	Button,
-	Divider,
 	Grid,
 	List,
 	ListItemButton,
 	ListItemText,
 	Skeleton,
-	Typography,
 } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import React from 'react';
@@ -137,13 +135,9 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 				open={open}
 				disableDiscovery
 				disableSwipeToOpen
+				title={user?.name!}
 				onOpen={() => setOpen(true)}
 				onClose={() => setOpen(false)}>
-				{/* TODO: Use inbuilt title */}
-				<Typography className="mb-2 font-bold" align="center">
-					{user?.name}
-				</Typography>
-				<Divider />
 				<List>
 					<ListItemButton onClick={handleFollow}>
 						<ListItemText
