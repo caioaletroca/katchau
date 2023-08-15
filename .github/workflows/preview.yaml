@@ -37,7 +37,7 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
-  Unit Tests:
+  UnitTests:
     runs-on: ubuntu-latest
     environment: Preview
     needs: Build
@@ -62,7 +62,7 @@ jobs:
       - name: Unit tests
         run: npm run test
 
-  E2E Tests:
+  E2ETests:
     runs-on: ubuntu-latest
     environment: Preview
     needs: Build
@@ -92,7 +92,7 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     environment: Preview
-    needs: Unit Tests
+    needs: UnitTests
     steps:
       - name: Checkout
         uses: actions/checkout@v3
