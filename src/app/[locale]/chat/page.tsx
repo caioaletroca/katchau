@@ -48,13 +48,7 @@ export default function ChatPage() {
 		isLoading,
 		size,
 		setSize,
-	} = useConversation(
-		search
-			? {
-					name: search,
-			  }
-			: {}
-	);
+	} = useConversation(search ? { name: search } : {});
 
 	const conversation = getFlatPaginated(conversationResponse);
 

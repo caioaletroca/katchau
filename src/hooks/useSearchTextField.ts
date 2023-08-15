@@ -9,13 +9,15 @@ import React from 'react';
 type UseSearchProps = {
 	name: string;
 	basePath?: string;
-	onStart?: (path: string) => void;
-	onSubmit?: (path: string) => void;
+	apiPath?: string;
+	onStart?: (path: string, api: string) => void;
+	onSubmit?: (path: string, api: string) => void;
 };
 
 export function useSearchTextField({
 	name,
 	basePath,
+	apiPath = basePath,
 	onStart,
 	onSubmit,
 }: UseSearchProps) {
@@ -35,14 +37,17 @@ export function useSearchTextField({
 		}
 
 		setSearch(searchString!);
-		onStart?.(getKey(basePath!, searchString));
+		onStart?.(getKey(basePath!, searchString), getKey(apiPath!, searchString));
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useDebounce(
 		async () => {
-			onSubmit?.(getKey(basePath!, search !== '' ? { name: search } : {}));
+			onSubmit?.(
+				getKey(basePath!, search !== '' ? { name: search } : {}),
+				getKey(apiPath!, search !== '' ? { name: search } : {})
+			);
 		},
 		300,
 		[search]

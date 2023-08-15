@@ -12,7 +12,7 @@ export default function getParseSearchParams({
 					},
 			  }
 			: undefined),
-		take: limit ?? 10,
+		take: limit ? Number(limit) : 10,
 		skip: cursor ? 1 : 0,
 	};
 }

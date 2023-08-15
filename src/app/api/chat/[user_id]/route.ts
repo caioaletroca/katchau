@@ -30,10 +30,7 @@ export const GET = applyMiddleware(
 		const search = getSearchParams<SearchType>(req);
 
 		const messages = await prisma.message.findMany({
-			...getParseSearchParams({
-				cursor: search.cursor,
-				limit: Number(search.limit),
-			}),
+			...getParseSearchParams(search),
 			orderBy: {
 				created_at: 'desc',
 			},

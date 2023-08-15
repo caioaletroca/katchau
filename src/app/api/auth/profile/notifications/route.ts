@@ -22,10 +22,7 @@ export const GET = applyMiddleware(
 		const { visualized, ...search } = getSearchParams<SearchType>(req);
 
 		const notifications = await prisma.notification.findMany({
-			...getParseSearchParams({
-				cursor: search.cursor,
-				limit: Number(search.limit),
-			}),
+			...getParseSearchParams(search),
 			orderBy: {
 				created_at: 'desc',
 			},
