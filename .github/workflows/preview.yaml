@@ -25,6 +25,7 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.cache/Cypress
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
@@ -54,6 +55,7 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.cache/Cypress
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
@@ -79,6 +81,7 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.cache/Cypress
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
@@ -87,7 +90,10 @@ jobs:
       - name: Build test database
         run: npm run test:db:start
       - name: Run E2E test suit
-        run: npm run test:e2e
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm start
+          browser: chrome
 
   Deploy:
     runs-on: ubuntu-latest
@@ -108,6 +114,7 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.cache/Cypress
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
