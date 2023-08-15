@@ -181,12 +181,22 @@ async function generateFollows(
 	for (let i = 0; i < n; i++) {
 		const index1 = Math.floor(Math.random() * (users.length - 1));
 		const index2 = Math.floor(Math.random() * (users.length - 1));
-		const follow = await prisma.follows.create({
-			data: {
+
+		let follow = await prisma.follows.findFirst({
+			where: {
 				followed_id: users[index1].id,
 				following_id: users[index2].id,
 			},
 		});
+		if (!follow) {
+			follow = await prisma.follows.create({
+				data: {
+					followed_id: users[index1].id,
+					following_id: users[index2].id,
+				},
+			});
+		}
+
 		follows.push(follow);
 	}
 

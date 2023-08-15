@@ -10,6 +10,10 @@ export type RequestSWROptions<T = any> = {
 	onError?: () => void;
 };
 
+export type Response<T = any> = {
+	data: T[];
+};
+
 export type PaginationResponse<T = any> = {
 	data: T[];
 	nextCursor: string;
