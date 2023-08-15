@@ -577,6 +577,18 @@
       "value": "Post Edit"
     }
   ],
+  "post.error.postNotFound": [
+    {
+      "type": 0,
+      "value": "Post not found"
+    }
+  ],
+  "post.error.userNotFound": [
+    {
+      "type": 0,
+      "value": "User not found"
+    }
+  ],
   "post.imageAlt": [
     {
       "type": 0,

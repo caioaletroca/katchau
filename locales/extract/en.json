@@ -76,6 +76,8 @@
   "post.descriptionLabel": "Description",
   "post.descriptionPlaceholder": "Write a caption...",
   "post.edit.title": "Post Edit",
+  "post.error.postNotFound": "Post not found",
+  "post.error.userNotFound": "User not found",
   "post.imageAlt": "Main post image",
   "post.postImageAlt": "Image of your post",
   "post.title": "Posts",

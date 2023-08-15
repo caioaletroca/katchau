@@ -33,7 +33,8 @@
 		"./src/**/*.ts",
 		"./src/**/*.tsx",
 		"./types/*.ts",
-		".next/types/**/*.ts"
+		".next/types/**/*.ts",
+		".vercel/output/types/**/*.ts"
 	],
 	"exclude": ["node_modules"]
 }
