@@ -115,6 +115,21 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 							)}
 						</div>
 					</Grid>
+					<Grid item xs={5}>
+						<div className="flex flex-col">
+							{!ownProfile && (
+								<Button
+									variant="outlined"
+									size="small"
+									onClick={() => router.push(`/chat/${user?.id}`)}>
+									{intl.formatMessage({
+										id: 'common.message',
+										defaultMessage: 'Message',
+									})}
+								</Button>
+							)}
+						</div>
+					</Grid>
 				</Grid>
 			</div>
 			<SwipeableDrawer
