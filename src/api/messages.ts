@@ -69,5 +69,5 @@ export function useMessages({ user_id }: { user_id: string }) {
 }
 
 export function useCreateMessage(options?: RequestSWROptions) {
-	return useSWRMutation('/messages', postFetcher, options);
+	return useSWRMutation('/chat', postFetcher, options);
 }
