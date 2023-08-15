@@ -67,6 +67,8 @@ model User {
 	comment_likes	CommentLike[]
 	notifications	Notification[] @relation("UserNotification")
 	notification_actors Notification[] @relation("ActorNotification")
+	messages	Message[] @relation("UserMessage")
+	messages_sended Message[] @relation("SenderMessage")
 }
 
 model VerificationToken {
@@ -183,4 +185,16 @@ model Notification {
 
 	user	User	@relation("UserNotification", fields: [user_id], references: [id], onDelete: Cascade)
 	actor User	@relation("ActorNotification", fields: [actor_id], references: [id], onDelete: Cascade)
+}
+
+model Message {
+	@@map("messages")
+	id	String	@id	@default(cuid())
+	user_id	String
+	sender_id	String
+	content	String
+	created_at	DateTime   @default(now())
+
+	user	User	@relation("UserMessage", fields: [user_id], references: [id], onDelete: Cascade)
+	sender User	@relation("SenderMessage", fields: [sender_id], references: [id], onDelete: Cascade)
 }

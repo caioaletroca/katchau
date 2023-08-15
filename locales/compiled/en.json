@@ -1,4 +1,22 @@
 {
+  "chat.emptyMessage": [
+    {
+      "type": 0,
+      "value": "No messages on this conversation"
+    }
+  ],
+  "chat.messagePlaceholder": [
+    {
+      "type": 0,
+      "value": "Message..."
+    }
+  ],
+  "chat.title": [
+    {
+      "type": 0,
+      "value": "Conversations"
+    }
+  ],
   "common.agree": [
     {
       "type": 0,

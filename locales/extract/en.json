@@ -1,4 +1,7 @@
 {
+  "chat.emptyMessage": "No messages on this conversation",
+  "chat.messagePlaceholder": "Message...",
+  "chat.title": "Conversations",
   "common.agree": "I agree",
   "common.bio": "Bio",
   "common.birth": "Date of birth",
