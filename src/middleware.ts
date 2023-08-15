@@ -14,7 +14,7 @@ export default async function middleware(
 		[
 			resourceMiddleware,
 			localizationMiddleware({
-				whitelist: ['/', '/login', '/register', '/register/(.*)'],
+				whitelist: ['/login', '/register', '/register/(.*)'],
 			}),
 			apiMiddleware({
 				basePath: '/api',

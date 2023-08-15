@@ -37,7 +37,7 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
-  Tests:
+  Unit Tests:
     runs-on: ubuntu-latest
     environment: Preview
     needs: Build
@@ -62,10 +62,37 @@ jobs:
       - name: Unit tests
         run: npm run test
 
+  E2E Tests:
+    runs-on: ubuntu-latest
+    environment: Preview
+    needs: Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: 'Restore Cache Build'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.vercel/output
+          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-preview-
+      - name: Build test database
+        run: npm run test:db:start
+      - name: Run E2E test suit
+        run: npm run test:e2e
+
   Deploy:
     runs-on: ubuntu-latest
     environment: Preview
-    needs: Tests
+    needs: Unit Tests
     steps:
       - name: Checkout
         uses: actions/checkout@v3
