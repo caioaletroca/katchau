@@ -1,6 +1,6 @@
 import { getKeyCursorPagination } from './getKeyCursorPagination';
 
-describe('checkBasePath', () => {
+describe('getKeyCursorPagination', () => {
 	const basePath = '/api/users';
 	const params = {
 		username: 'test',
