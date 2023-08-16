@@ -98,7 +98,7 @@ jobs:
         with:
           version: 1.83.7
       - name: Start Supabase
-        run: supabase init && supabase start
+        run: supabase start
       - name: Run E2E test suit
         uses: cypress-io/github-action@v5
         with:
