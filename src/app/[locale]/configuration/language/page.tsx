@@ -79,6 +79,7 @@ export default function ConfigurationLanguagePage() {
 			<List>
 				{filteredLanguages.map((language) => (
 					<ListItemButton
+						data-cy={`language-locale-${language?.locale}`}
 						key={language?.name}
 						onClick={() => handleSelectLanguage(language!)}>
 						<ListItemText

@@ -34,3 +34,21 @@ Then('I should see the changes in Profile page', () => {
 		getElement('profile-bio').should('have.text', user.bio);
 	});
 });
+
+When('I select another language', () => {
+	getElement('language-locale-pt-BR').click();
+});
+
+Then('I should see the application in another language', () => {
+	cy.url().should('contain', 'pt-BR');
+});
+
+When('I try to log off', () => {
+	getElement('configuration-logout').click();
+
+	cy.wait(2000);
+});
+
+Then('I should be in Login page', () => {
+	cy.url().should('contain', '/login');
+});

@@ -59,6 +59,7 @@ export default function ConfigurationPage() {
 				})}>
 				<List dense>
 					<ListItemButton
+						data-cy="configuration-language"
 						onClick={() => router.push('/configuration/language')}>
 						<ListItemIcon>
 							<Icon name="language" />
@@ -79,6 +80,7 @@ export default function ConfigurationPage() {
 				})}>
 				<List dense>
 					<ListItemButton
+						data-cy="configuration-logout"
 						className="text-red-600"
 						color="secondary"
 						onClick={() => signOut({ callbackUrl: `/${locale}/login` })}>

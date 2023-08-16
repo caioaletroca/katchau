@@ -26,3 +26,8 @@ Given('I navigate to Configuration page', () => {
 	getElement('profile-menu').click();
 	getElement('profile-drawer-configuration').click();
 });
+
+Given('I navigate to Language page', () => {
+	Step(this, 'I navigate to Configuration page');
+	getElement('configuration-language').click();
+});
