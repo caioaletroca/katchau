@@ -26,6 +26,7 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
@@ -56,6 +57,7 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
@@ -82,6 +84,7 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
@@ -115,6 +118,7 @@ jobs:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
