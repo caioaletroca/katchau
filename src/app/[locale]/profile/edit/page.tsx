@@ -80,20 +80,27 @@ export default function ProfileEditPage() {
 	const intl = useIntl();
 	const router = useRouter();
 	const { data: session } = useSession();
-	const { data: user, isLoading } = useUser({ user_id: session?.user.id });
+	const {
+		data: user,
+		isLoading,
+		mutate: mutateUser,
+	} = useUser({ user_id: session?.user.id });
 	const {
 		data: profileImage,
 		isLoading: profileImageLoading,
-		mutate,
+		mutate: mutateProfileImage,
 	} = useProfileImage();
 	const { trigger: updateProfile, isMutating: updatingProfile } =
 		useUpdateProfile({
-			onSuccess: () => router.push('/profile'),
+			onSuccess: () => {
+				mutateUser();
+				router.push('/profile');
+			},
 		});
 	const { trigger: deleteProfileImage, isMutating: deletingProfileImage } =
 		useDeleteProfileImage({
 			onSuccess: () => {
-				mutate();
+				mutateProfileImage();
 				setOpenDialog(false);
 				setOpenDrawer(false);
 			},
@@ -155,6 +162,7 @@ export default function ProfileEditPage() {
 				<FormikProvider value={formik}>
 					<Form className="flex flex-col gap-4">
 						<TextField
+							data-cy="profile-edit-fullname"
 							name="name"
 							label={intl.formatMessage({
 								id: 'common.name',
@@ -173,6 +181,7 @@ export default function ProfileEditPage() {
 							fullWidth
 						/>
 						<TextField
+							data-cy="profile-edit-bio"
 							name="bio"
 							label={intl.formatMessage({
 								id: 'common.bio',

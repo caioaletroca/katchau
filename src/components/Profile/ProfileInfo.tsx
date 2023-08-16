@@ -81,10 +81,15 @@ export default function ProfileInfo({ user_id }: ProfileInfoProps) {
 				/>
 			</div>
 			<div className="mb-2 flex flex-col">
-				<Typography className="font-bold" variant="subtitle2">
+				<Typography
+					data-cy="profile-name"
+					className="font-bold"
+					variant="subtitle2">
 					{user?.name}
 				</Typography>
-				<Typography variant="body2">{user?.bio}</Typography>
+				<Typography data-cy="profile-bio" variant="body2">
+					{user?.bio}
+				</Typography>
 			</div>
 		</div>
 	);

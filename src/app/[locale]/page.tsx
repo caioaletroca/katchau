@@ -14,6 +14,8 @@ import { Badge, Button, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useIntl } from 'react-intl';
 
+// TODO: Fix message RTD on prod
+
 function FeedEmpty() {
 	const intl = useIntl();
 	const router = useRouter();
@@ -75,7 +77,7 @@ function FeedHeader() {
 	const handleChat = () => router.push('/chat');
 
 	return (
-		<div className="flex flex-row pr-2">
+		<div data-cy="header-home" className="flex flex-row pr-2">
 			<div className="flex flex-1 flex-row">
 				<div className="relative flex h-14 w-28">
 					<Image

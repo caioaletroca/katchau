@@ -35,7 +35,11 @@ export default function PageMobileHeader({
 					</IconButton>
 				)}
 				{onCancel && (
-					<Button disabled={disabled} color="error" onClick={onCancel}>
+					<Button
+						data-cy="header-cancel"
+						disabled={disabled}
+						color="error"
+						onClick={onCancel}>
 						{intl.formatMessage({
 							id: 'common.cancel',
 							defaultMessage: 'Cancel',
@@ -51,7 +55,11 @@ export default function PageMobileHeader({
 					</IconButton>
 				)}
 				{onConfirm && (
-					<LoadingButton loading={loading} color="success" onClick={onConfirm}>
+					<LoadingButton
+						data-cy="header-confirm"
+						loading={loading}
+						color="success"
+						onClick={onConfirm}>
 						{confirmLabel ??
 							intl.formatMessage({
 								id: 'common.confirm',

@@ -65,7 +65,7 @@ export default function ProfileHeader({ user_id, onBack }: ProfileHeaderProps) {
 				<Toolbar>
 					{onBack && <ProfileHeaderBackButton onBack={onBack} />}
 					<Typography className="flex-1">{user?.username}</Typography>
-					<IconButton onClick={() => setOpen(true)}>
+					<IconButton data-cy="profile-menu" onClick={() => setOpen(true)}>
 						<Icon name="menu" />
 					</IconButton>
 				</Toolbar>
@@ -78,7 +78,9 @@ export default function ProfileHeader({ user_id, onBack }: ProfileHeaderProps) {
 				onOpen={() => setOpen(true)}
 				onClose={() => setOpen(false)}>
 				<List dense>
-					<ListItemButton onClick={() => router.push('/configuration')}>
+					<ListItemButton
+						data-cy="profile-drawer-configuration"
+						onClick={() => router.push('/configuration')}>
 						<ListItemIcon>
 							<span className="material-symbols-outlined">settings</span>
 						</ListItemIcon>

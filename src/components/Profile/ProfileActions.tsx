@@ -77,6 +77,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 						<div className="flex flex-col">
 							{ownProfile && (
 								<Button
+									data-cy="profile-edit"
 									variant="outlined"
 									size="small"
 									onClick={() => router.push('/profile/edit')}>
@@ -88,6 +89,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 							)}
 							{!ownProfile && ownFollow && (
 								<LoadingButton
+									data-cy="profile-following"
 									loading={isMutating}
 									variant="outlined"
 									size="small"
@@ -101,6 +103,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 							)}
 							{!ownProfile && !ownFollow && (
 								<LoadingButton
+									data-cy="profile-follow"
 									loading={isMutating}
 									variant="contained"
 									size="small"
@@ -117,6 +120,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 						<div className="flex flex-col">
 							{!ownProfile && (
 								<Button
+									data-cy="profile-message"
 									variant="outlined"
 									size="small"
 									onClick={() => router.push(`/chat/${user?.id}`)}>
