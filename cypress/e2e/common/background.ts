@@ -4,7 +4,7 @@ import { getElement } from '../../utils';
 const url = Cypress.config('baseUrl');
 
 Given('I am logged in', () => {
-	cy.session('test', () => {
+	cy.session('cypress-session', () => {
 		cy.visit(url!);
 
 		getElement('username').should('be.visible').type('cypress.user');
