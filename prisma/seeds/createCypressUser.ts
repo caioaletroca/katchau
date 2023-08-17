@@ -1,11 +1,27 @@
 import actor from '../../cypress/fixtures/users/actor.json';
 import cypressUser from '../../cypress/fixtures/users/cypress.json';
+import supabase from '../../src/database/supabase';
 import { createPostImage } from './utils/image';
 import main from './utils/main';
 import { createPost } from './utils/post';
 import { createUser } from './utils/user';
 
 main(async (prisma) => {
+	const buckets = await supabase.storage.listBuckets();
+	const bucketNames = buckets.data?.map((d) => d.name);
+
+	if (bucketNames?.includes('posts')) {
+		await supabase.storage.createBucket('posts', {
+			public: true,
+		});
+	}
+
+	if (bucketNames?.includes('profiles')) {
+		await supabase.storage.createBucket('profiles', {
+			public: true,
+		});
+	}
+
 	await createUser(
 		prisma,
 		{
