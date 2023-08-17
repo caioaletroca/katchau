@@ -5,20 +5,10 @@ import {
 	Then,
 	When,
 } from '@badeball/cypress-cucumber-preprocessor';
-import { getElement } from '../utils';
+import { exec, getElement } from '../utils';
 
 Before({ tags: '@start' }, () => {
-	cy.exec('npm run seed:e2e:runtime -- ./prisma/seeds/createCypressUser', {
-		failOnNonZeroExit: false,
-	}).then((result) => {
-		if (result.code) {
-			throw new Error(`
-				Execution Failed Exit code ${result.code}\n
-				Stdout:\n${result.stdout}\n
-				Stderr:\n${result.stderr}\n
-			`);
-		}
-	});
+	exec('npm run seed:e2e:runtime -- ./prisma/seeds/createCypressUser');
 });
 
 After({ tags: '@end' }, () => {

@@ -1,3 +1,2 @@
-export function getElement(id: string) {
-	return cy.get(`[data-cy='${id}']`);
-}
+export * from './element';
+export * from './exec';
