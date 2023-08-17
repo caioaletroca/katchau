@@ -25,8 +25,6 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/node_modules
-            ${{ github.workspace }}/.cache/Cypress
-            ${{ github.workspace }}/.next
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
@@ -39,10 +37,11 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
-  UnitTests:
+  BuildTest:
     runs-on: ubuntu-latest
-    environment: Preview
-    needs: Build
+    environment: Test
+    env:
+      NODE_ENV: test
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -51,25 +50,26 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-      - name: 'Restore Cache Build'
+      - name: 'Cache Build'
         uses: actions/cache@v3
         with:
           path: |
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.cache/Cypress
             ${{ github.workspace }}/.next
-            ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-
-            ${{ runner.os }}-build-preview-
-      - name: Unit tests
-        run: npm run test
+            ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-preview-test-
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Test
+        run: npm run build
 
-  E2ETests:
+  UnitTests:
     runs-on: ubuntu-latest
     environment: Preview
-    needs: Build
+    needs: BuildTest
     env:
       NODE_ENV: test
     steps:
@@ -87,11 +87,38 @@ jobs:
             ${{ github.workspace }}/node_modules
             ${{ github.workspace }}/.cache/Cypress
             ${{ github.workspace }}/.next
-            ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-
-            ${{ runner.os }}-build-preview-
+            ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-preview-test-
+      - name: Unit tests
+        run: npm run test
+
+  E2ETests:
+    runs-on: ubuntu-latest
+    environment: Preview
+    needs: BuildTest
+    env:
+      NODE_ENV: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: 'Restore Cache Build'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
+          key: ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-preview-test-
       - uses: supabase/setup-cli@v1
         with:
           version: 1.83.7
@@ -132,8 +159,6 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/node_modules
-            ${{ github.workspace }}/.cache/Cypress
-            ${{ github.workspace }}/.next
             ${{ github.workspace }}/.vercel/output
           key: ${{ runner.os }}-build-preview-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
