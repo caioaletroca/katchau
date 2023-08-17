@@ -123,7 +123,8 @@ jobs:
         with:
           version: 1.83.7
       - name: Start Supabase
-        run: supabase start -x studio,edge-runtime,gotrue,kong,inbucket,logflare,vector,postgrest,pgadmin-schema-diff,migra
+        run: supabase start -x studio
+        # run: supabase start -x studio,edge-runtime,gotrue,kong,inbucket,logflare,vector,postgrest,pgadmin-schema-diff,migra
       - name: Prisma Migrate
         run: npx prisma migrate dev
         env:
