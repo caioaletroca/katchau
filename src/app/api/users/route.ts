@@ -20,11 +20,20 @@ export const GET = applyMiddleware(
 	async (req: NextRequest) => {
 		const { name, ...search } = getSearchParams<SearchType>(req);
 
+		const nameQuery = name?.trim().replace('.', ' ').split(' ').join(' <-> ');
+
 		const users = await prisma.user.findMany({
 			...getParseSearchParams(search),
+			orderBy: {
+				_relevance: {
+					fields: ['name'],
+					search: nameQuery ?? '',
+					sort: 'desc',
+				},
+			},
 			where: {
 				name: {
-					search: name ?? '',
+					search: nameQuery ?? '',
 				},
 			},
 			include: {

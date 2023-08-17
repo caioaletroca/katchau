@@ -1,0 +1,9 @@
+{
+	"name": "Actor User",
+	"username": "actor.user",
+	"email": "actor.user@email.com",
+
+	"post": {
+		"description": "Test"
+	}
+}

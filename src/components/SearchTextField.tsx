@@ -20,6 +20,7 @@ export default function SearchTextField({
 
 	return (
 		<TextField
+			data-cy="search-input"
 			name="search"
 			value={value}
 			placeholder={intl.formatMessage({

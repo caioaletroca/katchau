@@ -12,7 +12,7 @@ Before({ tags: '@start' }, () => {
 });
 
 After({ tags: '@end' }, () => {
-	cy.exec('npm run seed:e2e:runtime -- ./prisma/seeds/deleteCypressUser');
+	exec('npm run seed:e2e:runtime -- ./prisma/seeds/deleteCypressUser');
 });
 
 When('I change my name and bio', () => {

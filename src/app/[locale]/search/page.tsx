@@ -38,7 +38,7 @@ export default function SearchPage() {
 	});
 
 	const { data: usersResponse, isLoading } = useUserSearch(
-		search ? { name: search } : {}
+		search ? { name: search, limit: 20 } : {}
 	);
 	const users = getFlatPaginated(usersResponse);
 
@@ -51,8 +51,9 @@ export default function SearchPage() {
 				})}
 				onBackClick={handleBack}
 			/>
-			<div className="flex h-full flex-col px-2">
+			<div className="flex flex-1 flex-col overflow-y-auto px-2">
 				<SearchTextField
+					className="mb-2"
 					value={search}
 					onClear={handleClear}
 					onChange={handleChange}
@@ -61,6 +62,7 @@ export default function SearchPage() {
 					{isLoading && <LoadingScreen />}
 					{!isLoading && users?.length === 0 && search !== '' && (
 						<PageMobileMessage
+							data-cy="search-empty"
 							icon="search_off"
 							message={intl.formatMessage({
 								id: 'search.noResultsFound',
@@ -69,7 +71,7 @@ export default function SearchPage() {
 						/>
 					)}
 					{!isLoading && users?.length !== 0 && search !== '' && (
-						<List>
+						<List data-cy="search-results">
 							{users?.map((user) => (
 								<UserListItem key={user.id} user={user} />
 							))}

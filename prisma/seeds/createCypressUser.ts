@@ -1,14 +1,31 @@
+import actor from '../../cypress/fixtures/users/actor.json';
+import cypressUser from '../../cypress/fixtures/users/cypress.json';
+import { createPostImage } from './utils/image';
 import main from './utils/main';
+import { createPost } from './utils/post';
 import { createUser } from './utils/user';
 
 main(async (prisma) => {
 	await createUser(
 		prisma,
 		{
-			name: 'Cypress User',
-			username: 'cypress.user',
-			email: 'cypress.user@email.com',
+			name: cypressUser.name,
+			username: cypressUser.username,
+			email: cypressUser.email,
 		},
-		'Test@123'
+		cypressUser.password
 	);
+
+	const { user: actorUser } = await createUser(
+		prisma,
+		{
+			name: actor.name,
+			username: actor.username,
+			email: actor.email,
+		},
+		''
+	);
+
+	const post = await createPost(prisma, actorUser, actor.post);
+	const postImage = await createPostImage(prisma, actorUser, post);
 });

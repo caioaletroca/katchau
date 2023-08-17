@@ -49,7 +49,7 @@ export function useSearchTextField({
 				getKey(apiPath!, search !== '' ? { name: search } : {})
 			);
 		},
-		300,
+		500,
 		[search]
 	);
 

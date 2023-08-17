@@ -17,6 +17,7 @@ export function useUser({ user_id }: RequestSWRParams) {
 
 type UserSearchParams = {
 	name?: string;
+	limit?: number;
 };
 
 export function useUserSearch(searchParams: UserSearchParams) {

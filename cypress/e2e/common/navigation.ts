@@ -8,6 +8,14 @@ Given('I access app', () => {
 	cy.visit(`${url}/en-US`);
 });
 
+Given('I navigate to Search page', () => {
+	Step(this, 'I access app');
+
+	cy.wait(1000);
+
+	getElement('navigation-search').click();
+});
+
 Given('I navigate to Profile page', () => {
 	Step(this, 'I access app');
 
