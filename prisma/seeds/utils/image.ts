@@ -8,18 +8,19 @@ export async function createPostImage(
 	user: User,
 	post: Post
 ) {
+	console.log('start');
 	const fileBuffer = await fs.readFileSync(
 		'./cypress/fixtures/images/postImage.jpeg'
 	);
 	const file = new Blob([fileBuffer]);
-
+	console.log('file');
 	const filePath = `/${user?.id}/${post.id}.jpeg`;
 	const fileResponse = await supabase.storage
 		.from('posts')
 		.upload(filePath, file);
-
+	console.log('blur');
 	const blur = await blurImage(file);
-
+	console.log('prisma');
 	return await prisma.postImage.create({
 		data: {
 			post_id: post.id,

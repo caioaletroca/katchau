@@ -1,3 +1,5 @@
+[![Production Deployment](https://github.com/caioaletroca/katchau/actions/workflows/production.yaml/badge.svg?branch=main)](https://github.com/caioaletroca/katchau/actions/workflows/production.yaml)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
