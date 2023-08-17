@@ -23,8 +23,8 @@
 		"seed:postman": "npm run seed:runtime -- ./prisma/seeds/postman.ts",
 		"seed:e2e:runtime": "dotenv -e .env.test -- npm run seed:runtime",
 		"seed:runtime": "cross-env ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"}",
-		"migrate:dev": "prisma migrate dev",
-		"migrate:reset": "prisma migrate reset",
+		"migrate:dev": "supabase migration up & prisma migrate dev",
+		"migrate:reset": "supabase db reset & supabase migration up & prisma migrate reset --force",
 		"migrate:test": "dotenv -e .env.test -- prisma migrate deploy",
 		"prepare": "husky install",
 		"postinstall": "prisma generate"
