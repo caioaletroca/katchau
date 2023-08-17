@@ -9,7 +9,7 @@ import { createUser } from './utils/user';
 main(async (prisma) => {
 	const buckets = await supabase.storage.listBuckets();
 	const bucketNames = buckets.data?.map((d) => d.name);
-
+	console.log(buckets, bucketNames);
 	if (bucketNames?.includes('posts')) {
 		await supabase.storage.createBucket('posts', {
 			public: true,
