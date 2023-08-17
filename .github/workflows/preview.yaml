@@ -69,7 +69,7 @@ jobs:
   UnitTests:
     runs-on: ubuntu-latest
     environment: Preview
-    needs: [Build, BuildTest]
+    needs: BuildTest
     env:
       NODE_ENV: test
     steps:
@@ -97,7 +97,7 @@ jobs:
   E2ETests:
     runs-on: ubuntu-latest
     environment: Preview
-    needs: [Build, BuildTest]
+    needs: BuildTest
     env:
       NODE_ENV: test
     steps:
@@ -133,7 +133,7 @@ jobs:
       - name: Run E2E test suit
         uses: cypress-io/github-action@v5
         env:
-          DEBUG: '@cypress/github-action'
+          DEBUG: 'cypress:server*'
         with:
           install: false
           start: npm start
@@ -143,7 +143,7 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     environment: Preview
-    needs: UnitTests
+    needs: [Build, UnitTests]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
