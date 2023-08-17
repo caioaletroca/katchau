@@ -107,6 +107,7 @@
 		"babel-plugin-formatjs": "^10.5.3",
 		"cross-env": "^7.0.3",
 		"cypress": "^12.17.3",
+		"cypress-failed-log": "^2.10.0",
 		"eslint-config-prettier": "^8.8.0",
 		"husky": "^8.0.0",
 		"jest": "^29.5.0",
