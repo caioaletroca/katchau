@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
 import { Post, PrismaClient, User } from '@prisma/client';
+import fs from 'fs';
 import supabase from '../../../src/database/supabase';
 import blurImage from '../blurImage';
 
@@ -8,8 +8,10 @@ export async function createPostImage(
 	user: User,
 	post: Post
 ) {
-	const url = faker.image.url({ width: 600, height: 600 });
-	const file = await fetch(url).then((res) => res.blob());
+	const fileBuffer = await fs.readFileSync(
+		'./cypress/fixtures/images/postImage.jpeg'
+	);
+	const file = new Blob([fileBuffer]);
 
 	const filePath = `/${user?.id}/${post.id}.jpeg`;
 	const fileResponse = await supabase.storage
