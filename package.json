@@ -22,7 +22,7 @@
 		"seed:dev": "prisma db seed",
 		"seed:postman": "npm run seed:runtime -- ./prisma/seeds/postman.ts",
 		"seed:e2e:runtime": "dotenv -e .env.test & npm run seed:runtime",
-		"seed:runtime": "ts-node --compiler-options {\"\"\"module\"\"\":\"\"\"CommonJS\"\"\"}",
+		"seed:runtime": "cross-env ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"}",
 		"migrate:dev": "prisma migrate dev",
 		"migrate:reset": "prisma migrate reset",
 		"migrate:test": "dotenv -e .env.test -- prisma migrate deploy",

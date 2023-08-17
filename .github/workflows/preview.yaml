@@ -106,9 +106,10 @@ jobs:
         env:
           DEBUG: '@cypress/github-action'
         with:
+          install: false
           start: npm start
-          browser: chrome
           command: npm run test:e2e
+          browser: chrome
 
   Deploy:
     runs-on: ubuntu-latest
