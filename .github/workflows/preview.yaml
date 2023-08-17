@@ -96,13 +96,15 @@ jobs:
         with:
           version: 1.83.7
       - name: Start Supabase
-        run: supabase start -x studio,edge-runtime,gotrue,kong,inbucket,logflare,vector,postgrest
+        run: supabase start -x studio,edge-runtime,gotrue,kong,inbucket,logflare,vector,postgrest,pgadmin-schema-diff,migra
       - name: Prisma Migrate
         run: npx prisma migrate dev
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Run E2E test suit
         uses: cypress-io/github-action@v5
+        env:
+          DEBUG: '@cypress/github-action'
         with:
           start: npm start
           browser: chrome
