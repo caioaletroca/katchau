@@ -19,7 +19,7 @@ export async function createPostImage(
 		.upload(filePath, file);
 
 	const blur = await blurImage(file);
-	console.log(post, fileResponse.data?.path);
+	console.log(post, fileResponse);
 	return await prisma.postImage.create({
 		data: {
 			post_id: post.id,
