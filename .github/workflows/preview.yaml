@@ -108,6 +108,7 @@ jobs:
         with:
           start: npm start
           browser: chrome
+          command: npm run test:e2e
 
   Deploy:
     runs-on: ubuntu-latest
