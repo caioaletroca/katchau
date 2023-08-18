@@ -64,6 +64,8 @@ export default function UsernameTextField({
 						)}
 					</InputAdornment>
 				),
+				autoCorrect: 'none',
+				autoCapitalize: 'none',
 				...InputProps,
 			}}
 			{...field}
