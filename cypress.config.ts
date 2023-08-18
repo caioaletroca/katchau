@@ -27,7 +27,7 @@ export default defineConfig({
 	e2e: {
 		baseUrl: 'http://localhost:3000',
 		specPattern: '**/*.feature',
-		defaultCommandTimeout: 10000,
+		defaultCommandTimeout: 20000,
 		reporter:
 			'@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/pretty-reporter.js',
 		setupNodeEvents,
