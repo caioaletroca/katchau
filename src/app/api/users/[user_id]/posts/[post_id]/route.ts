@@ -1,5 +1,6 @@
 import { prisma } from '@/database/db';
 import supabase from '@/database/supabase';
+import { NotFoundException } from '@/lib/exceptions/server';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -18,6 +19,10 @@ export async function GET(req: NextRequest, { params }: { params: GetParams }) {
 			images: true,
 		},
 	});
+
+	if (!post) {
+		return NotFoundException();
+	}
 
 	return NextResponse.json(post);
 }
