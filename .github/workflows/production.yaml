@@ -37,6 +37,35 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
+  BuildTest:
+    runs-on: ubuntu-latest
+    environment: Test
+    env:
+      NODE_ENV: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: 'Cache Build'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
+          key: ${{ runner.os }}-build-prod-test-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-build-prod-test-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-test-
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Test
+        run: npm run build
+
   Migrate:
     runs-on: ubuntu-latest
     environment: Production
@@ -59,15 +88,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-prod-
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 1.83.7
+      - name: Start Supabase
+        run: supabase start -x studio,inbucket,logflare
+      - name: Supabase Migrate
+        run: npx supabase db push
       - name: Deploy Migration
         run: npx prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-  Tests:
+  UnitTests:
     runs-on: ubuntu-latest
-    environment: Production
-    needs: Build
+    environment: Test
+    needs: BuildTest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -81,18 +117,65 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/node_modules
-            ${{ github.workspace }}/.vercel/output
-          key: ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+            ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
+          key: ${{ runner.os }}-build-prod-test-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-build-prod-${{ hashFiles('**/package-lock.json') }}-
-            ${{ runner.os }}-build-prod-
+            ${{ runner.os }}-build-prod-test-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-prod-test-
       - name: Unit tests
         run: npm run test
+
+  E2ETests:
+    runs-on: ubuntu-latest
+    environment: Test
+    needs: BuildTest
+    env:
+      NODE_ENV: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: 'Restore Cache Build'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/node_modules
+            ${{ github.workspace }}/.cache/Cypress
+            ${{ github.workspace }}/.next
+          key: ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-build-preview-test-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-preview-test-
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 1.83.7
+      - name: Start Supabase
+        run: supabase start -x studio,inbucket,logflare
+      - name: Supabase Migrate
+        run: npx supabase migration up
+      - name: Prisma Migrate
+        run: npx prisma migrate dev
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Install Cypress Binaries
+        run: npm i cypress
+      - name: Run E2E test suit
+        uses: cypress-io/github-action@v5
+        with:
+          install: false
+          start: npm start
+          command: npm run test:e2e
+          browser: chrome
 
   Deploy:
     runs-on: ubuntu-latest
     environment: Production
-    needs: Tests
+    needs: [Build, UnitTests]
     steps:
       - name: Checkout
         uses: actions/checkout@v3

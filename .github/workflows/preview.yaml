@@ -68,7 +68,7 @@ jobs:
 
   UnitTests:
     runs-on: ubuntu-latest
-    environment: Preview
+    environment: Test
     needs: BuildTest
     env:
       NODE_ENV: test
@@ -96,7 +96,7 @@ jobs:
 
   E2ETests:
     runs-on: ubuntu-latest
-    environment: Preview
+    environment: Test
     needs: BuildTest
     env:
       NODE_ENV: test
