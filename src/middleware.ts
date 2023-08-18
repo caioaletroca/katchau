@@ -23,6 +23,7 @@ export default async function middleware(
 			}),
 			registerMiddleware({
 				blacklist: [
+					'/',
 					'/api',
 					'/api/(.*)',
 					'/register-complete',
