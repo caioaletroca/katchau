@@ -40,7 +40,6 @@ export function NewPostProvider({ children }: NewPostProviderProps) {
 	};
 
 	const handleSubmit = async () => {
-		console.log(formData);
 		trigger({
 			fileName: formData.originalFile?.name,
 			description: formData.description,

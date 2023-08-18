@@ -67,6 +67,8 @@ export default function LoginPage() {
 								id: 'login.usernamePlaceholder',
 								defaultMessage: 'Username',
 							})}
+							autoCapitalize="none"
+							autoCorrect="none"
 							variant="outlined"
 						/>
 						<TextField
