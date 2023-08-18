@@ -7,6 +7,8 @@ Given('I am logged in', () => {
 	cy.session('cypress-session', () => {
 		cy.visit(url!);
 
+		cy.wait(1000);
+
 		getElement('username').should('be.visible').type('cypress.user');
 		getElement('password').should('be.visible').type('Test@123');
 		getElement('submit').click();

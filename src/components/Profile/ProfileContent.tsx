@@ -74,6 +74,7 @@ export default function ProfileContent({ user_id }: ProfileContentProps) {
 				{posts?.map((post, index) => (
 					<Grid key={post.id} item xs={4} className="h-screen-2/6-w relative">
 						<Image
+							data-cy={`profile-post-${post.id}`}
 							key={post.id}
 							alt={intl.formatMessage(
 								{

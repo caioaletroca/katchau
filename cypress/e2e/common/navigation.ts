@@ -16,6 +16,30 @@ Given('I navigate to Search page', () => {
 	getElement('navigation-search').click();
 });
 
+Given('I navigate to Other user page', () => {
+	Step(this, 'I navigate to Search page');
+
+	cy.fixture('users/actor').then((user) => {
+		getElement('search-input').type('{selectAll}{backspace}').type(user.name);
+
+		getElement('search-results').children().first().click();
+
+		cy.wait(1000);
+	});
+});
+
+Given('I navigate to Post page of Other user', () => {
+	Step(this, 'I navigate to Other user page');
+
+	cy.get('[data-cy^=profile-post-').first().click();
+});
+
+Given('I navigate to comments on Post page of Other user', () => {
+	Step(this, 'I navigate to Post page of Other user');
+
+	getElement('post-comment').click();
+});
+
 Given('I navigate to Profile page', () => {
 	Step(this, 'I access app');
 

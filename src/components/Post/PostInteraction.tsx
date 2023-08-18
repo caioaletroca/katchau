@@ -27,10 +27,13 @@ export default function PostInteraction({
 
 	return (
 		<div className="flex w-full flex-row">
-			<IconButton onClick={handleLike}>
+			<IconButton
+				data-cy="post-like"
+				data-state={!isEmpty(like)}
+				onClick={handleLike}>
 				<Icon name="favorite" fill={!isEmpty(like)} />
 			</IconButton>
-			<IconButton onClick={onComment}>
+			<IconButton data-cy="post-comment" onClick={onComment}>
 				<Icon name="chat_bubble" />
 			</IconButton>
 			<IconButton onClick={onShare}>

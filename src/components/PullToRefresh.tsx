@@ -1,16 +1,17 @@
 import { CircularProgress } from '@mui/material';
 import React from 'react';
 
-type PullToRefresh = React.PropsWithChildren & {
-	loading?: boolean;
-	disabled?: boolean;
-	maxPull?: number;
-	loadingFetchMore?: boolean;
-	distanceToFetchPercentage?: number;
-	distanceToRefresh?: number;
-	onRefresh?: () => void;
-	onFetchMore?: () => void;
-};
+type PullToRefresh = React.HTMLProps<HTMLDivElement> &
+	React.PropsWithChildren & {
+		loading?: boolean;
+		disabled?: boolean;
+		maxPull?: number;
+		loadingFetchMore?: boolean;
+		distanceToFetchPercentage?: number;
+		distanceToRefresh?: number;
+		onRefresh?: () => void;
+		onFetchMore?: () => void;
+	};
 
 export default function PullToRefresh({
 	loading,
@@ -22,6 +23,7 @@ export default function PullToRefresh({
 	onRefresh,
 	onFetchMore,
 	children,
+	...others
 }: PullToRefresh) {
 	const loadingSize = 64;
 	const rootRef = React.useRef<HTMLDivElement>(null);
@@ -179,7 +181,8 @@ export default function PullToRefresh({
 			style={{
 				paddingTop: rootPaddingTop,
 				transition: rootTransition,
-			}}>
+			}}
+			{...others}>
 			{
 				<div
 					className="absolute flex w-full justify-center py-4"

@@ -1,3 +1,6 @@
+@viewportHeight(915)
+@viewportWidth(412)
+
 Feature: Profile Configuration
 
 	Background:

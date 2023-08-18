@@ -84,7 +84,10 @@ export function PostCommentDrawer({
 			disableDiscovery
 			disableSwipeToOpen
 			{...others}>
-			<PullToRefresh loading={isLoading} onRefresh={handleRefresh}>
+			<PullToRefresh
+				data-cy="post-comments-view"
+				loading={isLoading}
+				onRefresh={handleRefresh}>
 				{comments?.map((comment) => (
 					<PostComment
 						key={comment.id}

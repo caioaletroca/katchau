@@ -103,7 +103,11 @@ export default function PostComment({
 			</div>
 			{!selected && (
 				<div className="flex flex-col items-center">
-					<IconButton size="small" onClick={handleLike}>
+					<IconButton
+						data-cy="post-comment-like"
+						data-state={!isEmpty(ownLike)}
+						size="small"
+						onClick={handleLike}>
 						<Icon
 							className="text-base text-neutral-400"
 							fill={!isEmpty(ownLike)}
@@ -123,6 +127,7 @@ export default function PostComment({
 						<CircularProgress className="mr-2" size={16} />
 					) : (
 						<IconButton
+							data-cy="post-comment-delete"
 							onClick={handleDelete}
 							// Needed to disable bubble up to long press
 							onPointerDown={(event) => event.stopPropagation()}>

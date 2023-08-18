@@ -1,3 +1,6 @@
+@viewportHeight(915)
+@viewportWidth(412)
+
 Feature: User Search
 
 	Background:

@@ -53,6 +53,7 @@ export default function PostCommentTextField({
 	return (
 		<div className="flex w-full p-2">
 			<TextField
+				data-cy="post-comment-field"
 				name="comment"
 				variant="standard"
 				value={comment}
@@ -78,7 +79,9 @@ export default function PostCommentTextField({
 								{createCommentLoading ? (
 									<CircularProgress size={24} />
 								) : (
-									<IconButton onClick={handleSubmit}>
+									<IconButton
+										data-cy="post-comment-send"
+										onClick={handleSubmit}>
 										<Icon name="send" />
 									</IconButton>
 								)}
