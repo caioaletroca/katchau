@@ -3,6 +3,7 @@ import {
 	postFetcher,
 	RequestSWROptions,
 	RequestSWRParams,
+	Response,
 } from '@/lib/fetcher';
 import { PostLike } from '@prisma/client';
 import useSWR from 'swr';
@@ -31,5 +32,12 @@ export function useUpdateCommentLike(
 		`/comments/${comment_id}/likes`,
 		postFetcher,
 		options
+	);
+}
+
+export function usePostLikeCount({ post_id }: RequestSWRParams) {
+	return useSWR<Response<{ likes: number }>>(
+		post_id ? `/posts/${post_id}/like-count` : null,
+		getFetcher
 	);
 }

@@ -11,7 +11,7 @@ export type RequestSWROptions<T = any> = {
 };
 
 export type Response<T = any> = {
-	data: T[];
+	data: T;
 };
 
 export type PaginationResponse<T = any> = {

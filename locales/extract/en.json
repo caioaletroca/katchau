@@ -80,6 +80,7 @@
   "post.error.postNotFound": "Post not found",
   "post.error.userNotFound": "User not found",
   "post.imageAlt": "Main post image",
+  "post.likedBy": "Liked by {number} people",
   "post.postImageAlt": "Image of your post",
   "post.title": "Posts",
   "post.userProfilePicture.alt": "Post profile picture",

@@ -601,6 +601,20 @@
       "value": "Main post image"
     }
   ],
+  "post.likedBy": [
+    {
+      "type": 0,
+      "value": "Liked by "
+    },
+    {
+      "type": 1,
+      "value": "number"
+    },
+    {
+      "type": 0,
+      "value": " people"
+    }
+  ],
   "post.postImageAlt": [
     {
       "type": 0,
