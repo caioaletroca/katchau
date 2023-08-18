@@ -1,5 +1,6 @@
 {
   "chat.emptyMessage": "No messages on this conversation",
+  "chat.error.chatNotFound": "Chat not found",
   "chat.messagePlaceholder": "Message...",
   "chat.title": "Conversations",
   "common.agree": "I agree",

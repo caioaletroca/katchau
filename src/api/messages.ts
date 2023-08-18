@@ -22,6 +22,7 @@ export function useMessages({ user_id }: { user_id: string }) {
 		size,
 		setSize,
 		isLoading,
+		error,
 	} = useSWRInfinite<PaginationResponse<Message>>(
 		getKeyCursorPagination(`/chat/${user_id}`, { limit: 20 }),
 		getFetcher
@@ -67,6 +68,7 @@ export function useMessages({ user_id }: { user_id: string }) {
 	return {
 		fetchMore: handleFetchMore,
 		messages,
+		error,
 	};
 }
 

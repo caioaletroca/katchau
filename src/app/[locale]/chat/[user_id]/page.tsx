@@ -4,6 +4,7 @@ import { useClearMessages, useMessages } from '@/api/messages';
 import { useUser } from '@/api/users';
 import PageMobile from '@/components/Page/PageMobile';
 import PageMobileHeader from '@/components/Page/PageMobileHeader';
+import PageMobileMessage from '@/components/Page/PageMobileMesssage';
 import { useRouter } from '@/lib/intl/client';
 import { Typography } from '@mui/material';
 import dayjs from 'dayjs';
@@ -31,6 +32,28 @@ function UserChatPageLoading() {
 				<MessageBubbleLoading owner />
 			</div>
 			<MessageTextField user_id={user_id} />
+		</PageMobile>
+	);
+}
+
+function UserChangePageError() {
+	const intl = useIntl();
+	const router = useRouter();
+
+	const handleBack = () => router.back();
+
+	return (
+		<PageMobile>
+			<PageMobileHeader onBackClick={handleBack} />
+			<div className="flex flex-1 flex-col">
+				<PageMobileMessage
+					icon="draft"
+					message={intl.formatMessage({
+						id: 'chat.error.chatNotFound',
+						defaultMessage: 'Chat not found',
+					})}
+				/>
+			</div>
 		</PageMobile>
 	);
 }
@@ -63,7 +86,7 @@ export default function UserChatPage() {
 	const router = useRouter();
 	const [scrollOnLoad, setScrollOnLoad] = React.useState(false);
 	const { user_id } = useParams();
-	const { data: user, isLoading: userLoading } = useUser({ user_id });
+	const { data: user, isLoading: userLoading, error } = useUser({ user_id });
 	const { messages } = useMessages({ user_id });
 	const { trigger } = useClearMessages({ user_id });
 
@@ -82,6 +105,10 @@ export default function UserChatPage() {
 
 	if (userLoading) {
 		return <UserChatPageLoading />;
+	}
+
+	if (error) {
+		return <UserChangePageError />;
 	}
 
 	if (messages.length === 0) {

@@ -12,11 +12,11 @@ import { useRouter } from '@/lib/intl/client';
 import { useParams } from 'next/navigation';
 import { useIntl } from 'react-intl';
 
-type PostErrorPageProps = {
+type PostPageErrorProps = {
 	error: 'user' | 'post';
 };
 
-function PostErrorPage({ error }: PostErrorPageProps) {
+function PostPageError({ error }: PostPageErrorProps) {
 	const intl = useIntl();
 	const router = useRouter();
 
@@ -75,7 +75,7 @@ export default function PostPage() {
 	}
 
 	if (userError || postError) {
-		return <PostErrorPage error={userError ? 'user' : 'post'} />;
+		return <PostPageError error={userError ? 'user' : 'post'} />;
 	}
 
 	return (

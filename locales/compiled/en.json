@@ -5,6 +5,12 @@
       "value": "No messages on this conversation"
     }
   ],
+  "chat.error.chatNotFound": [
+    {
+      "type": 0,
+      "value": "Chat not found"
+    }
+  ],
   "chat.messagePlaceholder": [
     {
       "type": 0,
