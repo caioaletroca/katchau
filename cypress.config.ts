@@ -28,7 +28,8 @@ export default defineConfig({
 		baseUrl: 'http://localhost:3000',
 		specPattern: '**/*.feature',
 		defaultCommandTimeout: 10000,
-		// reporter: require.resolve("@badeball/cypress-cucumber-preprocessor/pretty-reporter"),
+		reporter:
+			'@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/pretty-reporter.js',
 		setupNodeEvents,
 	},
 	video: false,

@@ -28,4 +28,5 @@ main(async (prisma) => {
 
 	const post = await createPost(prisma, actorUser, actor.post);
 	const postImage = await createPostImage(prisma, actorUser, post);
+	console.log('postImage', postImage);
 });
