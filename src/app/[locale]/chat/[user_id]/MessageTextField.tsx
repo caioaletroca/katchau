@@ -63,6 +63,7 @@ export default function MessageTextField({
 			<FormikProvider value={formik}>
 				<Form className="w-full">
 					<TextField
+						data-cy="chat-input"
 						name="content"
 						variant="standard"
 						placeholder={intl.formatMessage({
@@ -79,7 +80,7 @@ export default function MessageTextField({
 									{isMutating ? (
 										<CircularProgress size={24} />
 									) : (
-										<IconButton type="submit">
+										<IconButton data-cy="chat-send" type="submit">
 											<Icon name="send" />
 										</IconButton>
 									)}

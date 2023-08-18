@@ -63,3 +63,8 @@ Given('I navigate to Language page', () => {
 	Step(this, 'I navigate to Configuration page');
 	getElement('configuration-language').click();
 });
+
+Given('I navigate to Conversation page', () => {
+	Step(this, 'I access app');
+	getElement('home-chat').click();
+});

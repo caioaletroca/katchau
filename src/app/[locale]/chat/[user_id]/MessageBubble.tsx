@@ -28,6 +28,7 @@ type MessageBubbleProps = {
 export default function MessageBubble({ owner, message }: MessageBubbleProps) {
 	return (
 		<div
+			data-cy="chat-message"
 			className={classNames('mb-4 flex flex-col px-2', {
 				'items-end': owner,
 			})}>

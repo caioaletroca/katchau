@@ -90,12 +90,12 @@ function FeedHeader() {
 					/>
 				</div>
 			</div>
-			<IconButton onClick={handleNotification}>
+			<IconButton data-cy="home-notifications" onClick={handleNotification}>
 				<Badge badgeContent={notifications?.length} max={99} color="primary">
 					<Icon name="favorite" />
 				</Badge>
 			</IconButton>
-			<IconButton onClick={handleChat}>
+			<IconButton data-cy="home-chat" onClick={handleChat}>
 				<Badge badgeContent={conversations?.length} max={99} color="primary">
 					<Icon name="chat_bubble" />
 				</Badge>

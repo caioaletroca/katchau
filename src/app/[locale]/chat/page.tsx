@@ -75,7 +75,7 @@ export default function ChatPage() {
 			<PullToRefresh onFetchMore={handleFetchMore}>
 				{isLoading && <ChatPageLoading />}
 				{!isLoading && (
-					<List>
+					<List data-cy="chat-conversation-results">
 						{conversation?.map((item) => (
 							<ConversationListItem key={item.id} conversation={item} />
 						))}

@@ -143,7 +143,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 				onOpen={() => setOpen(true)}
 				onClose={() => setOpen(false)}>
 				<List>
-					<ListItemButton onClick={handleFollow}>
+					<ListItemButton data-cy="profile-unfollow" onClick={handleFollow}>
 						<ListItemText
 							primary={intl.formatMessage({
 								id: 'common.unfollow',
