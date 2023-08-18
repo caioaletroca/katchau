@@ -21,3 +21,7 @@
 .max-w-2\/3 {
 	max-width: 66%;
 }
+
+.text-katchau {
+	color: var(--katchau-purple);
+}

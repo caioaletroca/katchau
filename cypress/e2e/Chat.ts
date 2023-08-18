@@ -53,5 +53,5 @@ When('I search for Other user', () => {
 });
 
 Then('I should be on Other user chat page', () => {
-	cy.url().should('contain', `${Cypress.config('baseUrl')}/chat/`);
+	cy.url().should('contain', `${Cypress.config('baseUrl')}/en-US/chat/`);
 });

@@ -1,11 +1,13 @@
 'use client';
 
 import Avatar from '@/components/Avatar';
+import Icon from '@/components/Icon';
 import { useRouter } from '@/lib/intl/client';
 import { Conversation } from '@/types/conversations';
 import {
 	ListItemAvatar,
 	ListItemButton,
+	ListItemSecondaryAction,
 	ListItemText,
 	Skeleton,
 } from '@mui/material';
@@ -34,14 +36,17 @@ export default function ConversationListItem({
 }: ConversationListItemProps) {
 	const router = useRouter();
 
-	const handleClick = () => router.push(`/chat/${conversation.sender.id}`);
+	const ownMessage = Boolean(conversation.sender);
+	const user = conversation.user || conversation.sender;
+
+	const handleClick = () => router.push(`/chat/${user.id}`);
 
 	return (
 		<ListItemButton onClick={handleClick}>
 			<ListItemAvatar>
 				<Avatar
-					name={conversation.sender.name!}
-					url={conversation.sender.profile_picture[0]?.url}
+					name={user.name!}
+					url={user.profile_picture[0]?.url}
 					size="small"
 				/>
 			</ListItemAvatar>
@@ -49,9 +54,14 @@ export default function ConversationListItem({
 				secondaryTypographyProps={{
 					className: 'text-ellipsis',
 				}}
-				primary={conversation.sender.name}
+				primary={user.name}
 				secondary={conversation.content}
 			/>
+			{ownMessage && !conversation.visualized && (
+				<ListItemSecondaryAction>
+					<Icon className="text-katchau" name="fiber_manual_record" fill />
+				</ListItemSecondaryAction>
+			)}
 		</ListItemButton>
 	);
 }
