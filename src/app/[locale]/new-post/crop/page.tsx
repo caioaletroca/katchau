@@ -1,49 +1,43 @@
 'use client';
 
-import { Slider } from '@mui/material';
+import PageMobile from '@/components/Page/PageMobile';
+import PageMobileHeader from '@/components/Page/PageMobileHeader';
+import useCropImage from '@/hooks/useCropImage';
+import { useRouter } from '@/lib/intl/client';
+import cropImage from '@/utils/image/crop';
 import React from 'react';
 import Cropper from 'react-easy-crop';
-import { Point, Area } from 'react-easy-crop/types';
-import clamp from 'lodash/clamp';
+import { Area } from 'react-easy-crop/types';
 import { useNewPost } from '../NewPostContext';
-import cropImage from '@/utils/image/crop';
-import PageMobileHeader from '@/components/Page/PageMobileHeader';
-import PageMobile from '@/components/Page/PageMobile';
-import { useRouter } from '@/lib/intl/client';
-
-const MIN_ZOOM = 1;
-const MAX_ZOOM = 5;
-const STEP = MIN_ZOOM / MAX_ZOOM / 100;
 
 export default function NewPostCrop() {
 	const router = useRouter();
-	const [crop, setCrop] = React.useState<Point>({ x: 0, y: 0 });
-	const [zoom, setZoom] = React.useState(1);
+	const [croppedArea, setCroppedArea] = React.useState<Area>({
+		width: 0,
+		height: 0,
+		x: 0,
+		y: 0,
+	});
 
 	const { formData, setFormData } = useNewPost();
 
-	const originalImageUrl = React.useMemo(() => {
-		return URL.createObjectURL(formData?.originalFile!);
-	}, [formData?.originalFile]);
-
 	const handleBack = () => router.back();
 
-	const handleForward = () => router.push('/new-post/description');
+	const handleForward = async () => {
+		const newImage = await cropImage(formData?.originalFile!, croppedArea);
+		setFormData({ file: newImage as File });
 
-	const handleCropComplete = React.useCallback(
-		async (croppedArea: Area, croppedAreaPixels: Area) => {
-			const newImage = await cropImage(
-				formData?.originalFile!,
-				croppedAreaPixels
-			);
-			setFormData({ file: newImage as File });
-		},
-		[formData?.originalFile, setFormData]
-	);
-
-	const handleSlideChange = (event: Event, value: number | number[]) => {
-		setZoom(clamp(value as number, MIN_ZOOM, MAX_ZOOM));
+		router.push('/new-post/description');
 	};
+
+	const handleChange = (croppedArea: Area) => {
+		setCroppedArea(croppedArea);
+	};
+
+	const { fileUrl, getCropperProps } = useCropImage({
+		file: formData?.originalFile,
+		onChange: handleChange,
+	});
 
 	return (
 		<PageMobile>
@@ -54,31 +48,27 @@ export default function NewPostCrop() {
 			/>
 			<div className="flex flex-1 flex-col">
 				<div className="relative" style={{ height: '100vw' }}>
-					<Cropper
-						image={originalImageUrl}
-						objectFit="vertical-cover"
-						restrictPosition
-						crop={crop}
-						minZoom={1}
-						zoom={zoom}
-						aspect={1}
-						onCropChange={setCrop}
-						onCropComplete={handleCropComplete}
-						onZoomChange={setZoom}
-						style={{
-							mediaStyle: {
-								maxWidth: 'initial',
-							},
-						}}
-					/>
+					{fileUrl && (
+						<Cropper
+							objectFit="vertical-cover"
+							restrictPosition
+							aspect={1}
+							style={{
+								mediaStyle: {
+									maxWidth: 'initial',
+								},
+							}}
+							{...getCropperProps()}
+						/>
+					)}
 				</div>
-				<Slider
+				{/* <Slider
 					step={STEP}
 					min={MIN_ZOOM}
 					max={MAX_ZOOM}
 					value={zoom}
 					onChange={handleSlideChange}
-				/>
+				/> */}
 			</div>
 		</PageMobile>
 	);

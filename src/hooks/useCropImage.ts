@@ -1,4 +1,3 @@
-import cropImage from '@/utils/image/crop';
 import clamp from 'lodash/clamp';
 import React from 'react';
 import { Area, Point } from 'react-easy-crop';
@@ -13,7 +12,7 @@ type UseCropImageProps = {
 	minZoom?: number;
 	maxZoom?: number;
 	step?: number;
-	onChange?: (file: File) => void;
+	onChange?: (croppedArea: Area) => void;
 };
 
 export default function useCropImage({
@@ -24,17 +23,21 @@ export default function useCropImage({
 	onChange,
 }: UseCropImageProps) {
 	const fileUrl = useFileURL(file);
-	const [croppedFile, setCroppedFile] = React.useState<File>();
 	const [cropArea, setCropArea] = React.useState<Point>({ x: 0, y: 0 });
+	const [croppedArea, setCroppedArea] = React.useState<Area>({
+		width: 0,
+		height: 0,
+		x: 0,
+		y: 0,
+	});
 	const [zoom, setZoom] = React.useState(1);
 
 	const handleCropComplete = React.useCallback(
 		async (croppedArea: Area, croppedAreaPixels: Area) => {
-			const newImage = await cropImage(file!, croppedAreaPixels);
-			setCroppedFile(newImage as File);
-			onChange?.(newImage as File);
+			setCroppedArea(croppedAreaPixels);
+			onChange?.(croppedAreaPixels);
 		},
-		[file, onChange]
+		[onChange]
 	);
 
 	const handleSlideChange = (event: Event, value: number | number[]) => {
@@ -56,8 +59,8 @@ export default function useCropImage({
 		step,
 		minZoom,
 		maxZoom,
-		croppedFile,
 		zoom,
+		croppedArea,
 		getCropperProps,
 		handleSlideChange,
 	};

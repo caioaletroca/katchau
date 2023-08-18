@@ -54,7 +54,7 @@ export default function ProfilePictureUpload({
 	const currentImageUrl = useFileURL(current);
 	const croppedImageUrl = useFileURL(cropped);
 
-	const handleChange = (file: File) => {
+	const handleCropped = (file: File) => {
 		setCropped(file);
 		onChange?.(fileName!, file);
 	};
@@ -139,7 +139,7 @@ export default function ProfilePictureUpload({
 			<ProfilePictureEditDrawer
 				open={open}
 				file={file}
-				onChange={handleChange}
+				onCropped={handleCropped}
 				onClose={() => setOpen(false)}
 			/>
 		</div>
