@@ -5,6 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 	enabled: process.env.ANALYZE === 'true',
 });
 
+const isTest = process.env.NODE_ENV === 'test';
+
 module.exports = withPlugins([
 	{
 		images: {
@@ -22,6 +24,11 @@ module.exports = withPlugins([
 			'@mui/material/?(((\\w*)?/?)*)': {
 				transform: '@mui/material/{{ matches.[1] }}/{{member}}',
 			},
+		},
+		compiler: {
+			reactRemoveProperties: isTest
+				? {}
+				: { properties: ['^data-cy$', '^data-state$'] },
 		},
 	},
 	withPWA({
