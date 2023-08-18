@@ -30,4 +30,5 @@ export default defineConfig({
 		// reporter: require.resolve("@badeball/cypress-cucumber-preprocessor/pretty-reporter"),
 		setupNodeEvents,
 	},
+	video: false,
 });
