@@ -72,7 +72,7 @@ export default function ProfileActions({ user_id }: ProfileActionsProps) {
 	return (
 		<>
 			<div className="mx-4 mb-4 flex flex-col">
-				<Grid container className="" spacing={1}>
+				<Grid container spacing={1}>
 					<Grid item xs={5}>
 						<div className="flex flex-col">
 							{ownProfile && (

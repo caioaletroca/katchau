@@ -15,7 +15,7 @@ After({ tags: '@end' }, () => {
 });
 
 When('I follow the Other user', () => {
-	getElement('profile-follow').click();
+	getElement('profile-follow').should('be.visible').click();
 });
 
 Then('I should be following the other user', () => {
@@ -23,8 +23,8 @@ Then('I should be following the other user', () => {
 });
 
 When('I unfollow the Other user', () => {
-	getElement('profile-following').click();
-	getElement('profile-unfollow').click();
+	getElement('profile-following').should('be.visible').click();
+	getElement('profile-unfollow').should('be.visible').click();
 });
 
 Then('I should not be following the other user', () => {
