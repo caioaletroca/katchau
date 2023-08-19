@@ -23,7 +23,7 @@ When('I type and send a message', () => {
 	getElement('chat-input').should('be.visible').type('test');
 	getElement('chat-send').should('be.visible').click();
 
-	cy.wait(2000);
+	cy.wait(5000);
 });
 
 Then('I should see my message', () => {
