@@ -25,6 +25,8 @@ Given('I navigate to Other user page', () => {
 		getElement('search-results').children().first().click();
 
 		cy.wait(1000);
+
+		getElement('profile-message').should('be.visible');
 	});
 });
 
