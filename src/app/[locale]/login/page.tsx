@@ -89,7 +89,12 @@ export default function LoginPage() {
 						</Button>
 					</Form>
 				</Formik>
-				<Divider className="my-2">OR</Divider>
+				<Divider className="my-2">
+					{intl.formatMessage({
+						id: 'login.orLabel',
+						defaultMessage: 'OR',
+					})}
+				</Divider>
 				<Button onClick={handleGoogleLogin}>
 					{intl.formatMessage({
 						id: 'login.loginWithGoogleButton',

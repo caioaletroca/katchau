@@ -13,8 +13,6 @@
 		"prettier": "prettier --write ./src",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:db:start": "docker-compose up -d",
-		"test:db:stop": "docker-compose down",
 		"test:e2e": "cypress run --e2e --browser chrome",
 		"cypress:open": "cypress open --e2e --browser chrome",
 		"extract:i18n": "formatjs extract \"./src/**/*.{js,ts,tsx}\" --format simple --out-file \"./locales/extract/en.json\" --throws",

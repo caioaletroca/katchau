@@ -447,6 +447,12 @@
       "value": "Katchau logo"
     }
   ],
+  "login.orLabel": [
+    {
+      "type": 0,
+      "value": "OR"
+    }
+  ],
   "login.passwordPlaceholder": [
     {
       "type": 0,

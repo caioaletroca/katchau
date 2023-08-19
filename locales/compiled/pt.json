@@ -1,26 +1,873 @@
 {
-  "configurations.appsAndMediaSectionTitle": [
-    {
-      "type": 0,
-      "value": "Apps and Medias"
-    }
-  ],
-  "configurations.title": [
-    {
-      "type": 0,
-      "value": "Configurações"
-    }
-  ],
-  "languageButtom": [
-    {
-      "type": 0,
-      "value": "Language"
-    }
-  ],
-  "logInSectionTitle": [
-    {
-      "type": 0,
-      "value": "Log In"
-    }
-  ]
+	"chat.emptyMessage": [
+		{
+			"type": 0,
+			"value": "Nenhuma mensagem nesta conversa"
+		}
+	],
+	"chat.error.chatNotFound": [
+		{
+			"type": 0,
+			"value": "Chat não encontrada"
+		}
+	],
+	"chat.messagePlaceholder": [
+		{
+			"type": 0,
+			"value": "Mensagem..."
+		}
+	],
+	"chat.title": [
+		{
+			"type": 0,
+			"value": "Conversas"
+		}
+	],
+	"common.agree": [
+		{
+			"type": 0,
+			"value": "Eu concordo"
+		}
+	],
+	"common.bio": [
+		{
+			"type": 0,
+			"value": "Bio"
+		}
+	],
+	"common.birth": [
+		{
+			"type": 0,
+			"value": "Data de nascimento"
+		}
+	],
+	"common.birthWithAge": [
+		{
+			"type": 0,
+			"value": "Data de nascimento ("
+		},
+		{
+			"type": 1,
+			"value": "year"
+		},
+		{
+			"type": 0,
+			"value": " anos)"
+		}
+	],
+	"common.cancel": [
+		{
+			"type": 0,
+			"value": "Cancelar"
+		}
+	],
+	"common.confirm": [
+		{
+			"type": 0,
+			"value": "Confirmar"
+		}
+	],
+	"common.copied": [
+		{
+			"type": 0,
+			"value": "Copiado"
+		}
+	],
+	"common.copyLink": [
+		{
+			"type": 0,
+			"value": "Copiar link"
+		}
+	],
+	"common.delete": [
+		{
+			"type": 0,
+			"value": "Excluir"
+		}
+	],
+	"common.edit": [
+		{
+			"type": 0,
+			"value": "Editar"
+		}
+	],
+	"common.editProfile": [
+		{
+			"type": 0,
+			"value": "Editar perfil"
+		}
+	],
+	"common.email": [
+		{
+			"type": 0,
+			"value": "Email"
+		}
+	],
+	"common.follow": [
+		{
+			"type": 0,
+			"value": "Seguir"
+		}
+	],
+	"common.followed": [
+		{
+			"type": 0,
+			"value": "Seguido"
+		}
+	],
+	"common.following": [
+		{
+			"type": 0,
+			"value": "Seguindo"
+		}
+	],
+	"common.message": [
+		{
+			"type": 0,
+			"value": "Mensagem"
+		}
+	],
+	"common.name": [
+		{
+			"type": 0,
+			"value": "Nome completo"
+		}
+	],
+	"common.nextButton": [
+		{
+			"type": 0,
+			"value": "Próximo"
+		}
+	],
+	"common.password": [
+		{
+			"type": 0,
+			"value": "Senha"
+		}
+	],
+	"common.save": [
+		{
+			"type": 0,
+			"value": "Salvar"
+		}
+	],
+	"common.search": [
+		{
+			"type": 0,
+			"value": "Pesquisar"
+		}
+	],
+	"common.share": [
+		{
+			"type": 0,
+			"value": "Compartilhar"
+		}
+	],
+	"common.skip": [
+		{
+			"type": 0,
+			"value": "Pular"
+		}
+	],
+	"common.unfollow": [
+		{
+			"type": 0,
+			"value": "Deixar de seguir"
+		}
+	],
+	"common.username": [
+		{
+			"type": 0,
+			"value": "Nome de usuário"
+		}
+	],
+	"configurations.appsAndMediaSectionTitle": [
+		{
+			"type": 0,
+			"value": "Seu app e suas mídias"
+		}
+	],
+	"configurations.title": [
+		{
+			"type": 0,
+			"value": "Configurações"
+		}
+	],
+	"errors.custom.date.invalid": [
+		{
+			"type": 0,
+			"value": "Data inválida"
+		}
+	],
+	"errors.custom.one_lowercase_letter": [
+		{
+			"type": 0,
+			"value": "Campo deve conter pelo menos 1 letra minúscula"
+		}
+	],
+	"errors.custom.one_number": [
+		{
+			"type": 0,
+			"value": "Campo deve conter pelo menos 1 número"
+		}
+	],
+	"errors.custom.one_uppercase_letter": [
+		{
+			"type": 0,
+			"value": "Campo deve conter pelo menos 1 letra maiúscula"
+		}
+	],
+	"errors.custom.special_characters": [
+		{
+			"type": 0,
+			"value": "Campo não pode conter caracteres especiais"
+		}
+	],
+	"errors.custom.username.exists": [
+		{
+			"type": 0,
+			"value": "Nome de usuário já existe"
+		}
+	],
+	"errors.invalid_type": [],
+	"errors.invalid_type_received_undefined": [
+		{
+			"type": 0,
+			"value": "Campo obrigatório"
+		}
+	],
+	"errors.too_big.date.exact": [
+		{
+			"type": 0,
+			"value": "Date deve ser exatamente "
+		},
+		{
+			"type": 1,
+			"value": "maximum"
+		}
+	],
+	"errors.too_big.date.inclusive": [
+		{
+			"type": 0,
+			"value": "Data deve ser depois ou igual à "
+		},
+		{
+			"type": 1,
+			"value": "maximum"
+		}
+	],
+	"errors.too_big.date.not_inclusive": [
+		{
+			"type": 0,
+			"value": "Data deve ser depois de "
+		},
+		{
+			"type": 1,
+			"value": "maximum"
+		}
+	],
+	"errors.too_big.string.exact": [
+		{
+			"type": 0,
+			"value": "Campo deve conter exatamente "
+		},
+		{
+			"type": 1,
+			"value": "maximum"
+		},
+		{
+			"type": 0,
+			"value": " caracteres"
+		}
+	],
+	"errors.too_big.string.inclusive": [
+		{
+			"type": 0,
+			"value": "Campo deve conter no máximo "
+		},
+		{
+			"type": 1,
+			"value": "maximum"
+		},
+		{
+			"type": 0,
+			"value": " caracteres"
+		}
+	],
+	"errors.too_big.string.not_inclusive": [
+		{
+			"type": 0,
+			"value": "Campo deve conter menos de "
+		},
+		{
+			"type": 1,
+			"value": "maximum"
+		},
+		{
+			"type": 0,
+			"value": " caracteres"
+		}
+	],
+	"errors.too_small.date.exact": [
+		{
+			"type": 0,
+			"value": "Data deve ser exatamente "
+		},
+		{
+			"type": 1,
+			"value": "minimum"
+		}
+	],
+	"errors.too_small.date.inclusive": [
+		{
+			"type": 0,
+			"value": "Data deve ser depois ou igual à  "
+		},
+		{
+			"type": 1,
+			"value": "minimum"
+		}
+	],
+	"errors.too_small.date.not_inclusive": [
+		{
+			"type": 0,
+			"value": "Data deve ser depois de "
+		},
+		{
+			"type": 1,
+			"value": "minimum"
+		}
+	],
+	"errors.too_small.string.exact": [
+		{
+			"type": 0,
+			"value": "Campo deve conter exatamente "
+		},
+		{
+			"type": 1,
+			"value": "minimum"
+		},
+		{
+			"type": 0,
+			"value": " caracteres"
+		}
+	],
+	"errors.too_small.string.inclusive": [
+		{
+			"type": 0,
+			"value": "Campo deve conter no mínimo "
+		},
+		{
+			"type": 1,
+			"value": "minimum"
+		},
+		{
+			"type": 0,
+			"value": " caracteres"
+		}
+	],
+	"errors.too_small.string.not_inclusive": [
+		{
+			"type": 0,
+			"value": "Campo deve ter mais de "
+		},
+		{
+			"type": 1,
+			"value": "minimum"
+		},
+		{
+			"type": 0,
+			"value": " caracteres"
+		}
+	],
+	"feed.noResultsFound": [
+		{
+			"type": 0,
+			"value": "Você pode começar procurando por seus amigos!"
+		}
+	],
+	"feed.noResultsFoundButton": [
+		{
+			"type": 0,
+			"value": "Pesquisar por amigos"
+		}
+	],
+	"fileUpload.desktop": [
+		{
+			"type": 0,
+			"value": "Clique ou arraste e solte para selecionar uma images"
+		}
+	],
+	"fileUpload.mobile": [
+		{
+			"type": 0,
+			"value": "Aperte para selectionar uma imagem"
+		}
+	],
+	"home.logoAlt": [
+		{
+			"type": 0,
+			"value": "Katchau logo da página inicial"
+		}
+	],
+	"language.title": [
+		{
+			"type": 0,
+			"value": "Idioma do app"
+		}
+	],
+	"languageButtom": [
+		{
+			"type": 0,
+			"value": "Idioma"
+		}
+	],
+	"logInSectionTitle": [
+		{
+			"type": 0,
+			"value": "Entrar"
+		}
+	],
+	"login.loginButton": [
+		{
+			"type": 0,
+			"value": "Entrar"
+		}
+	],
+	"login.loginWithGoogleButton": [
+		{
+			"type": 0,
+			"value": "Entrar com Google"
+		}
+	],
+	"login.logoAlt": [
+		{
+			"type": 0,
+			"value": "Katchau logo"
+		}
+	],
+	"login.passwordPlaceholder": [
+		{
+			"type": 0,
+			"value": "Senha"
+		}
+	],
+	"login.registerButton": [
+		{
+			"type": 0,
+			"value": "Não tem uma conta? Cadastre-se."
+		}
+	],
+	"login.usernamePlaceholder": [
+		{
+			"type": 0,
+			"value": "Nome de usuário"
+		}
+	],
+	"new.post.loading.label": [
+		{
+			"type": 0,
+			"value": "Carregando sua publicação"
+		}
+	],
+	"new.post.loading.logoAlt": [
+		{
+			"type": 0,
+			"value": "Katchau logo na animação de carregamento"
+		}
+	],
+	"notification.commentedMessage": [
+		{
+			"children": [
+				{
+					"type": 1,
+					"value": "username"
+				}
+			],
+			"type": 8,
+			"value": "bold"
+		},
+		{
+			"type": 0,
+			"value": " comentou na sua publicação"
+		}
+	],
+	"notification.empty": [
+		{
+			"type": 0,
+			"value": "Nenhuma notificação por hora"
+		}
+	],
+	"notification.followedMessage": [
+		{
+			"children": [
+				{
+					"type": 1,
+					"value": "username"
+				}
+			],
+			"type": 8,
+			"value": "bold"
+		},
+		{
+			"type": 0,
+			"value": " começou à seguir você"
+		}
+	],
+	"notification.likedCommentMessage": [
+		{
+			"children": [
+				{
+					"type": 1,
+					"value": "username"
+				}
+			],
+			"type": 8,
+			"value": "bold"
+		},
+		{
+			"type": 0,
+			"value": " curtiu seu comentário em uma publicação"
+		}
+	],
+	"notification.likedPostMessage": [
+		{
+			"children": [
+				{
+					"type": 1,
+					"value": "username"
+				}
+			],
+			"type": 8,
+			"value": "bold"
+		},
+		{
+			"type": 0,
+			"value": " curtiu sua publicação"
+		}
+	],
+	"notifications.title": [
+		{
+			"type": 0,
+			"value": "Notificações"
+		}
+	],
+	"post.comment.commentFieldPlaceholder": [
+		{
+			"type": 0,
+			"value": "Adicionar um comentário..."
+		}
+	],
+	"post.comment.title": [
+		{
+			"type": 0,
+			"value": "Comentários"
+		}
+	],
+	"post.descriptionLabel": [
+		{
+			"type": 0,
+			"value": "Descrição"
+		}
+	],
+	"post.descriptionPlaceholder": [
+		{
+			"type": 0,
+			"value": "Escreva uma legenda..."
+		}
+	],
+	"post.edit.title": [
+		{
+			"type": 0,
+			"value": "Editar publicação"
+		}
+	],
+	"post.error.postNotFound": [
+		{
+			"type": 0,
+			"value": "Publicação não encontrada"
+		}
+	],
+	"post.error.userNotFound": [
+		{
+			"type": 0,
+			"value": "Usuário não encontrado"
+		}
+	],
+	"post.imageAlt": [
+		{
+			"type": 0,
+			"value": "Imagem principal da publicação"
+		}
+	],
+	"post.likedBy": [
+		{
+			"type": 0,
+			"value": "Curtido por "
+		},
+		{
+			"type": 1,
+			"value": "number"
+		},
+		{
+			"type": 0,
+			"value": " pessoas"
+		}
+	],
+	"post.postImageAlt": [
+		{
+			"type": 0,
+			"value": "Imagem da sua publicação"
+		}
+	],
+	"post.title": [
+		{
+			"type": 0,
+			"value": "Publicações"
+		}
+	],
+	"post.userProfilePicture.alt": [
+		{
+			"type": 0,
+			"value": "Post profile picture"
+		}
+	],
+	"profile.configurationButton": [
+		{
+			"type": 0,
+			"value": "Configurações"
+		}
+	],
+	"profile.edit.addNewProfilePicture": [
+		{
+			"type": 0,
+			"value": "Nova foto de perfil"
+		}
+	],
+	"profile.edit.deleteProfilePicture": [
+		{
+			"type": 0,
+			"value": "Remover foto atual"
+		}
+	],
+	"profile.edit.deleteProfilePicture.dialogTitle": [
+		{
+			"type": 0,
+			"value": "Remover foto atual?"
+		}
+	],
+	"profile.edit.profilePicture.subtitle": [
+		{
+			"type": 0,
+			"value": "Clique abaixo para carregar uma foto nova de perfil."
+		}
+	],
+	"profile.edit.profilePicture.title": [
+		{
+			"type": 0,
+			"value": "Nova foto de perfil"
+		}
+	],
+	"profile.edit.title": [
+		{
+			"type": 0,
+			"value": "Editar perfil"
+		}
+	],
+	"profile.emptyButton": [
+		{
+			"type": 0,
+			"value": "Criar uma publicação"
+		}
+	],
+	"profile.emptyMessage": [
+		{
+			"type": 0,
+			"value": "Um pouco vazio aqui, certo? Você pode começar enviando novas imagens!"
+		}
+	],
+	"profile.followersLabel": [
+		{
+			"type": 0,
+			"value": "Seguidores"
+		}
+	],
+	"profile.followingLabel": [
+		{
+			"type": 0,
+			"value": "Seguindo"
+		}
+	],
+	"profile.postImageAlt": [
+		{
+			"type": 0,
+			"value": "Image de publicação "
+		},
+		{
+			"type": 1,
+			"value": "number"
+		}
+	],
+	"profile.postsLabel": [
+		{
+			"type": 0,
+			"value": "Publicações"
+		}
+	],
+	"profile.profileImage.alt": [
+		{
+			"type": 0,
+			"value": "Sua foto de perfil"
+		}
+	],
+	"profile.profilePictureAlt": [
+		{
+			"type": 0,
+			"value": "Sua foto de perfil"
+		}
+	],
+	"profilePicture.alt": [
+		{
+			"type": 0,
+			"value": "Current selected profile picture"
+		}
+	],
+	"profilePicture.drawerTitle": [
+		{
+			"type": 0,
+			"value": "Editar foto de perfil"
+		}
+	],
+	"register.birthSubtitle": [
+		{
+			"type": 0,
+			"value": "Use sua própria data de nascimento, mesmo que sua conta seja profissional, de um animal de estimação ou outra coisa. Ninguém verá isto no seu perfil."
+		}
+	],
+	"register.birthTitle": [
+		{
+			"type": 0,
+			"value": "Qual a sua data de nascimento?"
+		}
+	],
+	"register.emailSubtitle": [
+		{
+			"type": 0,
+			"value": "Insira seu email ao qual você pode ser contatado Ninguém verá isto no seu perfil."
+		}
+	],
+	"register.emailTitle": [
+		{
+			"type": 0,
+			"value": "Qual o seu email?"
+		}
+	],
+	"register.loginButton": [
+		{
+			"type": 0,
+			"value": "Já tem uma conta?"
+		}
+	],
+	"register.nameSubtitle": [
+		{
+			"type": 0,
+			"value": "Adicione o seu nome para que seus amigos possam te encontrar."
+		}
+	],
+	"register.nameTitle": [
+		{
+			"type": 0,
+			"value": "Qual o seu nome?"
+		}
+	],
+	"register.passwordSubtitle": [
+		{
+			"type": 0,
+			"value": "Crie uma senha com pelo menos 8 caracteres. Precisa ser algo que outros não possam adivinhar."
+		}
+	],
+	"register.passwordTitle": [
+		{
+			"type": 0,
+			"value": "Crie uma senha"
+		}
+	],
+	"register.profilePictureSubtitle": [
+		{
+			"type": 0,
+			"value": "Adicione uma foto de perfil para que seus amigos saibam que é você. Todos verão sua foto."
+		}
+	],
+	"register.profilePictureTitle": [
+		{
+			"type": 0,
+			"value": "Adicione uma foto de perfil"
+		}
+	],
+	"register.termsText1": [
+		{
+			"type": 0,
+			"value": "Pessoas que usam o nosso serviço podem ter adicionado suas informações de contato ao Katchau"
+		}
+	],
+	"register.termsText2": [
+		{
+			"type": 0,
+			"value": "Ao pressionar "
+		},
+		{
+			"type": 1,
+			"value": "buttonLabel"
+		},
+		{
+			"type": 0,
+			"value": ", você concorda em criar uma conta e aos Termos, Políticas de Privacidade e Políticas de Cookies de Katchau."
+		}
+	],
+	"register.termsTitle": [
+		{
+			"type": 0,
+			"value": "Concordar com os termos e políticas de Katchau"
+		}
+	],
+	"register.usernameSubtitle": [
+		{
+			"type": 0,
+			"value": "Adicione um nome de usuário ou use nossa sugestão. Você pode mudar isso à qualquer momento."
+		}
+	],
+	"register.usernameTitle": [
+		{
+			"type": 0,
+			"value": "Crie um nome de usuário"
+		}
+	],
+	"search.noResultsFound": [
+		{
+			"type": 0,
+			"value": "Nenhum resultado encontrado"
+		}
+	],
+	"search.profileImage.alt": [
+		{
+			"type": 1,
+			"value": "name"
+		},
+		{
+			"type": 0,
+			"value": " foto de perfil"
+		}
+	],
+	"search.searchFieldPlaceholder": [
+		{
+			"type": 0,
+			"value": "Pesquise por alguém..."
+		}
+	],
+	"search.title": [
+		{
+			"type": 0,
+			"value": "Pesquisar"
+		}
+	]
 }

@@ -61,6 +61,7 @@
   "login.loginButton": "Log In",
   "login.loginWithGoogleButton": "Log In With Google",
   "login.logoAlt": "Katchau logo",
+  "login.orLabel": "OR",
   "login.passwordPlaceholder": "Password",
   "login.registerButton": "Don't have an account? Sign up.",
   "login.usernamePlaceholder": "Username",
