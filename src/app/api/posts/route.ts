@@ -4,14 +4,6 @@ import blurImage from '@/utils/image/blurImage';
 import { getToken, JWT } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const config = {
-	api: {
-		bodyParser: {
-			sizeLimit: '20mb',
-		},
-	},
-};
-
 export async function GET(req: NextRequest) {
 	const token = (await getToken({ req })) as JWT;
 
