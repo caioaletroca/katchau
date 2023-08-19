@@ -22,7 +22,13 @@ Given('I navigate to Other user page', () => {
 	cy.fixture('users/actor').then((user) => {
 		getElement('search-input').type('{selectAll}{backspace}').type(user.name);
 
-		getElement('search-results').children().first().click();
+		cy.wait(1000);
+
+		getElement('search-results')
+			.should('be.visible')
+			.children()
+			.first()
+			.click();
 
 		cy.wait(1000);
 
