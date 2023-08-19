@@ -16,10 +16,6 @@ After({ tags: '@end' }, () => {
 });
 
 Given('I start a chat with Other user', () => {
-	cy.wait(1000);
-	cy.location().then((loc) => {
-		cy.log(loc.href);
-	});
 	getElement('profile-message').click();
 
 	cy.wait(1000);
