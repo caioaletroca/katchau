@@ -72,7 +72,7 @@ npm run i18n # For manual extraction
 ## Deploy
 
 Keep in mind to deploy you will need a Vercel and Supabase accounts. You will need a Google account for social authentication.
-Just commit into release branch for Preview, or main for Production. Setup your environment variables on Github, Supabase and Vercel
+Just commit into **release** branch for Preview, or **main** for Production. Setup your environment variables on Github, Supabase and Vercel
 
 ## Exaustive dependencies list
 
