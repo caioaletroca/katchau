@@ -27,7 +27,10 @@ When('I type and send a message', () => {
 });
 
 Then('I should see my message', () => {
-	getElement('chat-message').its('length').should('be.greaterThan', 0);
+	getElement('chat-message')
+		.should('be.visible')
+		.its('length')
+		.should('be.greaterThan', 0);
 });
 
 When('I search for a no existing conversation', () => {

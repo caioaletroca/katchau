@@ -45,6 +45,7 @@ export function useMessages({ user_id }: { user_id: string }) {
 					table: 'messages',
 				},
 				(payload) => {
+					console.log(payload);
 					if (!isEmpty(payload.new)) {
 						setMessages([...messages, payload.new as Message]);
 					}
