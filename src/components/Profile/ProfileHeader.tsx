@@ -15,6 +15,7 @@ import {
 	Toolbar,
 	Typography,
 } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -51,6 +52,7 @@ type ProfileHeaderProps = {
 export default function ProfileHeader({ user_id, onBack }: ProfileHeaderProps) {
 	const intl = useIntl();
 	const router = useRouter();
+	const { data: session } = useSession();
 	const { data: user, isLoading } = useUser({ user_id });
 
 	const [open, setOpen] = React.useState(false);
@@ -65,9 +67,11 @@ export default function ProfileHeader({ user_id, onBack }: ProfileHeaderProps) {
 				<Toolbar>
 					{onBack && <ProfileHeaderBackButton onBack={onBack} />}
 					<Typography className="flex-1">{user?.username}</Typography>
-					<IconButton data-cy="profile-menu" onClick={() => setOpen(true)}>
-						<Icon name="menu" />
-					</IconButton>
+					{session?.user.id === user_id && (
+						<IconButton data-cy="profile-menu" onClick={() => setOpen(true)}>
+							<Icon name="menu" />
+						</IconButton>
+					)}
 				</Toolbar>
 			</AppBar>
 			<SwipeableDrawer
