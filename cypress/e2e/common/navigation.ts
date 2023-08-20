@@ -45,7 +45,7 @@ Given('I navigate to Post page of Other user', () => {
 Given('I navigate to comments on Post page of Other user', () => {
 	Step(this, 'I navigate to Post page of Other user');
 
-	getElement('post-comment').click();
+	getElement('post-comment').should('be.visible').click();
 });
 
 Given('I navigate to Profile page', () => {
@@ -53,26 +53,26 @@ Given('I navigate to Profile page', () => {
 
 	cy.wait(1000);
 
-	getElement('navigation-profile').click();
+	getElement('navigation-profile').should('be.visible').click();
 });
 
 Given('I navigate to Profile Edit page', () => {
 	Step(this, 'I navigate to Profile page');
-	getElement('profile-edit').click();
+	getElement('profile-edit').should('be.visible').click();
 });
 
 Given('I navigate to Configuration page', () => {
 	Step(this, 'I navigate to Profile page');
-	getElement('profile-menu').click();
-	getElement('profile-drawer-configuration').click();
+	getElement('profile-menu').should('be.visible').click();
+	getElement('profile-drawer-configuration').should('be.visible').click();
 });
 
 Given('I navigate to Language page', () => {
 	Step(this, 'I navigate to Configuration page');
-	getElement('configuration-language').click();
+	getElement('configuration-language').should('be.visible').click();
 });
 
 Given('I navigate to Conversation page', () => {
 	Step(this, 'I access app');
-	getElement('home-chat').click();
+	getElement('home-chat').should('be.visible').click();
 });
