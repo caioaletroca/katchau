@@ -1,10 +1,18 @@
-[![Production Deployment](https://github.com/caioaletroca/katchau/actions/workflows/production.yaml/badge.svg?branch=main)](https://github.com/caioaletroca/katchau/actions/workflows/production.yaml)
-
 # Katchau Social
 
 Katchau social is a [Instagram Clone](https://github.com/florinpop17/app-ideas/blob/master/Projects/3-Advanced/Instagram-Clone-App.md) inspired by [App Ideas](https://github.com/florinpop17/app-ideas/blob/master/Projects/3-Advanced/Instagram-Clone-App.md), using [NextJS](https://nextjs.org/), [Next-Auth](https://next-auth.js.org/), [Prisma](https://www.prisma.io/), [Material UI](https://mui.com/), [Supabase](https://supabase.com/) and [Vercel](https://vercel.com/).
 
 This is a educational project.
+
+<!-- <p float="left">
+  <img src="/docs/Login.png" width="100" />
+  <img src="/docs/Login.png" width="100" />
+  <img src="/docs/Login.png" width="100" />
+</p> -->
+
+| Login                          | Home/Feed                    | Profile                            |
+| ------------------------------ | ---------------------------- | ---------------------------------- |
+| ![Login Page](/docs/Login.png) | ![Home Page](/docs/Home.png) | ![Profile Page](/docs/Profile.png) |
 
 ## Features
 
